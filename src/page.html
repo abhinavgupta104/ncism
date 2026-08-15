@@ -1,0 +1,1704 @@
+<title>NCISM Homepage Concept</title>
+<style>/*__FONTS__*/</style>
+<style>
+/* ============================================================
+   NCISM — "Gazette" direction
+   Flat ink on paper, hairline rules, real photography,
+   horizontal editorial spreads. No blur, no gradient wash.
+   ============================================================ */
+:root{
+  color-scheme:light;
+  --paper:#E7E9E2;
+  --raised:#F3F4EF;
+  --sunk:#DDE0D7;
+  --ink:#141812;
+  --ink-2:#3C443A;
+  --muted:#6C7467;
+  --rule:#C4C9BC;
+  --rule-2:#9AA291;
+  --rule-3:#141812;
+
+  --saffron:#B0570A;
+  --teal:#0D5145;
+  --leaf:#48771A;
+  --gold:#87680F;
+  --red:#92301A;
+
+  --on-ink:#F3F4EF;
+  --ink-solid:#141812;
+  --tint:rgba(20,24,18,.05);
+
+  --display:"Spectral",Georgia,serif;
+  --body:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --deva:"Tiro Devanagari Sanskrit",Georgia,serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+
+  --maxw:88rem;
+  --pad:clamp(1.05rem,3.6vw,3.25rem);
+  --rail:9.5rem;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E110D;
+    --raised:#171B15;
+    --sunk:#080A07;
+    --ink:#E8EAE1;
+    --ink-2:#B8C0B1;
+    --muted:#818A7A;
+    --rule:#2B3227;
+    --rule-2:#414A3B;
+    --rule-3:#E8EAE1;
+
+    --saffron:#DE924A;
+    --teal:#5BBCA6;
+    --leaf:#96C551;
+    --gold:#CFA850;
+    --red:#DF8A70;
+
+    --on-ink:#0E110D;
+    --ink-solid:#E8EAE1;
+    --tint:rgba(232,234,225,.06);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E110D;
+  --raised:#171B15;
+  --sunk:#080A07;
+  --ink:#E8EAE1;
+  --ink-2:#B8C0B1;
+  --muted:#818A7A;
+  --rule:#2B3227;
+  --rule-2:#414A3B;
+  --rule-3:#E8EAE1;
+
+  --saffron:#DE924A;
+  --teal:#5BBCA6;
+  --leaf:#96C551;
+  --gold:#CFA850;
+  --red:#DF8A70;
+
+  --on-ink:#0E110D;
+  --ink-solid:#E8EAE1;
+  --tint:rgba(232,234,225,.06);
+}
+
+/* ---------------- base ---------------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.58;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.06;letter-spacing:-.028em;text-wrap:balance}
+h4,h5{font-family:var(--body);font-weight:650;margin:0;line-height:1.28}
+p{margin:0}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.lbl{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+}
+.skip{position:fixed;left:0;top:-4rem;z-index:200;background:var(--ink-solid);color:var(--on-ink);
+  padding:.6rem 1.1rem;font-weight:650;font-size:.88rem;text-decoration:none;transition:top .18s var(--ease)}
+.skip:focus{top:0}
+
+/* ---------------- utility strip ---------------- */
+.util{background:var(--ink-solid);color:var(--on-ink);font-size:.735rem;position:relative;z-index:60}
+.util .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.38rem;flex-wrap:wrap}
+.util-l{display:flex;align-items:center;gap:.5rem;opacity:.88}
+.util-r{display:flex;align-items:center;gap:.22rem;flex-wrap:wrap}
+.util .bar{width:1px;height:.9rem;background:currentColor;opacity:.28;margin-inline:.32rem}
+.tool{
+  background:transparent;border:1px solid transparent;color:inherit;font-size:.72rem;line-height:1;
+  padding:.3rem .48rem;cursor:pointer;transition:background .16s ease,border-color .16s ease;
+}
+.tool:hover{border-color:currentColor}
+.tool[aria-pressed="true"]{background:var(--on-ink);color:var(--ink-solid);font-weight:700}
+
+/* ---------------- masthead ---------------- */
+.masthead{border-bottom:1px solid var(--rule)}
+.masthead .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding-block:1.15rem .95rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;min-width:0;flex-shrink:0}
+.brand svg{flex:none;width:76px;height:76px}
+.brand > span{display:flex;flex-direction:column;justify-content:center}
+.brand .en{
+  display:block;font-family:var(--display);font-weight:700;font-size:0.88rem;
+  line-height:1.15;letter-spacing:-.01em;max-width:21ch;white-space:normal;
+}
+.brand .hi{display:block;font-family:var(--deva);font-size:.7rem;color:var(--ink-2);margin-top:.15rem;white-space:normal}
+.mast-r{display:flex;align-items:center;gap:1rem}
+.emb{display:flex;gap:.6rem;align-items:center}
+.emb img{height:2.15rem;width:auto}
+@media (max-width:1000px){.emb{display:none}}
+.find{display:flex;align-items:stretch;border:1px solid var(--rule-2)}
+.find input{border:0;background:transparent;font-size:.84rem;padding:.44rem .6rem;width:min(13rem,42vw)}
+.find input:focus{outline:none}
+.find input::placeholder{color:var(--muted)}
+.find button{border:0;background:var(--ink-solid);color:var(--on-ink);padding:0 .7rem;cursor:pointer;display:grid;place-items:center}
+
+/* ============================================================
+   PRIMARY NAV — transparent wrapper + collapsing glass pill
+   ============================================================ */
+.nav{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* transparent shell — padding creates space for the pill to float */
+  background: transparent;
+  padding: 0;
+  transition: padding .45s cubic-bezier(.25,1,.5,1);
+}
+/* when scrolled, push the pill down with a gap */
+.nav.scrolled{
+  padding: .6rem 0;
+}
+
+/* the actual glass bar */
+.nav-inner{
+  /* floating pill by default */
+  margin-inline: clamp(0.5rem, 2vw, 3rem);
+  border-radius: 36px;
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  box-shadow:
+    0 2px 0 color-mix(in srgb, white 40%, transparent) inset,
+    0 12px 32px -8px color-mix(in srgb, var(--ink) 12%, transparent);
+  /* all transitions in one place */
+  transition:
+    margin-inline .45s cubic-bezier(.25,1,.5,1),
+    border-radius .45s cubic-bezier(.25,1,.5,1),
+    background    .35s ease,
+    box-shadow    .35s ease,
+    border-color  .35s ease;
+}
+/* scrolled: slightly shrink the pill */
+.nav.scrolled .nav-inner{
+  margin-inline: clamp(1rem, 2vw, 2rem);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 50%, transparent) inset,
+    0 16px 48px -10px color-mix(in srgb, var(--ink) 24%, transparent),
+    0 2px 8px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.nav-inner:hover{
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+}
+
+/* nav-inner .wrap: no max-width cap, full bleed */
+.nav .wrap{
+  max-width: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.2rem, 1vw, 1rem);
+  padding: 0.8rem clamp(0.2rem, 1vw, 1rem);
+  transition: padding .4s cubic-bezier(.25,1,.5,1);
+}
+.nav.scrolled .wrap{
+  padding: 0.5rem 1.2rem;
+}
+.nav ul{
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0;
+}
+.nav ul li{ position: relative; flex-shrink: 0; padding-bottom: 0; }
+.nav li:hover .nav-btn{ color: var(--ink); }
+.nav li:hover .nav-btn::after{ transform: scaleX(1); }
+.nav li:hover .nav-btn i{ transform: rotate(180deg); opacity: .85; }
+.nav li:hover .drop, .nav li.open .drop{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+/* bridge gap between button and drop so mouse doesn't leave li */
+.nav ul li{ position: relative; flex-shrink: 0; padding-bottom: 0; }
+.nav ul li::after{
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0; right: 0;
+  height: 10px;
+  display: block;
+}
+
+/* ---- glassmorphic dropdown ---- */
+.drop{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 15rem;
+  background: color-mix(in srgb, var(--raised) 80%, transparent);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 12px;
+  padding: .45rem;
+  z-index: 200;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 30%, transparent) inset,
+    0 24px 64px -12px color-mix(in srgb, var(--ink) 25%, transparent);
+  opacity: 0;
+  transform: translateY(-10px) scale(.97);
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .28s cubic-bezier(.25,1,.5,1);
+}
+.drop a{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1rem;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-radius: 7px;
+  transition: background .18s ease, color .15s ease, padding-left .2s ease;
+}
+.drop a::before{
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--saffron);
+  opacity: 0;
+  flex-shrink: 0;
+  transition: opacity .18s ease;
+}
+.drop a:hover{
+  background: color-mix(in srgb, var(--saffron) 10%, transparent);
+  color: var(--ink);
+  padding-left: 1.1rem;
+}
+.drop a:hover::before{ opacity: 1; }
+
+/* nav button */
+.nav-btn{
+  background: transparent;
+  border: 0;
+  font-family: var(--body);
+  font-size: clamp(0.72rem, 0.85vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  padding: 1.1rem clamp(0.15rem, 0.5vw, 0.8rem);
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .28rem;
+  color: var(--ink-2);
+  position: relative;
+  white-space: nowrap;
+  transition: color .2s ease, font-size .35s ease, padding .35s ease;
+}
+.nav.scrolled .nav-btn{
+  font-size: clamp(0.68rem, 0.8vw, 0.88rem);
+  padding: .85rem clamp(0.1rem, 0.4vw, 0.6rem);
+}
+/* animated gradient underline */
+.nav-btn::after{
+  content: "";
+  position: absolute;
+  left: .75rem;
+  right: .75rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--saffron), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s cubic-bezier(.25,1,.5,1);
+}
+/* chevron */
+.nav-btn i{
+  font-style: normal;
+  font-size: .55rem;
+  opacity: .45;
+  display: inline-block;
+  transition: transform .25s cubic-bezier(.25,1,.5,1), opacity .2s;
+}
+.nav-login{
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  color: #fff !important;
+  border: none;
+  border-radius: 20px;
+  padding: clamp(0.5rem, 0.8vw, 0.7rem) clamp(0.6rem, 1vw, 1.2rem) !important;
+  margin-left: clamp(0.1rem, 0.5vw, 0.5rem);
+  font-size: clamp(0.75rem, 0.85vw, 0.92rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: .04em;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--saffron) 30%, transparent);
+  transition: box-shadow .25s ease, transform .2s ease;
+}
+.nav-login:hover{ box-shadow: 0 6px 22px color-mix(in srgb, var(--saffron) 50%, transparent); transform: translateY(-2px); }
+.nav.scrolled .nav-login{
+  font-size: .84rem !important;
+  padding: .6rem 1.2rem !important;
+}
+.nav-login::after{ display:none !important; }
+
+/* mobile toggle */
+.navtog{ display:none; }
+@media (max-width:960px){
+  .nav-inner{ border-radius:0 !important; margin-inline:0 !important; }
+  .nav .wrap{ flex-direction:column; padding-inline: var(--pad); }
+  .navtog{
+    display:flex; align-items:center; justify-content:space-between;
+    width:100%; background:transparent; border:0;
+    padding:.75rem 0; font-size:.9rem; font-weight:650; cursor:pointer;
+  }
+  .nav ul{ display:none; flex-direction:column; width:100%; padding-bottom:.7rem; overflow:visible; }
+  .nav.open ul{ display:flex; }
+  .nav-btn{ width:100%; justify-content:space-between; padding:.75rem 0; text-transform:none; font-size:.9rem; }
+  .nav-btn::after{ left:0; right:0; }
+  .drop{ position:static; opacity:1; transform:none; pointer-events:auto; display:none; border:0; background:transparent; padding:0 0 .4rem .9rem; border-radius:0; box-shadow:none; backdrop-filter:none; }
+  .nav li.open .drop{ display:block; }
+  .nav-login{ margin-left:0; margin-top:.4rem; }
+}
+
+/* ---------------- rail layout ---------------- */
+.band{border-bottom:1px solid var(--rule)}
+.band .wrap{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:0}
+@media (max-width:900px){.band .wrap{grid-template-columns:1fr}}
+.rail{
+  border-right:1px solid var(--rule);padding:2.6rem 1.4rem 2.6rem 0;
+  display:flex;flex-direction:column;gap:.5rem;
+}
+@media (max-width:900px){.rail{border-right:0;border-bottom:1px solid var(--rule);padding:1.2rem 0 .9rem;flex-direction:row;align-items:baseline;gap:1rem}}
+.rail .no{font-family:var(--display);font-size:2.4rem;font-weight:700;line-height:.85;color:var(--rule-2)}
+.rail .dv{font-family:var(--deva);font-size:.92rem;color:var(--muted);line-height:1.5}
+.rail .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.body-col{padding:2.6rem 0 2.9rem 2.2rem}
+@media (max-width:900px){.body-col{padding:1.8rem 0 2.2rem}}
+
+.hd{max-width:56ch;margin-bottom:1.9rem}
+.hd h2{font-size:clamp(1.7rem,3.6vw,2.65rem);margin-bottom:.6rem}
+.hd p{color:var(--ink-2);font-size:1rem;max-width:52ch}
+
+/* ---------------- reveal ---------------- */
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{animation:rise .8s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+/* ---------------- image slider ---------------- */
+.hero-slider {
+  position: relative;
+  width: auto;
+  margin: 1.5rem clamp(1rem, 4vw, 3rem) 2rem;
+  border-radius: 24px;
+  height: calc(100vh - 10rem);
+  min-height: 400px;
+  overflow: hidden;
+  background: var(--ink-solid);
+  box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.slide-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+.slide-cap {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--ink) 70%, transparent);
+  color: var(--on-ink);
+  padding: 1.2rem 2.4rem;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-family: var(--display);
+  font-weight: 600;
+  text-align: center;
+  max-width: 85%;
+  border-radius: 4px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+.slide-btn:hover { background: rgba(0,0,0,0.7); }
+.slide-btn.prev { left: 1rem; }
+.slide-btn.next { right: 1rem; }
+
+/* ---------------- commission section ---------------- */
+.commission-section {
+  padding: 4rem clamp(1rem, 4vw, 3rem);
+  background: #f4f6f8;
+  text-align: center;
+}
+.commission-section h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  color: #1a365d;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+.members-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+.members-grid::-webkit-scrollbar { height: 8px; }
+.members-grid::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+.members-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+.member-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: white;
+  padding: 0.6rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 5%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.member-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.member-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.member-card:hover .member-img-wrap img {
+  transform: scale(1.05);
+}
+.member-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.member-name {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.4rem;
+  text-align: center;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+.member-role {
+  background: linear-gradient(to right, #d34c1b, #e97a21);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.6rem 0;
+  text-align: center;
+}
+/* ---------------- introduction ---------------- */
+.intro-section {
+  padding: 4rem clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--paper) 50%, white);
+}
+.intro-section .wrap {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 4rem;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .intro-section .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+.intro-content h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.intro-content p {
+  color: var(--ink-2);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+.intro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 12%, transparent);
+  object-fit: cover;
+}
+
+/* ---------------- hero ---------------- */
+.hero{border-bottom:1px solid var(--rule-3)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:0;align-items:stretch}
+@media (max-width:1000px){.hero .wrap{grid-template-columns:1fr}}
+.hero-txt{padding:clamp(2rem,5vw,4rem) clamp(1.4rem,3vw,3rem) clamp(2rem,4vw,3rem) 0;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center}
+@media (max-width:1000px){.hero-txt{border-right:0;border-bottom:1px solid var(--rule);padding-right:0}}
+.hero h1{font-size:clamp(2.3rem,6.2vw,4.6rem);margin-block:.85rem .1rem}
+.word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.word>span{display:inline-block}
+.js .word>span{transform:translateY(105%);animation:wup .8s var(--ease) forwards}
+@keyframes wup{to{transform:translateY(0)}}
+.motto{font-family:var(--deva);font-size:clamp(1.2rem,2.5vw,1.72rem);line-height:1.75;color:var(--saffron);margin-top:.85rem}
+.motto-en{font-style:italic;color:var(--muted);font-size:.9rem;margin-top:.1rem}
+.hero p.lede{color:var(--ink-2);font-size:1.02rem;max-width:46ch;margin-top:1.3rem}
+.hero-meta{display:flex;gap:0;margin-top:1.9rem;border-top:1px solid var(--rule);flex-wrap:wrap}
+.hero-meta div{padding:.85rem 1.5rem .2rem 0;margin-right:1.5rem;border-right:1px solid var(--rule)}
+.hero-meta div:last-child{border-right:0;margin-right:0}
+.hero-meta b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1}
+.hero-meta span{display:block;font-size:.73rem;color:var(--muted);margin-top:.22rem}
+.cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.9rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;font-size:.87rem;font-weight:650;
+  padding:.72rem 1.25rem;text-decoration:none;cursor:pointer;border:1px solid var(--ink-solid);
+  transition:background .2s ease,color .2s ease,gap .22s var(--ease);
+}
+.btn-fill{background:var(--ink-solid);color:var(--on-ink)}
+.btn-fill:hover{gap:.9rem}
+.btn-line:hover{background:var(--ink-solid);color:var(--on-ink);gap:.9rem}
+.hero-fig{position:relative;overflow:hidden;min-height:clamp(20rem,42vw,33rem)}
+.hero-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+.hero-fig figcaption{
+  position:absolute;left:0;bottom:0;right:0;padding:1.9rem 1.2rem .9rem;
+  background:linear-gradient(0deg,rgba(10,12,9,.86),transparent);
+  color:#EDEFE8;font-size:.76rem;display:flex;gap:.6rem;align-items:baseline;
+}
+.hero-fig figcaption b{font-weight:650}
+.mark-float{position:absolute;top:1rem;right:1rem;width:3.6rem;height:3.6rem;background:var(--paper);padding:.42rem;border:1px solid var(--rule)}
+
+/* logo draw */
+.lf{fill:none;stroke-width:12;stroke-linecap:round}
+.js .lf{stroke-dasharray:560;stroke-dashoffset:560;animation:draw 1.6s var(--ease) forwards}
+.lf:nth-of-type(1){animation-delay:.1s}.lf:nth-of-type(2){animation-delay:.26s}
+.lf:nth-of-type(3){animation-delay:.42s}.lf:nth-of-type(4){animation-delay:.58s}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ---------------- ticker ---------------- */
+.tick{display:flex;align-items:stretch;border-bottom:1px solid var(--rule);background:var(--raised)}
+.tick .tg{background:var(--saffron);color:#fff;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;display:grid;place-items:center;padding:.55rem .9rem;flex:none}
+.tick-v{overflow:hidden;flex:1;display:flex;align-items:center;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 2%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 2%,#000 95%,transparent)}
+.tick-t{display:flex;gap:2.8rem;width:max-content;padding-left:1.5rem;animation:slide 52s linear infinite}
+.tick:hover .tick-t,.tick:focus-within .tick-t{animation-play-state:paused}
+.tick-t a{font-size:.8rem;color:var(--ink-2);white-space:nowrap;text-decoration:none;padding-block:.55rem}
+.tick-t a:hover{color:var(--saffron)}
+.tick-t a::before{content:"—";color:var(--rule-2);margin-right:.6rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+.tick button{background:transparent;border:0;border-left:1px solid var(--rule);color:var(--muted);padding:0 .85rem;cursor:pointer;font-size:.66rem;flex:none}
+.tick button:hover{color:var(--ink)}
+
+/* ---------------- register (tasks) ---------------- */
+.reg{border-top:1px solid var(--rule)}
+.reg a{
+  display:grid;grid-template-columns:3.2rem minmax(0,1fr) minmax(0,1.15fr) auto;gap:1.4rem;align-items:center;
+  padding:1.15rem .6rem 1.15rem 0;border-bottom:1px solid var(--rule);text-decoration:none;
+  transition:background .22s ease,padding-left .28s var(--ease);
+}
+.reg a:hover{background:var(--tint);padding-left:.9rem}
+.reg .n{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.reg h4{font-size:1.16rem;font-family:var(--display);font-weight:700;letter-spacing:-.015em}
+.reg p{font-size:.87rem;color:var(--muted)}
+.reg .go{font-size:.78rem;font-weight:650;color:var(--saffron);display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.reg a:hover .go svg{transform:translateX(5px)}
+.reg .go svg{transition:transform .26s var(--ease)}
+@media (max-width:800px){
+  .reg a{grid-template-columns:2.6rem minmax(0,1fr);gap:.5rem 1rem}
+  .reg p{grid-column:2}
+  .reg .go{grid-column:2}
+}
+
+/* ---------------- horizontal scroller ---------------- */
+.hs-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.3rem}
+.hs-nav{display:flex;gap:.4rem}
+.hs-btn{
+  width:2.5rem;height:2.5rem;border:1px solid var(--rule-2);background:transparent;cursor:pointer;
+  display:grid;place-items:center;transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.hs-btn:hover:not(:disabled){background:var(--ink-solid);color:var(--on-ink);border-color:var(--ink-solid)}
+.hs-btn:disabled{opacity:.3;cursor:default}
+.hs{
+  display:flex;gap:0;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;
+  border-top:1px solid var(--rule-3);border-bottom:1px solid var(--rule);
+}
+.hs::-webkit-scrollbar{display:none}
+.hs.drag{cursor:grabbing;scroll-snap-type:none}
+.hs.drag *{pointer-events:none}
+.hs-prog{height:2px;background:var(--rule);position:relative}
+.hs-prog span{position:absolute;left:0;top:0;bottom:0;background:var(--saffron);width:0;transition:width .12s linear}
+
+/* systems panels */
+.sysp{
+  flex:0 0 clamp(19rem,32vw,25rem);scroll-snap-align:start;
+  border-right:1px solid var(--rule);padding:1.8rem 1.6rem 2rem;
+  display:flex;flex-direction:column;gap:.6rem;text-decoration:none;
+  transition:background .26s ease;
+}
+.sysp:hover{background:var(--tint)}
+.sysp .top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--rule);padding-bottom:.9rem;margin-bottom:.3rem}
+.sysp .gly{font-family:var(--deva);font-size:3.4rem;line-height:.9;color:var(--sc,var(--teal));transition:transform .34s var(--ease)}
+.sysp:hover .gly{transform:translateY(-4px)}
+.sysp .idx{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:.16em}
+.sysp h3{font-size:1.62rem;letter-spacing:-.022em}
+.sysp .deg{font-family:var(--mono);font-size:.68rem;color:var(--sc,var(--teal));letter-spacing:.1em;text-transform:uppercase}
+.sysp p{font-size:.875rem;color:var(--ink-2);line-height:1.62}
+.sysp dl{margin:.7rem 0 0;border-top:1px solid var(--rule);padding-top:.7rem;display:grid;grid-template-columns:auto 1fr;gap:.3rem .9rem}
+.sysp dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.sysp dd{margin:0;font-size:.79rem;color:var(--ink-2)}
+.sysp .more{margin-top:auto;padding-top:1rem;font-size:.78rem;font-weight:650;color:var(--sc,var(--teal));display:flex;align-items:center;gap:.4rem}
+.sysp:hover .more svg{transform:translateX(5px)}
+.sysp .more svg{transition:transform .26s var(--ease)}
+
+/* archive photo panels */
+.arch{flex:0 0 clamp(15rem,26vw,20rem);scroll-snap-align:start;border-right:1px solid var(--rule);background:var(--paper)}
+.arch figure{margin:0}
+.arch img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.92)}
+.arch figcaption{padding:.85rem 1.1rem 1.3rem}
+.arch .dt{font-family:var(--mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.arch .cp{font-size:.88rem;color:var(--ink);margin-top:.3rem;line-height:1.45}
+
+/* ---------------- notices ---------------- */
+.two{display:grid;grid-template-columns:minmax(0,1fr) 19rem;gap:2.4rem}
+@media (max-width:950px){.two{grid-template-columns:1fr;gap:1.8rem}}
+.tabs{display:flex;gap:1.3rem;border-bottom:1px solid var(--rule-3);overflow-x:auto}
+.tab{background:transparent;border:0;position:relative;color:var(--muted);font-size:.84rem;font-weight:650;
+  padding:.5rem 0 .6rem;cursor:pointer;white-space:nowrap;transition:color .18s ease}
+.tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--saffron);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{transform:scaleX(1)}
+.nlist{list-style:none;margin:0;padding:0}
+.nlist li{border-bottom:1px solid var(--rule)}
+.js .nlist li{opacity:0;transform:translateY(6px);animation:rise .5s var(--ease) forwards}
+.nlist li:nth-child(1){animation-delay:.02s}.nlist li:nth-child(2){animation-delay:.055s}
+.nlist li:nth-child(3){animation-delay:.09s}.nlist li:nth-child(4){animation-delay:.125s}
+.nlist li:nth-child(5){animation-delay:.16s}.nlist li:nth-child(6){animation-delay:.195s}
+.nlist li:nth-child(7){animation-delay:.23s}
+.nlist a{display:grid;grid-template-columns:5.6rem minmax(0,1fr) auto;gap:1.1rem;align-items:baseline;
+  padding:.82rem .4rem;text-decoration:none;transition:background .2s ease,padding-left .26s var(--ease)}
+.nlist a:hover{background:var(--tint);padding-left:.8rem}
+.nlist .d{font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap}
+.nlist .t{font-size:.9rem;color:var(--ink-2)}
+.nlist a:hover .t{color:var(--ink)}
+.flag{font-family:var(--mono);font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;padding:.16rem .42rem;white-space:nowrap;border:1px solid currentColor}
+.flag.new{color:var(--saffron)}.flag.pdf{color:var(--muted)}.flag.ok{color:var(--leaf)}
+@media (max-width:600px){.nlist a{grid-template-columns:1fr auto}.nlist .d{grid-column:1/-1}}
+.side h5{font-family:var(--mono);font-size:.62rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);
+  padding-bottom:.6rem;border-bottom:1px solid var(--rule-3);margin-bottom:.2rem}
+.side ul{list-style:none;margin:0 0 2rem;padding:0}
+.side li a{display:flex;justify-content:space-between;gap:.7rem;align-items:baseline;text-decoration:none;
+  font-size:.85rem;color:var(--ink-2);padding:.55rem 0;border-bottom:1px solid var(--rule);
+  transition:padding-left .24s var(--ease),color .18s ease}
+.side li a:hover{padding-left:.4rem;color:var(--ink)}
+.side .ab{font-family:var(--mono);font-size:.63rem;color:var(--muted)}
+.advis{border:1px solid var(--saffron);padding:1.1rem 1.15rem;margin-bottom:2rem}
+.advis .lbl{color:var(--saffron);display:block;margin-bottom:.5rem}
+.advis p{font-size:.85rem;color:var(--ink-2);line-height:1.55}
+.advis a{display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.8rem;font-weight:650;color:var(--saffron);text-decoration:none}
+.advis a:hover{gap:.65rem}
+
+/* ---------------- finder ---------------- */
+.fbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;padding-bottom:.9rem;border-bottom:1px solid var(--rule-3)}
+.fbar input,.fbar select{font-size:.84rem;padding:.48rem .6rem;border:1px solid var(--rule-2);background:var(--raised);color:var(--ink)}
+.fbar input{flex:1;min-width:11rem}
+.fbar input:focus,.fbar select:focus{outline:none;border-color:var(--ink-solid)}
+.fcount{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:auto}
+.tscroll{overflow:auto;max-height:24rem;border-bottom:1px solid var(--rule-3)}
+table.col{width:100%;border-collapse:collapse;font-size:.855rem;min-width:44rem}
+table.col th{position:sticky;top:0;background:var(--paper);z-index:1;font-family:var(--mono);font-size:.61rem;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;
+  padding:.7rem .9rem .7rem 0;border-bottom:1px solid var(--rule-2)}
+table.col td{padding:.66rem .9rem .66rem 0;border-bottom:1px solid var(--rule)}
+table.col tbody tr{transition:background .16s ease}
+table.col tbody tr:hover{background:var(--tint)}
+table.col td:first-child{font-weight:600}
+.st{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:650;white-space:nowrap}
+.st::before{content:"";width:.5rem;height:.5rem;background:currentColor}
+.st.permitted{color:var(--leaf)}.st.conditional{color:var(--saffron)}.st.denied{color:var(--red)}
+.tempty{padding:2.2rem 0;text-align:center;color:var(--muted);font-size:.88rem}
+.dnote{display:flex;gap:.5rem;align-items:center;padding:.7rem 0;font-size:.74rem;color:var(--muted)}
+
+/* ---------------- leadership ---------------- */
+.lead{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.2rem;align-items:start}
+@media (max-width:760px){.lead{grid-template-columns:1fr;gap:1.4rem}}
+.lead img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border:1px solid var(--rule)}
+.lead h3{font-size:clamp(1.4rem,2.8vw,2rem);margin-bottom:.3rem}
+.lead .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron)}
+.lead blockquote{margin:1.1rem 0 0;padding-left:1.1rem;border-left:2px solid var(--rule-2);
+  font-family:var(--display);font-size:1.08rem;line-height:1.5;color:var(--ink-2)}
+.lead dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.2rem;margin-top:1.4rem;border-top:1px solid var(--rule);padding-top:1rem}
+.lead dt{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.lead dd{margin:0;font-size:.86rem;color:var(--ink-2)}
+
+/* ---------------- partners ---------------- */
+.part{display:flex;gap:2.4rem;align-items:center;flex-wrap:wrap;padding-block:1.4rem}
+.part img{height:2.5rem;width:auto;filter:grayscale(1);opacity:.62;transition:filter .25s ease,opacity .25s ease}
+.part a:hover img{filter:grayscale(0);opacity:1}
+
+/* ---------------- footer ---------------- */
+footer{background:var(--ink-solid);color:var(--on-ink);padding-top:3rem}
+.fg{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:2.4rem;padding-bottom:2.4rem}
+@media (max-width:860px){.fg{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fg{grid-template-columns:1fr}}
+.fg h5{font-family:var(--mono);font-size:.62rem;letter-spacing:.19em;text-transform:uppercase;opacity:.5;margin-bottom:1rem;font-weight:500}
+.fg ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.fg li a{font-size:.85rem;text-decoration:none;opacity:.82;position:relative;width:fit-content;transition:opacity .18s ease}
+.fg li a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.fg li a:hover{opacity:1}
+.fg li a:hover::after{transform:scaleX(1);transform-origin:left}
+.colophon{font-size:.85rem;line-height:1.75;opacity:.72}
+.colophon strong{display:block;font-family:var(--display);font-size:1.15rem;opacity:1;margin-bottom:.5rem;font-weight:700;line-height:1.2}
+.colophon .mt{font-family:var(--deva);color:var(--saffron);opacity:1;margin-bottom:.7rem}
+.fbot{border-top:1px solid rgba(255,255,255,.16);padding-block:1.1rem 1.6rem;display:flex;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;font-size:.75rem;opacity:.55}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .rv{opacity:1;transform:none}
+  .js .word>span{transform:none}
+  .js .lf{stroke-dashoffset:0}
+  .js .nlist li{opacity:1;transform:none}
+}
+</style>
+
+<script>
+(function(){var d=document.documentElement;d.classList.add("js");
+try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="util">
+  <div class="wrap">
+    <div class="util-l">
+      <svg width="11" height="14" viewBox="0 0 13 16" fill="currentColor" aria-hidden="true">
+        <path d="M6.5 0 8 3.2 11.5 3 9.6 6l1.9 3-3.5-.2L6.5 12 5 8.8 1.5 9l1.9-3L1.5 3 5 3.2z" opacity=".85"/>
+        <rect x="6" y="11" width="1" height="5"/></svg>
+      <span>Ministry of Ayush, Government of India</span>
+    </div>
+    <div class="util-r">
+      <button class="tool" data-font="small" aria-label="Decrease text size">A−</button>
+      <button class="tool" data-font="normal" aria-pressed="true" aria-label="Normal text size">A</button>
+      <button class="tool" data-font="large" aria-label="Increase text size">A+</button>
+      <span class="bar"></span>
+      <button class="tool" id="themeBtn"><span id="themeTxt">Dark</span></button>
+      <span class="bar"></span>
+      <button class="tool" id="langBtn" aria-label="Switch language">EN · <span style="font-family:var(--deva)">हिन्दी</span></button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap" style="justify-content: flex-end; padding-block: .5rem;">
+    <div class="mast-r">
+      <div class="emb">
+        <img src="assets/original/azadi-ka-amrit-mahotsav.jpg" alt="Azadi ka Amrit Mahotsav">
+        <img src="assets/original/g20-logo.jpg" alt="G20 India 2023">
+      </div>
+      <form class="find" role="search" onsubmit="return false">
+        <label class="sr" for="q">Search notices, colleges and syllabi</label>
+        <input id="q" type="search" placeholder="Search the register…">
+        <button type="submit" aria-label="Search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="nav-inner">
+    <div class="wrap">
+      <a class="brand" href="#">
+        <svg width="52" height="52" viewBox="0 0 300 300" aria-hidden="true">
+          <g transform="translate(150,262)">
+            <path class="lf" stroke="#B26412" transform="rotate(-58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path class="lf" stroke="#DEAC2F" transform="rotate(-26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path class="lf" stroke="#48AC92" transform="rotate(26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path class="lf" stroke="#3FA832" transform="rotate(58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          </g>
+          <path fill="none" stroke="#FADF12" stroke-width="13" stroke-linecap="round" d="M110 92 A 41 41 0 0 1 190 92"/>
+          <circle cx="150" cy="130" r="12" fill="#F17E01"/>
+          <path d="M150 146 L150 214 M150 159 L126 134 M150 159 L174 134" stroke="#F17E01" stroke-width="11" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span>
+          <span class="en">National Commission for Indian System of Medicine</span>
+          <span class="hi">राष्ट्रीय भारतीय चिकित्सा पद्धति आयोग</span>
+        </span>
+      </a>
+      <button class="navtog" id="navtog" aria-expanded="false">Menu
+        <svg width="17" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <ul>
+        <li><button class="nav-btn">Home</button></li>
+        <li><button class="nav-btn">About NCISM <i>&#9660;</i></button>
+          <div class="drop">
+            <a href="#">Introduction</a>
+            <a href="#">Main Objectives</a>
+            <a href="#">Chairperson</a>
+            <a href="#">Autonomous Boards</a>
+            <a href="#">Composition of Commission</a>
+            <a href="#">Advisory Board</a>
+            <a href="#">Officers of NCISM</a>
+          </div>
+        </li>
+        <li><button class="nav-btn">Indian Medicine <i>&#9660;</i></button>
+          <div class="drop">
+            <a href="#">Ayurveda</a>
+            <a href="#">Unani</a>
+            <a href="#">Siddha</a>
+            <a href="#">Sowa-Rigpa</a>
+            <a href="#">Pre-Ayurveda &amp; Pre-Tib</a>
+          </div>
+        </li>
+        <li><button class="nav-btn">Registration <i>&#9660;</i></button>
+          <div class="drop">
+            <a href="#">State Board Acts</a>
+            <a href="#">List of State Boards</a>
+            <a href="#">Recognised Qualifications</a>
+            <a href="#">National Register</a>
+          </div>
+        </li>
+        <li><button class="nav-btn">Information Desk <i>&#9660;</i></button>
+          <div class="drop">
+            <a href="#">Acts &amp; Amendments</a>
+            <a href="#">Rules &amp; Regulations</a>
+            <a href="#">Guidelines</a>
+            <a href="#">Approval Process</a>
+          </div>
+        </li>
+        <li><button class="nav-btn">E-learning</button></li>
+        <li><button class="nav-btn">Examinations</button></li>
+        <li><button class="nav-btn">Rating</button></li>
+        <li><button class="nav-btn">Others <i>&#9660;</i></button>
+          <div class="drop">
+            <a href="#">NCISM Portal</a>
+            <a href="#">Grievance Redressal</a>
+            <a href="#">Vigilance Corner</a>
+            <a href="#">RTI</a>
+            <a href="#">Results</a>
+          </div>
+        </li>
+        <li><button class="nav-btn nav-login">Logins &#9660;</button>
+          <div class="drop" style="left:auto;right:0">
+            <a href="#">College Login</a>
+            <a href="#">Practitioner Login</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<main id="main">
+
+<div class="hero-slider" aria-hidden="true">
+  <button class="slide-btn prev" aria-label="Previous">❮</button>
+  <button class="slide-btn next" aria-label="Next">❯</button>
+  <div class="slide-track" id="sliderTrack">
+    <div class="slide">
+      <img src="assets/web/g-1004226513.jpg" alt="">
+      <div class="slide-cap">To prescribe minimum standards of education in Indian Systems of Medicine</div>
+    </div>
+    <div class="slide">
+      <img src="assets/web/g-1004226583.jpg" alt="">
+      <div class="slide-cap">Promoting research and development in Indian systems of medicine</div>
+    </div>
+    <div class="slide">
+      <img src="assets/web/g-1004226636.jpg" alt="">
+      <div class="slide-cap">Ensuring high quality and standard of education in the medical profession</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('sliderTrack');
+  const prev = document.querySelector('.slide-btn.prev');
+  const next = document.querySelector('.slide-btn.next');
+  if(!track) return;
+  let index = 0;
+  const slides = track.children.length;
+
+  const update = () => { track.style.transform = `translateX(-${index * 100}%)`; };
+  const nextSlide = () => { index = (index + 1) % slides; update(); };
+  const prevSlide = () => { index = (index - 1 + slides) % slides; update(); };
+  next.addEventListener('click', () => { nextSlide(); resetTimer(); });
+  prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+
+  let timer = setInterval(nextSlide, 5000);
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(nextSlide, 5000);
+  }
+});
+</script>
+
+<section class="intro-section">
+  <div class="wrap">
+    <div class="intro-content">
+      <h2>INTRODUCTION</h2>
+      <p>In pursuance of the provisions of National Commission for Indian System of Medicine (NCISM) Act 2020 (14 of 2020), the Indian Medicine Central Council (IMCC) Act 1970 (48 of 1970) has been repealed and all the provisions of the National Commission for Indian System of Medicine (NCISM) has been come into force with effect from the 11th day of June 2021. Under the provisions of section 59 (2) of NCISM Act 2020 the Central Government has constituted the Commission and four Autonomous boards on the same day. Medical standards, requirements and other provisions of the IMCC Act 1970 and the rules and regulations made thereunder shall continue to be in force and operate till new standards or requirements as specified under new act or rules and regulations made thereunder come into force. However, the provisions of concerned regulations which are inconsistent with the provisions of NCISM Act 2020 shall not be applicable.</p>
+    </div>
+    <div class="intro-image">
+      <img src="assets/gallery/images.jpg" alt="Chairperson NCISM">
+    </div>
+  </div>
+</section>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="lbl">Constituted 11 June 2021 · NCISM Act, 2020</span>
+      <h1 data-split>The standard for Indian medicine.</h1>
+      <div class="motto" lang="sa">।। आयुषे सर्वलोकानाम् ।।</div>
+      <p class="motto-en">For the life and health of all people</p>
+      <p class="lede">The Commission regulates education and practice across Ayurveda, Unani, Siddha and
+        Sowa-Rigpa — setting curricula, assessing institutions, and maintaining the national register.</p>
+      <div class="cta">
+        <a class="btn btn-fill" href="#finder">Check a college's status
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line" href="#notices">Public notices</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>4</b><span>Systems regulated</span></div>
+        <div><b>4</b><span>Autonomous boards</span></div>
+        <div><b>2020</b><span>Act of Parliament</span></div>
+      </div>
+    </div>
+    <figure class="hero-fig">
+      <img src="assets/web/feature.jpg" alt="The Chairperson of NCISM addressing a curriculum workshop at the National Institute of Siddha">
+      <span class="mark-float">
+        <svg viewBox="0 0 300 300" width="100%" aria-hidden="true">
+          <g transform="translate(150,262)">
+            <path fill="none" stroke-width="15" stroke="#B26412" transform="rotate(-58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#DEAC2F" transform="rotate(-26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#48AC92" transform="rotate(26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#3FA832" transform="rotate(58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          </g>
+          <circle cx="150" cy="130" r="12" fill="#F17E01"/>
+          <path d="M150 146 L150 214 M150 159 L126 134 M150 159 L174 134" stroke="#F17E01" stroke-width="11" stroke-linecap="round" fill="none"/>
+        </svg>
+      </span>
+      <figcaption><b>Chennai</b> Workshop on competency-based curriculum, National Institute of Siddha</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section class="commission-section">
+  <div class="wrap">
+    <h2>The Commission</h2>
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/gallery/images.jpg" alt="Chairperson">
+          <div class="member-overlay">
+            <div class="member-name">Shri Vaidya Jayant Deopujari</div>
+            <div class="member-role">Chairperson</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/feature.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Prof. Rabinarayan Acharya</div>
+            <div class="member-role">President (Ayurveda)</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226513.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Dr. K. Jagannathan</div>
+            <div class="member-role">President (Siddha)</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226583.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Dr. M. A. Qasmi</div>
+            <div class="member-role">President (Unani)</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226636.jpg" alt="Secretary">
+          <div class="member-overlay">
+            <div class="member-name">Dr. B.S. Prasad</div>
+            <div class="member-role">Secretary</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/chairperson.jpg" alt="Member">
+          <div class="member-overlay">
+            <div class="member-name">Dr. Sangeeta Duggal</div>
+            <div class="member-role">Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tick">
+  <span class="tg">Latest</span>
+  <div class="tick-v"><div class="tick-t" id="tickT">
+    <a href="#notices">Expression of Interest to conduct UG &amp; PG Electives</a>
+    <a href="#notices">Amendment in Internship Completion for appearing in AIAPGET-2026</a>
+    <a href="#notices">National Ayurveda Dhanwantari Award 2026 — advertisement published</a>
+    <a href="#notices">Applications invited to establish new colleges for A.Y. 2027-28</a>
+    <a href="#notices">Advisory on colleges permitted under interim orders of the Hon'ble Courts</a>
+    <a href="#notices" aria-hidden="true" tabindex="-1">Expression of Interest to conduct UG &amp; PG Electives</a>
+    <a href="#notices" aria-hidden="true" tabindex="-1">Amendment in Internship Completion for appearing in AIAPGET-2026</a>
+    <a href="#notices" aria-hidden="true" tabindex="-1">National Ayurveda Dhanwantari Award 2026 — advertisement published</a>
+    <a href="#notices" aria-hidden="true" tabindex="-1">Applications invited to establish new colleges for A.Y. 2027-28</a>
+    <a href="#notices" aria-hidden="true" tabindex="-1">Advisory on colleges permitted under interim orders of the Hon'ble Courts</a>
+  </div></div>
+  <button id="tickP" aria-label="Pause ticker">❚❚</button>
+</div>
+
+<!-- 01 REGISTER -->
+<section class="band" id="tasks">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">01</span>
+      <span class="dv" lang="hi">सेवाएँ</span>
+      <span class="tag">Services</span>
+    </div>
+    <div class="body-col">
+      <div class="hd rv">
+        <h2>What do you need to do?</h2>
+        <p>Four tasks account for most visits. Everything else sits one level deeper.</p>
+      </div>
+      <div class="reg rv">
+        <a href="#finder">
+          <span class="n">01</span>
+          <h4>Check a college</h4>
+          <p>Whether an institution is permitted to admit students this academic year.</p>
+          <span class="go">Open the finder <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#">
+          <span class="n">02</span>
+          <h4>Find a syllabus</h4>
+          <p>Curriculum, academic calendar and record books for every professional year.</p>
+          <span class="go">Browse academics <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#notices">
+          <span class="n">03</span>
+          <h4>Read a notice</h4>
+          <p>Public notices, tenders, vacancies and results — dated and searchable.</p>
+          <span class="go">See all notices <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#">
+          <span class="n">04</span>
+          <h4>Verify a practitioner</h4>
+          <p>Search the national register of AUS&amp;SR medical professionals.</p>
+          <span class="go">Open the register <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SYSTEMS — horizontal spread -->
+<section class="band" id="systems">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">02</span>
+      <span class="dv" lang="hi">पद्धतियाँ</span>
+      <span class="tag">Systems</span>
+    </div>
+    <div class="body-col">
+      <div class="hs-head rv">
+        <div class="hd" style="margin-bottom:0">
+          <h2>Four recognised systems</h2>
+          <p>Each carries its own curriculum, academic calendar and roll of permitted institutions.
+             Scroll sideways, or drag.</p>
+        </div>
+        <div class="hs-nav">
+          <button class="hs-btn" data-scroll="sysScroll" data-dir="-1" aria-label="Previous system">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+          <button class="hs-btn" data-scroll="sysScroll" data-dir="1" aria-label="Next system">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hs" id="sysScroll" tabindex="0" aria-label="The four systems of Indian medicine">
+    <a class="sysp" href="#" style="--sc:#B0570A">
+      <span class="top"><span class="gly" lang="sa">आ</span><span class="idx">01 / 04</span></span>
+      <h3>Ayurveda</h3>
+      <span class="deg">BAMS · MD/MS</span>
+      <p>"The science of life" — <em>ayur</em>, life; <em>veda</em>, science. A discipline of the upaveda in the
+        Vedic tradition, drawn chiefly from the Atharva-Veda. Taught in the gurukula system in ancient days,
+        now structured into undergraduate and postgraduate courses.</p>
+      <dl>
+        <dt>Origin</dt><dd>Atharva-Veda</dd>
+        <dt>Deity</dt><dd>Dhanvantari</dd>
+        <dt>Aim</dt><dd>Prevent illness, heal the sick, preserve life</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#87680F">
+      <span class="top"><span class="gly" lang="hi">यू</span><span class="idx">02 / 04</span></span>
+      <h3>Unani</h3>
+      <span class="deg">BUMS · MD</span>
+      <p>Graeco-Arabic medicine founded on the teachings of Hippocrates and Galen, elaborated into a full system
+        by Rhazes, Avicenna, Al-Zahrawi and Ibn Nafis. It reached India with the Delhi Sultanate and
+        flourished under the Mughal Empire.</p>
+      <dl>
+        <dt>Arrived</dt><dd>12th–13th century, Delhi Sultanate (1206–1527)</dd>
+        <dt>Champion</dt><dd>Hakim Ajmal Khan (1868–1927)</dd>
+        <dt>Statute</dt><dd>Included under IMCC Act, 1970</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#0D5145">
+      <span class="top"><span class="gly" lang="hi">सि</span><span class="idx">03 / 04</span></span>
+      <h3>Siddha</h3>
+      <span class="deg">BSMS · MD</span>
+      <p>Founded by the Siddhars — spiritual adepts of southern India, chiefly Tamil Nadu, who were held to
+        possess the ashta siddhis. Kayakarpam, a combination of medicine and regimen, and Muppu, the universal
+        salt, are its specialities.</p>
+      <dl>
+        <dt>Founder</dt><dd>Agastyar (Agasthya)</dd>
+        <dt>Canon</dt><dd>Eighteen pre-eminent Siddhars</dd>
+        <dt>Speciality</dt><dd>Kayakarpam · Muppu</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#48771A">
+      <span class="top"><span class="gly" lang="hi">सो</span><span class="idx">04 / 04</span></span>
+      <h3>Sowa-Rigpa</h3>
+      <span class="deg">BSRMS · PG emerging</span>
+      <p>The Himalayan science of healing, diagnosing through pulse analysis and urinalysis. Its canon is the
+        Four Tantras (rGyu-bzhi) — Root, Exegetical, Instructional and Subsequent — Tibetan texts incorporating
+        Indian, Chinese and Greco-Arab medicine.</p>
+      <dl>
+        <dt>Canon</dt><dd>Four Tantras (Gyushi)</dd>
+        <dt>Transmission</dt><dd>Written and oral</dd>
+        <dt>Statute</dt><dd>Gazette No. 2345, 16.12.2011 · CCIM 2012</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+  <div class="hs-prog"><span id="sysProg"></span></div>
+</section>
+
+<!-- 03 NOTICES -->
+<section class="band" id="notices">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">03</span>
+      <span class="dv" lang="hi">सूचनाएँ</span>
+      <span class="tag">Notices</span>
+    </div>
+    <div class="body-col">
+      <div class="two">
+        <div class="rv">
+          <div class="hd" style="margin-bottom:1.2rem"><h2>Notices &amp; circulars</h2></div>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" aria-selected="true" data-tab="notices">Public notices</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="tenders">Tenders</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="jobs">Vacancies</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="results">Results</button>
+          </div>
+          <ul class="nlist" id="nlist"></ul>
+        </div>
+        <aside class="side rv">
+          <div class="advis">
+            <span class="lbl">Must read</span>
+            <p>Advisory on colleges denied permission by NCISM but permitted to admit by interim orders of the
+              Hon'ble Courts.</p>
+            <a href="#">Read the advisory <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <h5>Autonomous boards</h5>
+          <ul>
+            <li><a href="#">Board of Ayurveda <span class="ab">BoA</span></a></li>
+            <li><a href="#">Unani, Siddha &amp; Sowa-Rigpa <span class="ab">BUSS</span></a></li>
+            <li><a href="#">Ethics &amp; Registration <span class="ab">BERISM</span></a></li>
+            <li><a href="#">Assessment &amp; Rating <span class="ab">MARBISM</span></a></li>
+          </ul>
+          <h5>Transparency</h5>
+          <ul>
+            <li><a href="#">Right to Information</a></li>
+            <li><a href="#">Suo Moto Disclosure</a></li>
+            <li><a href="#">Vigilance Corner</a></li>
+            <li><a href="#">Important court decisions</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FINDER -->
+<section class="band" id="finder">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">04</span>
+      <span class="dv" lang="hi">महाविद्यालय</span>
+      <span class="tag">Colleges</span>
+    </div>
+    <div class="body-col">
+      <div class="hd rv">
+        <h2>College finder</h2>
+        <p>Every permission decision in one searchable place — instead of thirty PDFs titled
+          "List of Permitted Colleges as on 05.02.2026".</p>
+      </div>
+      <div class="rv">
+        <div class="fbar">
+          <input id="fq" type="search" placeholder="Search by college or city…" aria-label="Search colleges">
+          <select id="fsys" aria-label="Filter by system"><option value="">All systems</option><option>Ayurveda</option><option>Unani</option><option>Siddha</option><option>Sowa-Rigpa</option></select>
+          <select id="fstate" aria-label="Filter by state"><option value="">All states</option></select>
+          <select id="fstatus" aria-label="Filter by status"><option value="">Any status</option><option>Permitted</option><option>Conditional</option><option>Denied</option></select>
+          <span class="fcount" id="fcount"></span>
+        </div>
+        <div class="tscroll">
+          <table class="col">
+            <thead><tr><th>Institution</th><th>System</th><th>State</th><th>Seats</th><th>A.Y. 2025–26</th></tr></thead>
+            <tbody id="ftbody"></tbody>
+          </table>
+        </div>
+        <p class="dnote">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          Sample records for demonstration — institution names and statuses are illustrative, not official NCISM data.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ARCHIVE — horizontal photo spread -->
+<section class="band" id="archive">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">05</span>
+      <span class="dv" lang="hi">अभिलेख</span>
+      <span class="tag">Archive</span>
+    </div>
+    <div class="body-col">
+      <div class="hs-head rv">
+        <div class="hd" style="margin-bottom:0">
+          <h2>From the record</h2>
+          <p>Workshops, board meetings and observances documented by the Commission.</p>
+        </div>
+        <div class="hs-nav">
+          <button class="hs-btn" data-scroll="archScroll" data-dir="-1" aria-label="Previous photographs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+          <button class="hs-btn" data-scroll="archScroll" data-dir="1" aria-label="Next photographs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hs" id="archScroll" tabindex="0" aria-label="Photographs from the Commission's record">
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226583.jpg" alt="Officials seated at the dais during a curriculum workshop at the National Institute of Siddha">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Dais at the workshop on competency-based curriculum, National Institute of Siddha</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226513.jpg" alt="Resource faculty being felicitated with a shawl and bouquet">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Felicitation of resource faculty at the curriculum workshop</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226636.jpg" alt="Delegates seated in the auditorium during the curriculum workshop">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Delegates at the competency-based curriculum workshop</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-20250612_173608.jpg" alt="Two officials greeting one another before the NCISM signage at the Commission headquarters">
+      <figcaption><span class="dt">New Delhi</span><span class="cp">At the Commission headquarters, Dhanwantari Bhawan</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-20250701_170029.jpg" alt="The President of the Board of Ethics and Registration at her desk beside the national flag">
+      <figcaption><span class="dt">New Delhi</span><span class="cp">Office of the President, Board of Ethics and Registration</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-vaw2025.jpg" alt="A presentation being delivered during Vigilance Awareness Week 2025">
+      <figcaption><span class="dt">27 Oct – 2 Nov 2025</span><span class="cp">Vigilance Awareness Week — "Vigilance: our shared responsibility"</span></figcaption>
+    </figure></div>
+  </div>
+  <div class="hs-prog"><span id="archProg"></span></div>
+</section>
+
+<!-- 06 LEADERSHIP -->
+<section class="band" id="leadership">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">06</span>
+      <span class="dv" lang="hi">आयोग</span>
+      <span class="tag">Commission</span>
+    </div>
+    <div class="body-col">
+      <div class="lead rv">
+        <img src="assets/web/chairperson.jpg" alt="Dr. Maneesha Upendra Kothekar, Chairperson of the National Commission for Indian System of Medicine, addressing a gathering">
+        <div>
+          <span class="role">Chairperson</span>
+          <h3>Dr. Maneesha Upendra Kothekar</h3>
+          <blockquote>An Act to provide for a medical education system that improves access to quality and
+            affordable medical education, and enforces high ethical standards in all aspects of medical services.</blockquote>
+          <dl>
+            <dt>Constituted</dt><dd>11 June 2021, on the repeal of the IMCC Act, 1970</dd>
+            <dt>Statute</dt><dd>NCISM Act, 2020 · Gazette extraordinary, part II section 3(ii), 21.09.2020</dd>
+            <dt>Boards</dt><dd>BoA · BUSS · BERISM · MARBISM</dd>
+            <dt>Seat</dt><dd>Dhanwantari Bhawan, Punjabi Bagh (West), New Delhi</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="part rv">
+        <a href="#"><img src="assets/original/partner-4.png" alt="india.gov.in — the National Portal of India"></a>
+        <a href="#"><img src="assets/original/partner-2.png" alt="Digital India"></a>
+        <a href="#"><img src="assets/original/partner-1.gif" alt="National Academic Depository"></a>
+        <a href="#"><img src="assets/original/partner-5.png" alt="Vidya Lakshmi"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="colophon">
+        <strong>National Commission for<br>Indian System of Medicine</strong>
+        <div class="mt" lang="sa">।। आयुषे सर्वलोकानाम् ।।</div>
+        Plot No. T-19, 1st &amp; 2nd Floor, Block IV<br>
+        Dhanwantari Bhawan, Road No. 66<br>
+        Punjabi Bagh (West), New Delhi 110026<br><br>
+        011-25221002 · 011-25221003<br>
+        secretary@ncismindia.org
+      </div>
+      <div><h5>The Commission</h5><ul>
+        <li><a href="#leadership">Introduction</a></li><li><a href="#leadership">Chairperson</a></li>
+        <li><a href="#">Composition</a></li><li><a href="#">Autonomous boards</a></li>
+        <li><a href="#">Officers</a></li><li><a href="#">Annual report</a></li></ul></div>
+      <div><h5>For students</h5><ul>
+        <li><a href="#finder">College finder</a></li><li><a href="#">Curriculum &amp; syllabus</a></li>
+        <li><a href="#">Academic calendar</a></li><li><a href="#">Counselling</a></li>
+        <li><a href="#">Examinations</a></li><li><a href="#">Transcript certificate</a></li></ul></div>
+      <div><h5>Transparency</h5><ul>
+        <li><a href="#">Right to Information</a></li><li><a href="#">Suo Moto Disclosure</a></li>
+        <li><a href="#">Vigilance Corner</a></li><li><a href="#">Grievance redressal</a></li>
+        <li><a href="#">Accessibility statement</a></li><li><a href="#">Sitemap</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <span>Design concept · not an official Government of India website</span>
+      <span>Last updated 15 August 2026 · Visitors 4,82,916</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* split hero headline */
+  document.querySelectorAll("[data-split]").forEach(function(el){
+    var w=el.textContent.trim().split(/\s+/);
+    el.innerHTML=w.map(function(x,i){
+      return '<span class="word"><span style="animation-delay:'+(0.06+i*0.06).toFixed(3)+'s">'+
+        x.replace(/&/g,"&amp;").replace(/</g,"&lt;")+"</span></span>";
+    }).join(" ");
+  });
+
+  /* notices */
+  var N={
+    notices:[["12 Aug 2026","Expression of Interest to conduct UG &amp; PG Electives","new"],
+      ["06 Aug 2026","Amendment in Internship Completion for appearing in AIAPGET-2026","new"],
+      ["28 Jul 2026","Submission of schemes to establish new colleges for A.Y. 2027-28","pdf"],
+      ["19 Jul 2026","Constitution of the Internal Committee under the POSH Act, 2013","pdf"],
+      ["04 Jul 2026","Establishment of new Ayurveda UG colleges with 60-seat intake","pdf"],
+      ["21 Jun 2026","Revision of honorarium, TA/DA and accommodation for MARBISM experts","pdf"],
+      ["09 Jun 2026","Implementation of Right to Practice of ISM practitioners","pdf"]],
+    tenders:[["10 Aug 2026","Supply and installation of network infrastructure, Dhanwantari Bhawan","new"],
+      ["30 Jul 2026","Annual maintenance contract for office equipment 2026-27","pdf"],
+      ["14 Jul 2026","Engagement of agency for digitisation of Commission records","pdf"],
+      ["02 Jul 2026","Housekeeping and security services — two-year contract","pdf"],
+      ["15 Jun 2026","Corrigendum: extension of bid submission date for IT hardware","pdf"]],
+    jobs:[["08 Aug 2026","Walk-in interview: Young Professional / Consultant (IT)","new"],
+      ["25 Jul 2026","Vacancies for various posts on deputation basis","pdf"],
+      ["11 Jul 2026","Corrigendum to recruitment notice for Junior Technical Officer","pdf"],
+      ["27 Jun 2026","Contractual vacancies for JTO and MTS in NCISM","pdf"],
+      ["13 Jun 2026","Advertisement for vacancy in CPMU, Ministry of Ayush","pdf"]],
+    results:[["05 Aug 2026","Result for the posts of JTO and MTS in NCISM","ok"],
+      ["22 Jul 2026","AACCC AIQ UG and PG counselling — final allotment","ok"],
+      ["08 Jul 2026","National Ayurveda Dhanwantari Award 2026 — selected awardees","ok"],
+      ["24 Jun 2026","Publication grant beneficiaries 2025-26","pdf"],
+      ["10 Jun 2026","Affiliation of Ayurveda Gurukulams — approved list","pdf"]]
+  };
+  var F={"new":"New","pdf":"PDF","ok":"Result"},nl=document.getElementById("nlist");
+  function drawN(k){
+    nl.innerHTML=(N[k]||[]).map(function(r){
+      return '<li><a href="#notices"><span class="d">'+r[0]+'</span><span class="t">'+r[1]+
+        '</span><span class="flag '+r[2]+'">'+F[r[2]]+"</span></a></li>";
+    }).join("");
+  }
+  drawN("notices");
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click",function(){
+      document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected","false");});
+      t.setAttribute("aria-selected","true");drawN(t.dataset.tab);
+    });
+  });
+
+  /* college finder */
+  var C=[["State Ayurveda Medical College, Pune","Ayurveda","Maharashtra",100,"Permitted"],
+    ["Government Ayurveda College, Thrissur","Ayurveda","Kerala",75,"Permitted"],
+    ["Rajkiya Ayurvedic Mahavidyalaya, Varanasi","Ayurveda","Uttar Pradesh",60,"Conditional"],
+    ["Shri Dhanwantari Ayurveda Sansthan, Jaipur","Ayurveda","Rajasthan",60,"Permitted"],
+    ["Sanjivani Institute of Ayurveda, Nagpur","Ayurveda","Maharashtra",60,"Denied"],
+    ["Vaidyaratnam Ayurveda College, Kozhikode","Ayurveda","Kerala",50,"Permitted"],
+    ["Government Ayurveda College, Bhubaneswar","Ayurveda","Odisha",60,"Permitted"],
+    ["Ayurveda Mahavidyalaya, Ahmedabad","Ayurveda","Gujarat",100,"Permitted"],
+    ["Rural Ayurveda Institute, Patna","Ayurveda","Bihar",50,"Denied"],
+    ["Government Unani Medical College, Hyderabad","Unani","Telangana",60,"Permitted"],
+    ["Tibbia Unani Institute, Lucknow","Unani","Uttar Pradesh",50,"Conditional"],
+    ["State Unani Medical College, Bengaluru","Unani","Karnataka",60,"Permitted"],
+    ["Hakim Ajmal Khan Unani College, Aligarh","Unani","Uttar Pradesh",40,"Denied"],
+    ["Government Unani College, Bhopal","Unani","Madhya Pradesh",50,"Permitted"],
+    ["Government Siddha Medical College, Palayamkottai","Siddha","Tamil Nadu",75,"Permitted"],
+    ["Siddha Medical Institute, Chennai","Siddha","Tamil Nadu",60,"Permitted"],
+    ["Agasthiyar Siddha College, Madurai","Siddha","Tamil Nadu",50,"Conditional"],
+    ["Himalayan Sowa-Rigpa Institute, Leh","Sowa-Rigpa","Ladakh",30,"Permitted"],
+    ["Central Institute of Sowa-Rigpa, Gangtok","Sowa-Rigpa","Sikkim",25,"Permitted"],
+    ["Bodhi Sowa-Rigpa College, Dharamshala","Sowa-Rigpa","Himachal Pradesh",25,"Conditional"]];
+  var tb=document.getElementById("ftbody"),fq=document.getElementById("fq"),fs=document.getElementById("fsys"),
+      fst=document.getElementById("fstate"),fss=document.getElementById("fstatus"),fc=document.getElementById("fcount");
+  C.map(function(c){return c[2];}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort()
+   .forEach(function(s){var o=document.createElement("option");o.textContent=s;fst.appendChild(o);});
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function drawC(){
+    var q=fq.value.trim().toLowerCase();
+    var rows=C.filter(function(c){
+      if(q&&c[0].toLowerCase().indexOf(q)<0&&c[2].toLowerCase().indexOf(q)<0)return false;
+      if(fs.value&&c[1]!==fs.value)return false;
+      if(fst.value&&c[2]!==fst.value)return false;
+      if(fss.value&&c[4]!==fss.value)return false;
+      return true;});
+    fc.textContent=rows.length+" of "+C.length+" shown";
+    tb.innerHTML=rows.length?rows.map(function(c){
+      return "<tr><td>"+esc(c[0])+"</td><td>"+esc(c[1])+"</td><td>"+esc(c[2])+
+        "</td><td class='mono'>"+c[3]+"</td><td><span class='st "+c[4].toLowerCase()+"'>"+c[4]+"</span></td></tr>";
+    }).join(""):'<tr><td colspan="5" class="tempty">No institutions match those filters.</td></tr>';
+  }
+  [fq,fs,fst,fss].forEach(function(e){e.addEventListener("input",drawC);});
+  drawC();
+
+  /* reveal */
+  var rvs=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+    rvs.forEach(function(el){io.observe(el);});
+  } else { rvs.forEach(function(el){el.classList.add("in");}); }
+  addEventListener("load",function(){
+    setTimeout(function(){
+      document.querySelectorAll(".rv:not(.in)").forEach(function(el){
+        var r=el.getBoundingClientRect();
+        if(r.top<innerHeight&&r.bottom>0) el.classList.add("in");
+      });
+    },900);
+  });
+
+  /* ---------- horizontal scrollers: drag, buttons, progress, keys ---------- */
+  function hookScroller(id,progId){
+    var el=document.getElementById(id), prog=document.getElementById(progId);
+    if(!el) return;
+    function maxScroll(){ return Math.max(el.scrollWidth-el.clientWidth,0); }
+    function step(){ var first=el.firstElementChild; return first?first.getBoundingClientRect().width:320; }
+    function paint(){
+      var m=maxScroll();
+      if(prog) prog.style.width=(m>0?(el.scrollLeft/m)*100:0)+"%";
+      document.querySelectorAll('.hs-btn[data-scroll="'+id+'"]').forEach(function(b){
+        b.disabled = b.dataset.dir==="-1" ? el.scrollLeft<=2 : el.scrollLeft>=m-2;
+      });
+    }
+    el.addEventListener("scroll",paint,{passive:true});
+    addEventListener("resize",paint);
+    paint();
+    document.querySelectorAll('.hs-btn[data-scroll="'+id+'"]').forEach(function(b){
+      b.addEventListener("click",function(){
+        el.scrollBy({left:step()*(+b.dataset.dir),behavior:reduce?"auto":"smooth"});
+      });
+    });
+    el.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight"){e.preventDefault();el.scrollBy({left:step(),behavior:reduce?"auto":"smooth"});}
+      if(e.key==="ArrowLeft"){e.preventDefault();el.scrollBy({left:-step(),behavior:reduce?"auto":"smooth"});}
+    });
+    /* pointer drag */
+    var down=false,sx=0,sl=0,moved=0;
+    el.addEventListener("pointerdown",function(e){
+      if(e.pointerType==="touch") return;         /* let native touch scrolling work */
+      down=true;moved=0;sx=e.clientX;sl=el.scrollLeft;el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener("pointermove",function(e){
+      if(!down) return;
+      var dx=e.clientX-sx; moved=Math.max(moved,Math.abs(dx));
+      if(moved>4) el.classList.add("drag");
+      el.scrollLeft=sl-dx;
+    });
+    function up(e){
+      if(!down) return;
+      down=false;
+      try{el.releasePointerCapture(e.pointerId);}catch(_){}
+      setTimeout(function(){el.classList.remove("drag");},0);
+    }
+    el.addEventListener("pointerup",up);
+    el.addEventListener("pointercancel",up);
+    el.addEventListener("click",function(e){ if(moved>4) e.preventDefault(); },true);
+  }
+  hookScroller("sysScroll","sysProg");
+  hookScroller("archScroll","archProg");
+
+  /* nav — click only (hover handled by pure CSS) */
+  var navItems = document.querySelectorAll(".nav-inner ul > li");
+  navItems.forEach(function(li){
+    var btn = li.querySelector(".nav-btn");
+    if(btn){
+      btn.addEventListener("click",function(e){
+        e.stopPropagation();
+        var was = li.classList.contains("open");
+        navItems.forEach(function(o){ o.classList.remove("open"); });
+        if(!was) li.classList.add("open");
+      });
+    }
+  });
+  document.addEventListener("click",function(){ navItems.forEach(function(o){ o.classList.remove("open"); }); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") navItems.forEach(function(o){ o.classList.remove("open"); }); });
+  var nav=document.getElementById("nav"),ntg=document.getElementById("navtog");
+  ntg.addEventListener("click",function(e){
+    e.stopPropagation();
+    var o=nav.classList.toggle("open"); ntg.setAttribute("aria-expanded",o?"true":"false");
+  });
+
+  /* scroll-collapse: pill nav */
+  (function(){
+    var lastY=0, ticking=false;
+    function onScroll(){
+      var y=window.scrollY||window.pageYOffset;
+      if(y>80){
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+      lastY=y;
+      ticking=false;
+    }
+    window.addEventListener("scroll",function(){
+      if(!ticking){requestAnimationFrame(onScroll);ticking=true;}
+    },{passive:true});
+    onScroll();
+  })();
+
+  /* ticker */
+  var tt=document.getElementById("tickT"),tp=document.getElementById("tickP"),paused=false;
+  tp.addEventListener("click",function(){
+    paused=!paused;tt.style.animationPlayState=paused?"paused":"running";
+    tp.textContent=paused?"▶":"❚❚";tp.setAttribute("aria-label",paused?"Play ticker":"Pause ticker");
+  });
+
+  /* text size */
+  var S={small:"15px",normal:"16.5px",large:"18.5px"};
+  document.querySelectorAll(".tool[data-font]").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.body.style.fontSize=S[b.dataset.font];
+      document.querySelectorAll(".tool[data-font]").forEach(function(x){x.setAttribute("aria-pressed","false");});
+      b.setAttribute("aria-pressed","true");
+    });
+  });
+
+  /* theme */
+  var root=document.documentElement,tb2=document.getElementById("themeBtn"),
+      tx=document.getElementById("themeTxt"),sys=matchMedia("(prefers-color-scheme: dark)");
+  function dark(){var t=root.getAttribute("data-theme");return t?t==="dark":sys.matches;}
+  function paintT(){var d=dark();tx.textContent=d?"Light":"Dark";
+    tb2.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme");}
+  tb2.addEventListener("click",function(){
+    var n=dark()?"light":"dark";root.setAttribute("data-theme",n);
+    try{localStorage.setItem("ncism-theme",n);}catch(e){}
+    paintT();
+  });
+  if(sys.addEventListener) sys.addEventListener("change",function(){if(!root.getAttribute("data-theme"))paintT();});
+  paintT();
+
+  /* language demo */
+  var lb=document.getElementById("langBtn"),hi=false,
+      h1=document.querySelector(".hero h1"),ld=document.querySelector(".hero .lede");
+  var EN={h1:h1.innerHTML,ld:ld.textContent};
+  var HI={h1:"भारतीय चिकित्सा का मानक।",
+    ld:"आयोग आयुर्वेद, यूनानी, सिद्ध और सोवा-रिग्पा में शिक्षा और अभ्यास का नियमन करता है।"};
+  lb.addEventListener("click",function(){
+    hi=!hi;h1.innerHTML=hi?HI.h1:EN.h1;ld.textContent=hi?HI.ld:EN.ld;
+    h1.style.fontFamily=hi?"var(--deva)":"";ld.style.fontFamily=hi?"var(--deva)":"";
+    root.lang=hi?"hi":"en";
+  });
+})();
+</script>

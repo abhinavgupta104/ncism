@@ -1,0 +1,1289 @@
+<title>NCISM Homepage Concept</title>
+<style>/*__FONTS__*/</style>
+<style>
+/* ============================================================
+   TOKENS — light is the base; dark overrides in BOTH states
+   ============================================================ */
+:root{
+  color-scheme:light;
+  --bg:#EAF0EA;
+  --bg-deep:#DCE6DC;
+  --ink:#0E1B16;
+  --ink-2:#33443C;
+  --muted:#63736B;
+  --rule:rgba(14,27,22,.12);
+  --rule-2:rgba(14,27,22,.22);
+
+  --glass:rgba(255,255,255,.74);
+  --glass-2:rgba(255,255,255,.84);
+  --glass-brd:rgba(255,255,255,.85);
+  --glass-hi:rgba(255,255,255,.9);
+  --glass-shadow:0 1px 2px rgba(14,27,22,.05), 0 16px 40px -20px rgba(14,27,22,.28);
+  --glass-blur:blur(20px) saturate(180%);
+
+  --teal:#0F5A4F;
+  --teal-2:#17796B;
+  --teal-3:#48AC92;
+  --gold:#9A7412;
+  --gold-2:#DEAC2F;
+  --leaf:#4C7C17;
+  --leaf-2:#3FA832;
+  --orange:#B4560A;
+  --orange-2:#F17E01;
+  --red:#9E3119;
+
+  --deep:#0C4A41;
+  --deep-2:#0A3E36;
+
+  --tint-teal:rgba(23,121,107,.14);
+  --tint-gold:rgba(222,172,47,.16);
+  --tint-leaf:rgba(63,168,50,.14);
+  --tint-orange:rgba(241,126,1,.14);
+  --tint-red:rgba(158,49,25,.12);
+
+  --orb-1:rgba(72,172,146,.36);
+  --orb-2:rgba(222,172,47,.24);
+  --orb-3:rgba(63,168,50,.24);
+  --orb-4:rgba(241,126,1,.14);
+  --grain:.035;
+
+  --display:"Spectral",Georgia,serif;
+  --body:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --deva:"Tiro Devanagari Sanskrit",Georgia,serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+
+  --maxw:80rem;
+  --pad:clamp(1.1rem,4vw,3rem);
+  --r:14px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#070E0C;
+    --bg-deep:#040807;
+    --ink:#EBF1ED;
+    --ink-2:#C0CEC6;
+    --muted:#87968E;
+    --rule:rgba(255,255,255,.1);
+    --rule-2:rgba(255,255,255,.2);
+
+    --glass:rgba(255,255,255,.075);
+    --glass-2:rgba(255,255,255,.11);
+    --glass-brd:rgba(255,255,255,.14);
+    --glass-hi:rgba(255,255,255,.22);
+    --glass-shadow:0 1px 2px rgba(0,0,0,.5), 0 20px 48px -24px rgba(0,0,0,.85);
+    --glass-blur:blur(22px) saturate(160%);
+
+    --teal:#5FC3AC;
+    --teal-2:#7AD3BC;
+    --teal-3:#48AC92;
+    --gold:#E7BB5A;
+    --gold-2:#DEAC2F;
+    --leaf:#9BCB55;
+    --leaf-2:#3FA832;
+    --orange:#F0A264;
+    --orange-2:#F17E01;
+    --red:#EE8D72;
+
+    --deep:#0C4A41;
+    --deep-2:#0A3E36;
+
+    --tint-teal:rgba(95,195,172,.15);
+    --tint-gold:rgba(231,187,90,.15);
+    --tint-leaf:rgba(155,203,85,.14);
+    --tint-orange:rgba(240,162,100,.15);
+    --tint-red:rgba(238,141,114,.14);
+
+    --orb-1:rgba(23,121,107,.48);
+    --orb-2:rgba(154,116,18,.28);
+    --orb-3:rgba(47,120,38,.3);
+    --orb-4:rgba(180,86,10,.18);
+    --grain:.055;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#070E0C;
+  --bg-deep:#040807;
+  --ink:#EBF1ED;
+  --ink-2:#C0CEC6;
+  --muted:#87968E;
+  --rule:rgba(255,255,255,.1);
+  --rule-2:rgba(255,255,255,.2);
+
+  --glass:rgba(255,255,255,.075);
+  --glass-2:rgba(255,255,255,.11);
+  --glass-brd:rgba(255,255,255,.14);
+  --glass-hi:rgba(255,255,255,.22);
+  --glass-shadow:0 1px 2px rgba(0,0,0,.5), 0 20px 48px -24px rgba(0,0,0,.85);
+  --glass-blur:blur(22px) saturate(160%);
+
+  --teal:#5FC3AC;
+  --teal-2:#7AD3BC;
+  --teal-3:#48AC92;
+  --gold:#E7BB5A;
+  --gold-2:#DEAC2F;
+  --leaf:#9BCB55;
+  --leaf-2:#3FA832;
+  --orange:#F0A264;
+  --orange-2:#F17E01;
+  --red:#EE8D72;
+
+  --deep:#0C4A41;
+  --deep-2:#0A3E36;
+
+  --tint-teal:rgba(95,195,172,.15);
+  --tint-gold:rgba(231,187,90,.15);
+  --tint-leaf:rgba(155,203,85,.14);
+  --tint-orange:rgba(240,162,100,.15);
+  --tint-red:rgba(238,141,114,.14);
+
+  --orb-1:rgba(23,121,107,.48);
+  --orb-2:rgba(154,116,18,.28);
+  --orb-3:rgba(47,120,38,.3);
+  --orb-4:rgba(180,86,10,.18);
+  --grain:.055;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);position:relative}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.14;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h4,h5{font-family:var(--body);font-weight:650;margin:0;line-height:1.3}
+p{margin:0}
+img,svg{max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--teal-2);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow{font-family:var(--mono);font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.skip{
+  position:fixed;left:.6rem;top:-5rem;z-index:200;background:var(--deep);color:#fff;
+  padding:.65rem 1.1rem;border-radius:0 0 8px 8px;font-weight:600;font-size:.9rem;
+  text-decoration:none;transition:top .2s var(--ease);
+}
+.skip:focus{top:0}
+
+/* ============================================================
+   ATMOSPHERE
+   ============================================================ */
+.atmos{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;background:var(--bg)}
+.orb{position:absolute;border-radius:50%;filter:blur(115px);will-change:transform;opacity:.9}
+.orb-1{width:46vw;height:46vw;min-width:26rem;min-height:26rem;background:var(--orb-1);top:-12vw;right:-8vw;animation:drift1 26s ease-in-out infinite}
+.orb-2{width:38vw;height:38vw;min-width:20rem;min-height:20rem;background:var(--orb-2);top:32vh;left:-12vw;animation:drift2 32s ease-in-out infinite}
+.orb-3{width:42vw;height:42vw;min-width:22rem;min-height:22rem;background:var(--orb-3);bottom:-14vw;right:6vw;animation:drift3 29s ease-in-out infinite}
+.orb-4{width:30vw;height:30vw;min-width:16rem;min-height:16rem;background:var(--orb-4);top:62vh;left:42vw;animation:drift1 35s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-4vw,5vh,0) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(5vw,-4vh,0) scale(.9)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-6vw,-6vh,0) scale(1.08)}}
+.grain{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   GLASS PRIMITIVE
+   ============================================================ */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-brd);
+  box-shadow:var(--glass-shadow);
+  border-radius:var(--r);
+  position:relative;
+}
+.glass::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(160deg,var(--glass-hi),transparent 42%);opacity:.5;
+}
+@supports (backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px)){
+  .glass{-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur)}
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.progress{
+  position:fixed;top:0;left:0;height:3px;width:100%;z-index:120;transform-origin:0 50%;
+  transform:scaleX(0);background:linear-gradient(90deg,#B26412,#DEAC2F 34%,#48AC92 68%,#3FA832);
+}
+
+/* ============================================================
+   GOV STRIP
+   ============================================================ */
+.gov{position:relative;z-index:60;background:var(--deep-2);color:rgba(255,255,255,.86);font-size:.76rem}
+.gov .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.4rem;flex-wrap:wrap}
+.gov-left{display:flex;align-items:center;gap:.5rem}
+.gov-tools{display:flex;align-items:center;gap:.28rem;flex-wrap:wrap}
+.gov-tools .sep{width:1px;height:.95rem;background:rgba(255,255,255,.2);margin-inline:.3rem}
+.tool{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:inherit;
+  font-size:.72rem;line-height:1;padding:.3rem .55rem;border-radius:6px;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s var(--ease);
+}
+.tool:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.4);transform:translateY(-1px)}
+.tool[aria-pressed="true"]{background:var(--gold-2);border-color:var(--gold-2);color:#241a04;font-weight:650}
+
+/* ============================================================
+   HEADER + NAV
+   ============================================================ */
+.masthead{position:relative;z-index:55}
+.masthead .wrap{display:flex;align-items:center;gap:1.4rem;justify-content:space-between;padding-block:1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none;min-width:0}
+.brand-mark{flex:none;filter:drop-shadow(0 3px 10px rgba(0,0,0,.16))}
+.brand-txt strong{display:block;font-family:var(--display);font-weight:700;font-size:1.04rem;line-height:1.2;letter-spacing:-.012em}
+.brand-txt .hi{display:block;font-family:var(--deva);font-size:.8rem;color:var(--ink-2);margin-top:.08rem}
+.brand-txt small{display:block;font-size:.71rem;color:var(--muted);margin-top:.12rem}
+.mast-right{display:flex;align-items:center;gap:.7rem}
+.emblems{display:flex;gap:.55rem}
+.emblems img{height:2.3rem;width:auto;border-radius:5px}
+@media (max-width:960px){.emblems{display:none}}
+.search{display:flex;align-items:center;border-radius:999px;overflow:hidden;padding:.2rem .2rem .2rem .3rem}
+.search input{border:0;background:transparent;font-size:.86rem;padding:.42rem .6rem;width:min(14rem,40vw)}
+.search input:focus{outline:none}
+.search input::placeholder{color:var(--muted)}
+.search button{
+  border:0;background:var(--deep);color:#fff;width:2rem;height:2rem;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;transition:transform .2s var(--ease);
+}
+.search button:hover{transform:scale(1.08) rotate(-6deg)}
+
+.navbar{position:sticky;top:0;z-index:50;padding-block:.4rem}
+.navbar .wrap{display:flex}
+.navshell{flex:1;display:flex;align-items:stretch;justify-content:space-between;gap:.5rem;border-radius:999px;padding:.28rem}
+.nav-list{display:flex;list-style:none;margin:0;padding:0;flex-wrap:wrap;gap:.1rem}
+.nav-list>li{position:relative}
+.nav-btn{
+  background:transparent;border:0;font-size:.85rem;font-weight:550;color:var(--ink-2);
+  padding:.52rem .82rem;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:.32rem;
+  transition:background .2s ease,color .2s ease;
+}
+.nav-btn:hover{background:var(--tint-teal);color:var(--ink)}
+.nav-list>li.open .nav-btn{background:var(--deep);color:#fff}
+.nav-btn .chev{font-size:.55rem;opacity:.7;transition:transform .26s var(--ease)}
+.nav-list>li.open .nav-btn .chev{transform:rotate(180deg)}
+.panel{
+  position:absolute;top:calc(100% + .5rem);left:0;min-width:15.5rem;padding:.45rem;z-index:5;
+  border-radius:var(--r);opacity:0;transform:translateY(-10px) scale(.97);pointer-events:none;
+  transform-origin:top left;transition:opacity .22s ease,transform .28s var(--ease);
+}
+.nav-list>li.open .panel{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.panel a{
+  display:block;padding:.44rem .65rem;font-size:.85rem;color:var(--ink-2);text-decoration:none;
+  border-radius:8px;opacity:0;transform:translateX(-8px);position:relative;
+}
+.nav-list>li.open .panel a{animation:navin .3s var(--ease) forwards}
+.nav-list>li.open .panel a:nth-child(1){animation-delay:.03s}
+.nav-list>li.open .panel a:nth-child(2){animation-delay:.065s}
+.nav-list>li.open .panel a:nth-child(3){animation-delay:.1s}
+.nav-list>li.open .panel a:nth-child(4){animation-delay:.135s}
+.nav-list>li.open .panel a:nth-child(5){animation-delay:.17s}
+.nav-list>li.open .panel a:nth-child(6){animation-delay:.205s}
+.panel a:hover{background:var(--tint-teal);color:var(--teal-2)}
+@keyframes navin{to{opacity:1;transform:translateX(0)}}
+.nav-cta{
+  display:flex;align-items:center;gap:.4rem;background:var(--deep);color:#fff;text-decoration:none;
+  font-size:.82rem;font-weight:650;padding:.5rem 1rem;border-radius:999px;white-space:nowrap;
+  transition:box-shadow .22s ease;
+}
+.nav-cta:hover{box-shadow:0 10px 24px -12px rgba(12,74,65,.9)}
+.nav-toggle{display:none}
+@media (max-width:900px){
+  .navshell{flex-direction:column;border-radius:var(--r);padding:.5rem}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;width:100%;
+    background:transparent;border:0;font-size:.88rem;font-weight:600;padding:.4rem .5rem;cursor:pointer;
+  }
+  .nav-list{display:none;flex-direction:column;width:100%;padding-top:.4rem}
+  .navbar.open .nav-list{display:flex}
+  .nav-btn{width:100%;justify-content:space-between;border-radius:8px}
+  .panel{position:static;opacity:1;transform:none;pointer-events:auto;display:none;box-shadow:none;
+    background:transparent;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;margin-left:.7rem}
+  .panel::before{display:none}
+  .nav-list>li.open .panel{display:block}
+  .nav-list>li.open .panel a{animation:none;opacity:1;transform:none}
+  .nav-cta{display:none}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;padding-block:clamp(2.5rem,7vw,5.5rem) clamp(2rem,5vw,3.5rem)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.72fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+@media (max-width:940px){.hero .wrap{grid-template-columns:1fr}.hero-art{order:-1;max-width:16rem;margin-inline:auto}}
+.hero h1{font-size:clamp(2rem,5.2vw,3.6rem);margin-block:.7rem .35rem}
+.word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.word>span{display:inline-block}
+.js .word>span{transform:translateY(110%);opacity:0;animation:wordUp .72s var(--ease) forwards}
+@keyframes wordUp{to{transform:translateY(0);opacity:1}}
+.hero .motto{
+  font-family:var(--deva);font-size:clamp(1.45rem,3.4vw,2.15rem);line-height:1.8;margin-top:.5rem;width:fit-content;
+  background:linear-gradient(95deg,#B26412,#DEAC2F 32%,#48AC92 68%,#3FA832);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .motto-en{font-style:italic;color:var(--muted);font-size:.94rem}
+.hero .lede{color:var(--ink-2);font-size:1.02rem;max-width:44ch;margin-top:1rem}
+.cta-row{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.6rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:650;
+  padding:.75rem 1.3rem;border-radius:999px;text-decoration:none;cursor:pointer;border:1px solid transparent;
+  transition:box-shadow .25s ease,background .2s ease,border-color .2s ease,color .2s ease;
+}
+.btn svg{flex:none;transition:transform .26s var(--ease)}
+.btn-primary{background:var(--deep);color:#fff;box-shadow:0 8px 20px -12px rgba(12,74,65,.9)}
+.btn-primary:hover{box-shadow:0 16px 34px -14px rgba(12,74,65,.95)}
+.btn-primary:hover svg{transform:translateX(4px)}
+.btn-ghost{border-color:var(--rule-2);color:var(--ink);background:var(--glass)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal-2)}
+@supports (backdrop-filter:blur(2px)){.btn-ghost{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}}
+
+.hero-art{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-art svg{width:100%;max-width:20rem;height:auto;position:relative;z-index:1;filter:drop-shadow(0 18px 40px rgba(0,0,0,.22))}
+.halo{position:absolute;width:120%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--tint-teal),transparent 62%);animation:pulse 7s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.14);opacity:1}}
+.ring{position:absolute;inset:-4%;border-radius:50%;border:1px dashed var(--rule-2);animation:spin 46s linear infinite}
+.ring::after{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 14px 3px var(--tint-gold)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lf{fill:none;stroke-width:9;stroke-linecap:round}
+.js .lf{stroke-dasharray:560;stroke-dashoffset:560;animation:draw 1.7s var(--ease) forwards}
+.lf:nth-of-type(1){animation-delay:.15s}.lf:nth-of-type(2){animation-delay:.32s}
+.lf:nth-of-type(3){animation-delay:.49s}.lf:nth-of-type(4){animation-delay:.66s}
+.arc{fill:none;stroke-width:11;stroke-linecap:round}
+.js .arc{stroke-dasharray:150;stroke-dashoffset:150;animation:draw 1s ease-out 1s forwards}
+.fig{transform-origin:150px 180px}
+.js .fig{opacity:0;animation:pop .6s cubic-bezier(.2,1.5,.4,1) 1.35s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+.pill{
+  position:absolute;display:flex;align-items:center;gap:.45rem;padding:.5rem .85rem;border-radius:999px;
+  font-size:.76rem;font-weight:600;white-space:nowrap;z-index:2;
+}
+.pill i{width:.5rem;height:.5rem;border-radius:50%;background:var(--pc,var(--teal));flex:none;font-style:normal}
+.pill-1{top:6%;left:-6%;animation:float1 8s ease-in-out infinite}
+.pill-2{bottom:16%;right:-8%;animation:float2 10s ease-in-out infinite}
+.pill-3{bottom:-2%;left:4%;animation:float1 9s ease-in-out infinite reverse}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+@media (max-width:940px){.pill-1{left:0}.pill-2{right:0}}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.tickerwrap{padding-block:.5rem}
+.ticker{display:flex;align-items:stretch;border-radius:999px;overflow:hidden}
+.ticker-tag{
+  background:var(--orange);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;display:grid;place-items:center;padding:.55rem 1rem;white-space:nowrap;flex:none;
+}
+.ticker-view{
+  overflow:hidden;flex:1;display:flex;align-items:center;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 3%,#000 93%,transparent);
+}
+.ticker-track{display:flex;gap:2.6rem;width:max-content;padding-left:1.4rem;animation:slide 48s linear infinite}
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
+.ticker-track a{font-size:.81rem;color:var(--ink-2);white-space:nowrap;text-decoration:none;padding-block:.5rem}
+.ticker-track a:hover{color:var(--teal-2)}
+.ticker-track a::before{content:"◆";color:var(--gold-2);font-size:.48rem;vertical-align:middle;margin-right:.5rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+.ticker-pause{background:transparent;border:0;border-left:1px solid var(--rule);color:var(--muted);padding:0 .9rem;cursor:pointer;font-size:.68rem;flex:none}
+.ticker-pause:hover{color:var(--ink)}
+
+/* ============================================================
+   SECTIONS + REVEAL
+   ============================================================ */
+section{padding-block:clamp(2.8rem,6.5vw,5rem);position:relative}
+.sec-head{margin-bottom:1.9rem;max-width:58ch}
+.sec-head h2{font-size:clamp(1.55rem,3.4vw,2.35rem);margin-block:.5rem .55rem}
+.sec-head p{color:var(--ink-2);font-size:.99rem}
+
+.js .rv{opacity:0;transform:translateY(26px)}
+.js .rv.in{animation:rise .78s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.js .rv-l{opacity:0;transform:translateX(-30px)}
+.js .rv-r{opacity:0;transform:translateX(30px)}
+.js .rv-l.in,.js .rv-r.in{animation:slideIn .8s var(--ease) forwards}
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+.js .rv-s{opacity:0;transform:scale(.94)}
+.js .rv-s.in{animation:scaleIn .8s var(--ease) forwards}
+@keyframes scaleIn{to{opacity:1;transform:scale(1)}}
+
+/* ============================================================
+   TASK CARDS
+   ============================================================ */
+.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.task{
+  padding:1.5rem 1.5rem 1.35rem;text-decoration:none;display:flex;flex-direction:column;gap:.35rem;
+  overflow:hidden;transform-style:preserve-3d;transition:box-shadow .32s ease,border-color .32s ease;
+}
+.task .spot{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s ease;
+  background:radial-gradient(16rem 16rem at var(--mx,50%) var(--my,50%),var(--tc-tint,var(--tint-teal)),transparent 65%);
+}
+.task:hover .spot{opacity:1}
+.task:hover{border-color:var(--tc,var(--teal))}
+.task-ico{
+  width:2.9rem;height:2.9rem;border-radius:11px;display:grid;place-items:center;margin-bottom:.5rem;
+  background:var(--tc-tint,var(--tint-teal));color:var(--tc,var(--teal));
+  transition:transform .34s cubic-bezier(.2,1.4,.4,1);
+}
+.task:hover .task-ico{transform:rotate(-8deg) scale(1.1) translateZ(30px)}
+.task h4{font-size:1.03rem;transform:translateZ(18px)}
+.task p{font-size:.87rem;color:var(--muted);transform:translateZ(10px)}
+.task .go{
+  margin-top:auto;padding-top:.85rem;font-size:.8rem;font-weight:650;color:var(--tc,var(--teal));
+  display:flex;align-items:center;gap:.35rem;transform:translateZ(14px);
+}
+.task .go svg{transition:transform .28s var(--ease)}
+.task:hover .go svg{transform:translateX(5px)}
+
+/* ============================================================
+   NOTICES
+   ============================================================ */
+.notice-wrap{display:grid;grid-template-columns:minmax(0,1fr) 20rem;gap:1.1rem;align-items:start}
+@media (max-width:940px){.notice-wrap{grid-template-columns:1fr}}
+.panel-pad{padding:1.4rem 1.5rem}
+.tabs{display:flex;gap:.25rem;border-bottom:1px solid var(--rule);margin-bottom:.3rem;overflow-x:auto}
+.tab{
+  background:transparent;border:0;position:relative;color:var(--muted);font-size:.86rem;font-weight:650;
+  padding:.55rem .8rem;cursor:pointer;white-space:nowrap;transition:color .2s ease;
+}
+.tab::after{
+  content:"";position:absolute;left:.5rem;right:.5rem;bottom:-1px;height:2.5px;border-radius:3px;
+  background:var(--teal);transform:scaleX(0);transition:transform .3s var(--ease);
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--teal-2)}
+.tab[aria-selected="true"]::after{transform:scaleX(1)}
+.notice-list{list-style:none;margin:0;padding:0}
+.notice-list li{border-bottom:1px solid var(--rule)}
+.js .notice-list li{opacity:0;transform:translateY(8px);animation:rise .5s var(--ease) forwards}
+.notice-list li:nth-child(1){animation-delay:.02s}.notice-list li:nth-child(2){animation-delay:.06s}
+.notice-list li:nth-child(3){animation-delay:.1s}.notice-list li:nth-child(4){animation-delay:.14s}
+.notice-list li:nth-child(5){animation-delay:.18s}.notice-list li:nth-child(6){animation-delay:.22s}
+.notice-list li:nth-child(7){animation-delay:.26s}
+.notice-list a{
+  display:grid;grid-template-columns:5.4rem minmax(0,1fr) auto;gap:.9rem;align-items:baseline;
+  padding:.75rem .5rem;text-decoration:none;border-radius:8px;transition:background .2s ease,padding-left .25s var(--ease);
+}
+.notice-list a:hover{background:var(--tint-teal);padding-left:.85rem}
+.notice-list a:hover .nt{color:var(--teal-2)}
+.nd{font-family:var(--mono);font-size:.71rem;color:var(--muted);white-space:nowrap}
+.nt{font-size:.89rem;color:var(--ink-2);transition:color .2s ease}
+.chip{font-family:var(--mono);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .5rem;border-radius:999px;white-space:nowrap;border:1px solid currentColor}
+.chip.new{color:var(--orange);background:var(--tint-orange)}
+.chip.pdf{color:var(--muted);background:var(--glass-2)}
+.chip.ok{color:var(--leaf);background:var(--tint-leaf)}
+@media (max-width:560px){.notice-list a{grid-template-columns:1fr auto}.nd{grid-column:1/-1}}
+.aside-card{padding:1.25rem 1.35rem}
+.aside-card + .aside-card{margin-top:.9rem}
+.aside-card h4{font-size:.95rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.board-list{list-style:none;margin:0;padding:0}
+.board-list a{
+  display:flex;justify-content:space-between;gap:.6rem;align-items:center;text-decoration:none;
+  font-size:.85rem;color:var(--ink-2);padding:.5rem .1rem;border-bottom:1px solid var(--rule);
+  transition:padding-left .25s var(--ease),color .2s ease;
+}
+.board-list li:last-child a{border-bottom:0}
+.board-list a:hover{color:var(--teal-2);padding-left:.4rem}
+.board-list .ab{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.mustread{background:linear-gradient(150deg,var(--deep),var(--deep-2));border-color:transparent;color:#fff}
+.mustread::before{opacity:.14}
+.mustread h4{color:#fff}
+.mustread p{font-size:.86rem;color:rgba(255,255,255,.86);line-height:1.6}
+.mustread a{display:inline-flex;align-items:center;gap:.4rem;margin-top:.9rem;font-size:.83rem;font-weight:650;color:var(--gold-2);text-decoration:none}
+.mustread a:hover{gap:.65rem}
+.mustread a svg{transition:transform .25s var(--ease)}
+
+/* ============================================================
+   SYSTEMS
+   ============================================================ */
+.systems{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.sys{overflow:hidden;text-decoration:none;display:flex;flex-direction:column;padding:0;transform-style:preserve-3d;transition:box-shadow .34s ease}
+.sys-top{height:6.5rem;position:relative;background:var(--sg,linear-gradient(135deg,#17796B,#48AC92));display:grid;place-items:center;overflow:hidden}
+.sys-top::after{content:"";position:absolute;inset:0;background:radial-gradient(14rem 7rem at 50% 135%,rgba(255,255,255,.45),transparent 70%)}
+.sys-top::before{
+  content:"";position:absolute;inset:0;opacity:.25;
+  background-image:radial-gradient(circle at 20% 30%,#fff 1px,transparent 1px),radial-gradient(circle at 70% 65%,#fff 1px,transparent 1px);
+  background-size:34px 34px,44px 44px;
+}
+.sys-glyph{
+  font-family:var(--deva);font-size:2.7rem;color:#fff;line-height:1;position:relative;z-index:1;
+  text-shadow:0 3px 14px rgba(0,0,0,.28);transition:transform .38s cubic-bezier(.2,1.35,.4,1);
+}
+.sys:hover .sys-glyph{transform:scale(1.14) rotate(-5deg) translateZ(35px)}
+.sys-body{padding:1.15rem 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.32rem;flex:1}
+.sys-body h4{font-family:var(--display);font-size:1.16rem;font-weight:700}
+.sys-body p{font-size:.855rem;color:var(--muted);flex:1}
+.sys-meta{display:flex;gap:.9rem;margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--rule)}
+.sys-meta span{font-family:var(--mono);font-size:.67rem;color:var(--muted)}
+.sys-meta b{color:var(--ink);font-weight:650}
+
+/* ============================================================
+   FINDER
+   ============================================================ */
+.finder{overflow:hidden}
+.finder-bar{display:flex;gap:.6rem;padding:1rem 1.1rem;border-bottom:1px solid var(--rule);flex-wrap:wrap;align-items:center}
+.finder-bar input,.finder-bar select{
+  font-size:.86rem;padding:.52rem .7rem;border:1px solid var(--rule-2);border-radius:9px;
+  background:var(--glass-2);color:var(--ink);
+}
+.finder-bar input{flex:1;min-width:11rem}
+.finder-bar input:focus,.finder-bar select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--tint-teal)}
+.finder-count{font-family:var(--mono);font-size:.71rem;color:var(--muted);margin-left:auto}
+.tbl-scroll{overflow:auto;max-height:24rem}
+table.colleges{width:100%;border-collapse:collapse;font-size:.86rem;min-width:42rem}
+table.colleges th{
+  position:sticky;top:0;z-index:1;background:var(--bg);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;text-align:left;padding:.65rem 1rem;border-bottom:1px solid var(--rule-2);
+}
+table.colleges td{padding:.65rem 1rem;border-bottom:1px solid var(--rule)}
+table.colleges tbody tr{transition:background .18s ease}
+table.colleges tbody tr:hover{background:var(--tint-teal)}
+table.colleges td:first-child{font-weight:600;color:var(--ink)}
+.st{display:inline-flex;align-items:center;gap:.38rem;font-size:.73rem;font-weight:650;padding:.22rem .6rem;border-radius:999px;white-space:nowrap}
+.st::before{content:"";width:.44rem;height:.44rem;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.st.permitted{color:var(--leaf);background:var(--tint-leaf)}
+.st.conditional{color:var(--orange);background:var(--tint-orange)}
+.st.denied{color:var(--red);background:var(--tint-red)}
+.tbl-empty{padding:2.2rem 1rem;text-align:center;color:var(--muted);font-size:.88rem}
+.demo-note{display:flex;gap:.5rem;align-items:center;padding:.6rem 1.1rem;background:var(--tint-gold);border-top:1px solid var(--rule);font-size:.75rem;color:var(--ink-2)}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1rem}
+.stat{padding:1.7rem 1.2rem;text-align:center;overflow:hidden}
+.stat .v{
+  font-family:var(--display);font-size:clamp(2rem,4.4vw,2.9rem);font-weight:700;line-height:1;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(140deg,var(--teal-2),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat .k{font-size:.81rem;color:var(--muted);margin-top:.5rem}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:linear-gradient(180deg,transparent,var(--bg-deep) 22%);padding-top:3rem;margin-top:2rem;position:relative}
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:2rem;padding-bottom:2.2rem}
+@media (max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
+.fgrid h5{font-family:var(--mono);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;font-weight:500}
+.fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.fgrid li>a{font-size:.85rem;text-decoration:none;color:var(--ink-2);position:relative;width:fit-content;transition:color .2s ease}
+.fgrid li>a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--gold-2);transform:scaleX(0);transform-origin:right;transition:transform .32s var(--ease)}
+.fgrid li>a:hover{color:var(--ink)}
+.fgrid li>a:hover::after{transform:scaleX(1);transform-origin:left}
+.faddr{font-size:.85rem;line-height:1.8;color:var(--muted)}
+.faddr strong{display:block;color:var(--ink);font-family:var(--display);font-size:1.05rem;margin-bottom:.5rem;font-weight:700}
+.faddr .motto-f{font-family:var(--deva);font-size:.95rem;margin-bottom:.7rem;background:linear-gradient(95deg,#DEAC2F,#48AC92);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fsocial{display:flex;gap:.5rem;margin-top:1.1rem}
+.fsocial a{width:2.2rem;height:2.2rem;border:1px solid var(--rule-2);border-radius:10px;display:grid;place-items:center;color:var(--ink-2);
+  transition:background .2s ease,border-color .2s ease,transform .22s var(--ease),color .2s ease}
+.fsocial a:hover{background:var(--gold-2);border-color:var(--gold-2);color:#241a04;transform:translateY(-3px)}
+.fbot{border-top:1px solid var(--rule);padding-block:1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.77rem;color:var(--muted)}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .rv,.js .rv-l,.js .rv-r,.js .rv-s{opacity:1;transform:none}
+  .js .word>span{transform:none;opacity:1}
+  .js .lf,.js .arc{stroke-dashoffset:0}
+  .js .fig{opacity:1}
+  .js .notice-list li{opacity:1;transform:none}
+}
+</style>
+
+<script>
+/* applied before first paint so the theme never flashes */
+(function(){
+  var d=document.documentElement;
+  d.classList.add("js");
+  try{
+    var t=localStorage.getItem("ncism-theme");
+    if(t==="dark"||t==="light") d.setAttribute("data-theme",t);
+  }catch(e){}
+})();
+</script>
+
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress"></div>
+
+<div class="atmos" aria-hidden="true">
+  <span class="orb orb-1" data-par="0.06"></span>
+  <span class="orb orb-2" data-par="-0.04"></span>
+  <span class="orb orb-3" data-par="0.05"></span>
+  <span class="orb orb-4" data-par="-0.03"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="gov">
+  <div class="wrap">
+    <div class="gov-left">
+      <svg width="12" height="15" viewBox="0 0 13 16" fill="currentColor" aria-hidden="true">
+        <path d="M6.5 0 8 3.2 11.5 3 9.6 6l1.9 3-3.5-.2L6.5 12 5 8.8 1.5 9l1.9-3L1.5 3 5 3.2z" opacity=".85"/>
+        <rect x="6" y="11" width="1" height="5"/>
+      </svg>
+      <span>Ministry of Ayush, Government of India</span>
+    </div>
+    <div class="gov-tools">
+      <button class="tool" data-font="small" aria-label="Decrease text size">A−</button>
+      <button class="tool" data-font="normal" aria-pressed="true" aria-label="Normal text size">A</button>
+      <button class="tool" data-font="large" aria-label="Increase text size">A+</button>
+      <span class="sep"></span>
+      <button class="tool" id="themeBtn"><span id="themeIcon">◑</span> <span id="themeTxt">Dark</span></button>
+      <span class="sep"></span>
+      <button class="tool" id="langBtn" aria-label="Switch language">EN <span style="opacity:.45">/</span> <span style="font-family:var(--deva)">हिन्दी</span></button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg class="brand-mark" width="48" height="48" viewBox="0 0 300 300" aria-hidden="true">
+        <defs>
+          <linearGradient id="b1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B26412"/><stop offset="1" stop-color="#DEAC2F"/></linearGradient>
+          <linearGradient id="b2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#DEAC2F"/><stop offset="1" stop-color="#F4CC75"/></linearGradient>
+          <linearGradient id="b3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#48AC92"/><stop offset="1" stop-color="#3FA832"/></linearGradient>
+          <linearGradient id="b4" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3FA832"/><stop offset="1" stop-color="#91B62A"/></linearGradient>
+        </defs>
+        <g transform="translate(150,262)">
+          <path stroke="url(#b1)" fill="none" stroke-width="13" transform="rotate(-58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          <path stroke="url(#b2)" fill="none" stroke-width="13" transform="rotate(-26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          <path stroke="url(#b3)" fill="none" stroke-width="13" transform="rotate(26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          <path stroke="url(#b4)" fill="none" stroke-width="13" transform="rotate(58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+        </g>
+        <path fill="none" stroke="#FADF12" stroke-width="14" stroke-linecap="round" d="M110 92 A 41 41 0 0 1 190 92"/>
+        <circle cx="150" cy="130" r="12" fill="#F17E01"/>
+        <path d="M150 146 L150 214 M150 159 L126 134 M150 159 L174 134" stroke="#F17E01" stroke-width="11" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="brand-txt">
+        <strong>National Commission for Indian System of Medicine</strong>
+        <span class="hi">राष्ट्रीय भारतीय चिकित्सा पद्धति आयोग</span>
+        <small>Statutory body under the NCISM Act, 2020</small>
+      </span>
+    </a>
+    <div class="mast-right">
+      <div class="emblems">
+        <img src="assets/original/azadi-ka-amrit-mahotsav.jpg" alt="Azadi ka Amrit Mahotsav">
+        <img src="assets/original/g20-logo.jpg" alt="G20 India 2023">
+      </div>
+      <form class="search glass" role="search" onsubmit="return false">
+        <label class="sr" for="q">Search notices, colleges and syllabi</label>
+        <input id="q" type="search" placeholder="Search notices, colleges…">
+        <button type="submit" aria-label="Search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="navbar" id="navbar">
+  <div class="wrap">
+    <nav class="navshell glass" aria-label="Main">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navList">
+        <span>Menu</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <ul class="nav-list" id="navList">
+        <li><button class="nav-btn">About <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#">Introduction</a><a href="#">Chairperson</a><a href="#">Composition of the Commission</a><a href="#">Autonomous Boards</a><a href="#">Advisory Council</a><a href="#">Officers &amp; Organisation</a></div>
+        </li>
+        <li><button class="nav-btn">Systems <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#systems">Ayurveda</a><a href="#systems">Unani</a><a href="#systems">Siddha</a><a href="#systems">Sowa-Rigpa</a><a href="#systems">Pre-Ayurveda &amp; Pre-Tib</a></div>
+        </li>
+        <li><button class="nav-btn">Colleges <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#finder">College finder</a><a href="#finder">Permitted colleges</a><a href="#finder">Denied &amp; withdrawn</a><a href="#">Apply to establish</a><a href="#">Assessment &amp; rating</a></div>
+        </li>
+        <li><button class="nav-btn">Academics <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#">Curriculum &amp; syllabus</a><a href="#">Academic calendar</a><a href="#">Internship &amp; electives</a><a href="#">Textbook standards</a><a href="#">Research &amp; grants</a></div>
+        </li>
+        <li><button class="nav-btn">Notices <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#notices">Public notices</a><a href="#notices">Tenders</a><a href="#notices">Recruitment</a><a href="#notices">Results</a><a href="#">Archive</a></div>
+        </li>
+        <li><button class="nav-btn">Registration <span class="chev">▼</span></button>
+          <div class="panel glass"><a href="#">National register</a><a href="#">Verify a practitioner</a><a href="#">Transcript certificate</a><a href="#">Ethics &amp; grievances</a></div>
+        </li>
+      </ul>
+      <a class="nav-cta magnetic" href="#finder">
+        Check a college
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<main id="main">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Established under the NCISM Act, 2020</span>
+      <h1 data-split>Standards for Ayurveda, Unani, Siddha and Sowa-Rigpa.</h1>
+      <div class="motto" lang="sa">।। आयुषे सर्वलोकानाम् ।।</div>
+      <p class="motto-en">For the life and health of all people</p>
+      <p class="lede">The Commission regulates medical education and practice across India's four recognised traditional systems — setting curricula, assessing institutions, and maintaining the national register.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary magnetic" href="#finder">
+          Check a college's status
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#notices">Public notices</a>
+      </div>
+    </div>
+    <div class="hero-art" data-par="0.08">
+      <span class="halo" aria-hidden="true"></span>
+      <span class="ring" aria-hidden="true"></span>
+      <span class="pill glass pill-1" style="--pc:var(--leaf)"><i></i>Permission status, live</span>
+      <span class="pill glass pill-2" style="--pc:var(--gold-2)"><i></i>4 recognised systems</span>
+      <span class="pill glass pill-3" style="--pc:var(--teal-3)"><i></i>National register</span>
+      <svg viewBox="0 0 300 300" role="img" aria-label="The NCISM emblem: four leaves rising from a central figure beneath a sun arc">
+        <defs>
+          <linearGradient id="h1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B26412"/><stop offset="1" stop-color="#DEAC2F"/></linearGradient>
+          <linearGradient id="h2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#DEAC2F"/><stop offset="1" stop-color="#F4CC75"/></linearGradient>
+          <linearGradient id="h3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#48AC92"/><stop offset="1" stop-color="#3FA832"/></linearGradient>
+          <linearGradient id="h4" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3FA832"/><stop offset="1" stop-color="#91B62A"/></linearGradient>
+        </defs>
+        <g transform="translate(150,268)">
+          <path class="lf" stroke="url(#h1)" transform="rotate(-58)" d="M0 0 C 46 -48 46 -116 0 -175 C -46 -116 -46 -48 0 0 Z"/>
+          <path class="lf" stroke="url(#h2)" transform="rotate(-26)" d="M0 0 C 46 -48 46 -116 0 -175 C -46 -116 -46 -48 0 0 Z"/>
+          <path class="lf" stroke="url(#h3)" transform="rotate(26)" d="M0 0 C 46 -48 46 -116 0 -175 C -46 -116 -46 -48 0 0 Z"/>
+          <path class="lf" stroke="url(#h4)" transform="rotate(58)" d="M0 0 C 46 -48 46 -116 0 -175 C -46 -116 -46 -48 0 0 Z"/>
+        </g>
+        <path class="arc" stroke="#FADF12" d="M106 88 A 44 44 0 0 1 194 88"/>
+        <g class="fig">
+          <circle cx="150" cy="130" r="13" fill="#F17E01"/>
+          <path d="M150 147 L150 220 M150 161 L124 134 M150 161 L176 134" stroke="#F17E01" stroke-width="12" stroke-linecap="round" fill="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="tickerwrap"><div class="wrap">
+  <div class="ticker glass">
+    <span class="ticker-tag">Latest</span>
+    <div class="ticker-view">
+      <div class="ticker-track" id="tickerTrack">
+        <a href="#notices">Expression of Interest to conduct UG &amp; PG Electives</a>
+        <a href="#notices">Amendment in Internship Completion for appearing in AIAPGET-2026</a>
+        <a href="#notices">National Ayurveda Dhanwantari Award 2026 — advertisement published</a>
+        <a href="#notices">Applications invited to establish new colleges for A.Y. 2027-28</a>
+        <a href="#notices">Advisory on colleges permitted under interim court orders</a>
+        <a href="#notices" aria-hidden="true" tabindex="-1">Expression of Interest to conduct UG &amp; PG Electives</a>
+        <a href="#notices" aria-hidden="true" tabindex="-1">Amendment in Internship Completion for appearing in AIAPGET-2026</a>
+        <a href="#notices" aria-hidden="true" tabindex="-1">National Ayurveda Dhanwantari Award 2026 — advertisement published</a>
+        <a href="#notices" aria-hidden="true" tabindex="-1">Applications invited to establish new colleges for A.Y. 2027-28</a>
+        <a href="#notices" aria-hidden="true" tabindex="-1">Advisory on colleges permitted under interim court orders</a>
+      </div>
+    </div>
+    <button class="ticker-pause" id="tickerPause" aria-label="Pause ticker">❚❚</button>
+  </div>
+</div></div>
+
+<section id="tasks">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Start here</span>
+      <h2>What do you need to do?</h2>
+      <p>Four tasks account for most visits to this site. Everything else sits one level deeper.</p>
+    </div>
+    <div class="tasks">
+      <a class="task glass tilt rv" href="#finder" style="--tc:var(--leaf);--tc-tint:var(--tint-leaf)">
+        <span class="spot"></span>
+        <span class="task-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-5h6v5"/></svg></span>
+        <h4>Check a college</h4>
+        <p>Is an institution permitted to admit students this academic year?</p>
+        <span class="go">Open the finder <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="task glass tilt rv" href="#" style="--tc:var(--teal);--tc-tint:var(--tint-teal)">
+        <span class="spot"></span>
+        <span class="task-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/></svg></span>
+        <h4>Find a syllabus</h4>
+        <p>Curriculum, academic calendar and record books for every professional year.</p>
+        <span class="go">Browse academics <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="task glass tilt rv" href="#notices" style="--tc:var(--orange);--tc-tint:var(--tint-orange)">
+        <span class="spot"></span>
+        <span class="task-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 4-2 5-2 7h16c0-2-2-3-2-7a6 6 0 0 0-6-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
+        <h4>Read a notice</h4>
+        <p>Public notices, tenders, recruitment and results — dated and searchable.</p>
+        <span class="go">See all notices <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="task glass tilt rv" href="#" style="--tc:var(--gold);--tc-tint:var(--tint-gold)">
+        <span class="spot"></span>
+        <span class="task-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
+        <h4>Verify a practitioner</h4>
+        <p>Search the national register of AUS&amp;SR medical professionals.</p>
+        <span class="go">Open the register <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="notices">
+  <div class="wrap">
+    <div class="notice-wrap">
+      <div class="glass panel-pad rv-l">
+        <div class="sec-head" style="margin-bottom:1rem">
+          <span class="eyebrow">Announcements</span>
+          <h2>Notices &amp; circulars</h2>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-tab="notices">Public notices</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="tenders">Tenders</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="jobs">Recruitment</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="results">Results</button>
+        </div>
+        <ul class="notice-list" id="noticeList"></ul>
+      </div>
+      <aside class="rv-r">
+        <div class="aside-card glass">
+          <h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg> Autonomous boards</h4>
+          <ul class="board-list">
+            <li><a href="#">Board of Ayurveda <span class="ab">BoA</span></a></li>
+            <li><a href="#">Unani, Siddha &amp; Sowa-Rigpa <span class="ab">BUSS</span></a></li>
+            <li><a href="#">Ethics &amp; Registration <span class="ab">BERISM</span></a></li>
+            <li><a href="#">Assessment &amp; Rating <span class="ab">MARBISM</span></a></li>
+          </ul>
+        </div>
+        <div class="aside-card glass mustread">
+          <h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg> Must read</h4>
+          <p>Advisory on colleges denied permission by NCISM but permitted by interim orders of the Hon'ble Courts.</p>
+          <a href="#">Read the advisory <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Four recognised systems</span>
+      <h2>Indian Systems of Medicine</h2>
+      <p>Each system carries its own curriculum, academic calendar and roll of permitted institutions.</p>
+    </div>
+    <div class="systems">
+      <a class="sys glass tilt rv-s" href="#" style="--sg:linear-gradient(135deg,#B26412,#E08A10)">
+        <span class="sys-top"><span class="sys-glyph" lang="sa">आ</span></span>
+        <span class="sys-body">
+          <h4>Ayurveda</h4>
+          <p>"The science of life." A discipline of the upaveda in the Vedic tradition, and the largest of the four systems by intake.</p>
+          <span class="sys-meta"><span><b>BAMS</b> UG</span><span><b>MD/MS</b> PG</span></span>
+        </span>
+      </a>
+      <a class="sys glass tilt rv-s" href="#" style="--sg:linear-gradient(135deg,#C79412,#F0CE4A)">
+        <span class="sys-top"><span class="sys-glyph" lang="hi">यू</span></span>
+        <span class="sys-body">
+          <h4>Unani</h4>
+          <p>Unani-tibb, practised across West and South Asia, built on the humoral tradition and centuries of clinical refinement.</p>
+          <span class="sys-meta"><span><b>BUMS</b> UG</span><span><b>MD</b> PG</span></span>
+        </span>
+      </a>
+      <a class="sys glass tilt rv-s" href="#" style="--sg:linear-gradient(135deg,#17796B,#48AC92)">
+        <span class="sys-top"><span class="sys-glyph" lang="hi">सि</span></span>
+        <span class="sys-body">
+          <h4>Siddha</h4>
+          <p>Founded by the Siddhars of southern India, chiefly in Tamil Nadu — among the oldest continuously practised systems.</p>
+          <span class="sys-meta"><span><b>BSMS</b> UG</span><span><b>MD</b> PG</span></span>
+        </span>
+      </a>
+      <a class="sys glass tilt rv-s" href="#" style="--sg:linear-gradient(135deg,#3FA832,#91B62A)">
+        <span class="sys-top"><span class="sys-glyph" lang="hi">सो</span></span>
+        <span class="sys-body">
+          <h4>Sowa-Rigpa</h4>
+          <p>The Himalayan healing science, diagnosing through pulse and urinalysis — recognised most recently of the four.</p>
+          <span class="sys-meta"><span><b>BSRMS</b> UG</span><span><b>PG</b> emerging</span></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="finder">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">The tool people come for</span>
+      <h2>College finder</h2>
+      <p>Every permission decision in one searchable place — instead of thirty PDFs titled "List of Permitted Colleges as on 05.02.2026".</p>
+    </div>
+    <div class="finder glass rv-s">
+      <div class="finder-bar">
+        <input id="fq" type="search" placeholder="Search by college or city…" aria-label="Search colleges">
+        <select id="fsys" aria-label="Filter by system"><option value="">All systems</option><option>Ayurveda</option><option>Unani</option><option>Siddha</option><option>Sowa-Rigpa</option></select>
+        <select id="fstate" aria-label="Filter by state"><option value="">All states</option></select>
+        <select id="fstatus" aria-label="Filter by status"><option value="">Any status</option><option>Permitted</option><option>Conditional</option><option>Denied</option></select>
+        <span class="finder-count" id="fcount"></span>
+      </div>
+      <div class="tbl-scroll">
+        <table class="colleges">
+          <thead><tr><th>Institution</th><th>System</th><th>State</th><th>Seats</th><th>A.Y. 2025–26</th></tr></thead>
+          <tbody id="ftbody"></tbody>
+        </table>
+      </div>
+      <p class="demo-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        Sample records for demonstration — institution names and statuses are illustrative, not official NCISM data.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="glance">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Indicative figures</span>
+      <h2>The Commission at a glance</h2>
+    </div>
+    <div class="stats">
+      <div class="stat glass rv"><div class="v" data-to="4">4</div><div class="k">Recognised systems</div></div>
+      <div class="stat glass rv"><div class="v" data-to="4">4</div><div class="k">Autonomous boards</div></div>
+      <div class="stat glass rv"><div class="v" data-to="900" data-suffix="+">900+</div><div class="k">Colleges regulated</div></div>
+      <div class="stat glass rv"><div class="v" data-to="55" data-suffix="k+">55k+</div><div class="k">UG seats sanctioned</div></div>
+      <div class="stat glass rv"><div class="v" data-to="2020">2020</div><div class="k">Act of Parliament</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="faddr">
+          <strong>National Commission for<br>Indian System of Medicine</strong>
+          <div class="motto-f" lang="sa">।। आयुषे सर्वलोकानाम् ।।</div>
+          Plot No. T-19, 1st &amp; 2nd Floor, Block IV<br>
+          Dhanwantari Bhawan, Road No. 66<br>
+          Punjabi Bagh (West), New Delhi 110026<br><br>
+          011-25221002 · 011-25221003<br>
+          secretary@ncismindia.org
+        </div>
+        <div class="fsocial">
+          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
+          <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L21.7 21h-6l-4.7-6.2L5.6 21h-3l7-8-6.8-10h6.1l4.3 5.7zm-1 16h1.7L7.6 4.8H5.8z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.8C18.3 5 12 5 12 5s-6.3 0-7.9.5A2.5 2.5 0 0 0 2.4 7.3C2 8.8 2 12 2 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.8C5.7 19 12 19 12 19s6.3 0 7.9-.5a2.5 2.5 0 0 0 1.7-1.8c.4-1.5.4-4.7.4-4.7zM10 15V9l5 3z"/></svg></a>
+        </div>
+      </div>
+      <div><h5>The Commission</h5><ul>
+        <li><a href="#">Introduction</a></li><li><a href="#">Chairperson</a></li><li><a href="#">Autonomous boards</a></li>
+        <li><a href="#">Officers</a></li><li><a href="#">Acts &amp; amendments</a></li><li><a href="#">Annual report</a></li></ul></div>
+      <div><h5>For students</h5><ul>
+        <li><a href="#finder">College finder</a></li><li><a href="#">Curriculum &amp; syllabus</a></li><li><a href="#">Academic calendar</a></li>
+        <li><a href="#">Internship &amp; electives</a></li><li><a href="#">Transcript certificate</a></li><li><a href="#">AIAPGET</a></li></ul></div>
+      <div><h5>Transparency</h5><ul>
+        <li><a href="#">Right to Information</a></li><li><a href="#notices">Tenders</a></li><li><a href="#notices">Recruitment</a></li>
+        <li><a href="#">Grievance redressal</a></li><li><a href="#">Accessibility statement</a></li><li><a href="#">Sitemap</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <span>Design concept · not an official Government of India website</span>
+      <span>Last updated 15 August 2026 · Visitors <b class="num">4,82,916</b></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var coarse = matchMedia("(hover: none)").matches;
+
+  /* ---------- split-text hero ---------- */
+  document.querySelectorAll("[data-split]").forEach(function(el){
+    var words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(function(w,i){
+      return '<span class="word"><span style="animation-delay:'+(0.05+i*0.055).toFixed(3)+
+             's">'+w.replace(/&/g,"&amp;").replace(/</g,"&lt;")+"</span></span>";
+    }).join(" ");
+  });
+
+  /* ---------- notices ---------- */
+  var NOTICES = {
+    notices:[
+      ["12 Aug 2026","Expression of Interest to conduct UG &amp; PG Electives","new"],
+      ["06 Aug 2026","Amendment in Internship Completion for appearing in AIAPGET-2026","new"],
+      ["28 Jul 2026","Submission of schemes to establish new colleges for A.Y. 2027-28","pdf"],
+      ["19 Jul 2026","Constitution of the Internal Committee under the POSH Act, 2013","pdf"],
+      ["04 Jul 2026","Establishment of new Ayurveda UG colleges with 60-seat intake","pdf"],
+      ["21 Jun 2026","Revision of honorarium, TA/DA and accommodation for MARBISM experts","pdf"],
+      ["09 Jun 2026","Implementation of Right to Practice of ISM practitioners","pdf"]
+    ],
+    tenders:[
+      ["10 Aug 2026","Supply and installation of network infrastructure at Dhanwantari Bhawan","new"],
+      ["30 Jul 2026","Annual maintenance contract for office equipment 2026-27","pdf"],
+      ["14 Jul 2026","Engagement of agency for digitisation of commission records","pdf"],
+      ["02 Jul 2026","Housekeeping and security services — two-year contract","pdf"],
+      ["15 Jun 2026","Corrigendum: extension of bid submission date for IT hardware","pdf"]
+    ],
+    jobs:[
+      ["08 Aug 2026","Walk-in interview: Young Professional / Consultant (IT)","new"],
+      ["25 Jul 2026","Vacancies for various posts on deputation basis","pdf"],
+      ["11 Jul 2026","Corrigendum to recruitment notice for Junior Technical Officer","pdf"],
+      ["27 Jun 2026","Contractual vacancies for JTO and MTS in NCISM","pdf"],
+      ["13 Jun 2026","Advertisement for vacancy in CPMU, Ministry of Ayush","pdf"]
+    ],
+    results:[
+      ["05 Aug 2026","Result for the posts of JTO and MTS in NCISM","ok"],
+      ["22 Jul 2026","AACCC AIQ UG and PG counselling — final allotment","ok"],
+      ["08 Jul 2026","National Ayurveda Dhanwantari Award 2026 — selected awardees","ok"],
+      ["24 Jun 2026","Publication grant beneficiaries 2025-26","pdf"],
+      ["10 Jun 2026","Affiliation of Ayurveda Gurukulams — approved list","pdf"]
+    ]
+  };
+  var CHIP={"new":"New","pdf":"PDF","ok":"Result"};
+  var noticeList=document.getElementById("noticeList");
+  function renderNotices(k){
+    noticeList.innerHTML=(NOTICES[k]||[]).map(function(r){
+      return '<li><a href="#notices"><span class="nd">'+r[0]+'</span><span class="nt">'+r[1]+
+             '</span><span class="chip '+r[2]+'">'+CHIP[r[2]]+"</span></a></li>";
+    }).join("");
+  }
+  renderNotices("notices");
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click",function(){
+      document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected","false");});
+      t.setAttribute("aria-selected","true");
+      renderNotices(t.dataset.tab);
+    });
+  });
+
+  /* ---------- college finder ---------- */
+  var COLLEGES=[
+    ["State Ayurveda Medical College, Pune","Ayurveda","Maharashtra",100,"Permitted"],
+    ["Government Ayurveda College, Thrissur","Ayurveda","Kerala",75,"Permitted"],
+    ["Rajkiya Ayurvedic Mahavidyalaya, Varanasi","Ayurveda","Uttar Pradesh",60,"Conditional"],
+    ["Shri Dhanwantari Ayurveda Sansthan, Jaipur","Ayurveda","Rajasthan",60,"Permitted"],
+    ["Sanjivani Institute of Ayurveda, Nagpur","Ayurveda","Maharashtra",60,"Denied"],
+    ["Vaidyaratnam Ayurveda College, Kozhikode","Ayurveda","Kerala",50,"Permitted"],
+    ["Government Ayurveda College, Bhubaneswar","Ayurveda","Odisha",60,"Permitted"],
+    ["Ayurveda Mahavidyalaya, Ahmedabad","Ayurveda","Gujarat",100,"Permitted"],
+    ["Rural Ayurveda Institute, Patna","Ayurveda","Bihar",50,"Denied"],
+    ["Government Unani Medical College, Hyderabad","Unani","Telangana",60,"Permitted"],
+    ["Tibbia Unani Institute, Lucknow","Unani","Uttar Pradesh",50,"Conditional"],
+    ["State Unani Medical College, Bengaluru","Unani","Karnataka",60,"Permitted"],
+    ["Hakim Ajmal Khan Unani College, Aligarh","Unani","Uttar Pradesh",40,"Denied"],
+    ["Government Unani College, Bhopal","Unani","Madhya Pradesh",50,"Permitted"],
+    ["Government Siddha Medical College, Palayamkottai","Siddha","Tamil Nadu",75,"Permitted"],
+    ["Siddha Medical Institute, Chennai","Siddha","Tamil Nadu",60,"Permitted"],
+    ["Agasthiyar Siddha College, Madurai","Siddha","Tamil Nadu",50,"Conditional"],
+    ["Himalayan Sowa-Rigpa Institute, Leh","Sowa-Rigpa","Ladakh",30,"Permitted"],
+    ["Central Institute of Sowa-Rigpa, Gangtok","Sowa-Rigpa","Sikkim",25,"Permitted"],
+    ["Bodhi Sowa-Rigpa College, Dharamshala","Sowa-Rigpa","Himachal Pradesh",25,"Conditional"]
+  ];
+  var tbody=document.getElementById("ftbody"),fq=document.getElementById("fq"),
+      fsys=document.getElementById("fsys"),fstate=document.getElementById("fstate"),
+      fstatus=document.getElementById("fstatus"),fcount=document.getElementById("fcount");
+  COLLEGES.map(function(c){return c[2];}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort()
+    .forEach(function(s){var o=document.createElement("option");o.textContent=s;fstate.appendChild(o);});
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function renderColleges(){
+    var q=fq.value.trim().toLowerCase();
+    var rows=COLLEGES.filter(function(c){
+      if(q && c[0].toLowerCase().indexOf(q)<0 && c[2].toLowerCase().indexOf(q)<0) return false;
+      if(fsys.value && c[1]!==fsys.value) return false;
+      if(fstate.value && c[2]!==fstate.value) return false;
+      if(fstatus.value && c[4]!==fstatus.value) return false;
+      return true;
+    });
+    fcount.textContent=rows.length+" of "+COLLEGES.length+" shown";
+    tbody.innerHTML=rows.length?rows.map(function(c){
+      return "<tr><td>"+esc(c[0])+"</td><td>"+esc(c[1])+"</td><td>"+esc(c[2])+
+             "</td><td class='num'>"+c[3]+"</td><td><span class='st "+c[4].toLowerCase()+"'>"+c[4]+"</span></td></tr>";
+    }).join(""):'<tr><td colspan="5" class="tbl-empty">No institutions match those filters.</td></tr>';
+  }
+  [fq,fsys,fstate,fstatus].forEach(function(el){el.addEventListener("input",renderColleges);});
+  renderColleges();
+
+  /* ---------- reveal + counters ---------- */
+  function countUp(el){
+    if(el.dataset.done) return;
+    el.dataset.done="1";
+    var to=+el.dataset.to,suf=el.dataset.suffix||"",dur=1600,start=null,finished=false;
+    function finish(){ if(!finished){ finished=true; el.textContent=to+suf; } }
+    if(reduce){finish();return;}
+    function step(ts){
+      if(finished) return;
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      if(p>=1){ finish(); return; }
+      el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    /* if frames stop (backgrounded tab, throttling) land on the real number anyway */
+    setTimeout(finish,dur+400);
+  }
+  function reveal(el){
+    el.classList.add("in");
+    el.querySelectorAll(".v[data-to]").forEach(countUp);
+  }
+  var revealables=document.querySelectorAll(".rv,.rv-l,.rv-r,.rv-s");
+  document.querySelectorAll(".tasks,.systems,.stats").forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(c,i){c.style.animationDelay=(i*0.09)+"s";});
+  });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); } });
+    },{threshold:.15,rootMargin:"0px 0px -50px 0px"});
+    revealables.forEach(function(el){io.observe(el);});
+  } else {
+    revealables.forEach(reveal);
+  }
+  /* safety net so nothing can stay invisible */
+  addEventListener("load",function(){
+    setTimeout(function(){
+      document.querySelectorAll(".rv:not(.in),.rv-l:not(.in),.rv-r:not(.in),.rv-s:not(.in)").forEach(function(el){
+        var r=el.getBoundingClientRect();
+        if(r.top<innerHeight && r.bottom>0) reveal(el);
+      });
+    },1000);
+  });
+
+  /* ---------- scroll progress + parallax ---------- */
+  var progress=document.getElementById("progress");
+  var parallax=[].slice.call(document.querySelectorAll("[data-par]"));
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY||window.pageYOffset;
+      var h=document.documentElement.scrollHeight-innerHeight;
+      progress.style.transform="scaleX("+(h>0?Math.min(y/h,1):0)+")";
+      if(!reduce){
+        parallax.forEach(function(el){
+          el.style.transform="translate3d(0,"+(y*parseFloat(el.dataset.par)).toFixed(1)+"px,0)";
+        });
+      }
+      ticking=false;
+    });
+  }
+  addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+
+  /* ---------- tilt, spotlight, magnetic ---------- */
+  if(!coarse && !reduce){
+    document.querySelectorAll(".tilt").forEach(function(card){
+      card.addEventListener("mousemove",function(e){
+        var r=card.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+        card.style.setProperty("--mx",(px*100)+"%");
+        card.style.setProperty("--my",(py*100)+"%");
+        card.style.transform="perspective(900px) rotateX("+((0.5-py)*7).toFixed(2)+
+          "deg) rotateY("+((px-0.5)*7).toFixed(2)+"deg) translateY(-6px)";
+      });
+      card.addEventListener("mouseleave",function(){card.style.transform="";});
+    });
+    document.querySelectorAll(".magnetic").forEach(function(btn){
+      btn.addEventListener("mousemove",function(e){
+        var r=btn.getBoundingClientRect();
+        var dx=(e.clientX-(r.left+r.width/2))/r.width;
+        var dy=(e.clientY-(r.top+r.height/2))/r.height;
+        btn.style.transform="translate("+(dx*11).toFixed(1)+"px,"+(dy*7).toFixed(1)+"px)";
+      });
+      btn.addEventListener("mouseleave",function(){btn.style.transform="";});
+    });
+  }
+
+  /* ---------- nav ---------- */
+  var items=document.querySelectorAll(".nav-list > li");
+  items.forEach(function(li){
+    li.querySelector(".nav-btn").addEventListener("click",function(e){
+      e.stopPropagation();
+      var was=li.classList.contains("open");
+      items.forEach(function(o){o.classList.remove("open");});
+      if(!was) li.classList.add("open");
+    });
+  });
+  document.addEventListener("click",function(){items.forEach(function(o){o.classList.remove("open");});});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape") items.forEach(function(o){o.classList.remove("open");});
+  });
+  var navbar=document.getElementById("navbar"),navToggle=document.getElementById("navToggle");
+  navToggle.addEventListener("click",function(e){
+    e.stopPropagation();
+    var open=navbar.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded",open?"true":"false");
+  });
+
+  /* ---------- ticker ---------- */
+  var track=document.getElementById("tickerTrack"),pauseBtn=document.getElementById("tickerPause"),paused=false;
+  pauseBtn.addEventListener("click",function(){
+    paused=!paused;
+    track.style.animationPlayState=paused?"paused":"running";
+    pauseBtn.textContent=paused?"▶":"❚❚";
+    pauseBtn.setAttribute("aria-label",paused?"Play ticker":"Pause ticker");
+  });
+
+  /* ---------- text size ---------- */
+  var SIZES={small:"15px",normal:"16.5px",large:"18.5px"};
+  document.querySelectorAll(".tool[data-font]").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.body.style.fontSize=SIZES[b.dataset.font];
+      document.querySelectorAll(".tool[data-font]").forEach(function(x){x.setAttribute("aria-pressed","false");});
+      b.setAttribute("aria-pressed","true");
+    });
+  });
+
+  /* ---------- theme ---------- */
+  var root=document.documentElement,
+      themeBtn=document.getElementById("themeBtn"),
+      themeIcon=document.getElementById("themeIcon"),
+      themeTxt=document.getElementById("themeTxt"),
+      sysDark=matchMedia("(prefers-color-scheme: dark)");
+  function isDark(){
+    var t=root.getAttribute("data-theme");
+    return t ? t==="dark" : sysDark.matches;
+  }
+  function paint(){
+    var d=isDark();
+    themeIcon.textContent=d?"☀":"◑";
+    themeTxt.textContent=d?"Light":"Dark";
+    themeBtn.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme");
+  }
+  themeBtn.addEventListener("click",function(){
+    var next=isDark()?"light":"dark";
+    root.setAttribute("data-theme",next);
+    try{localStorage.setItem("ncism-theme",next);}catch(e){}
+    paint();
+  });
+  if(sysDark.addEventListener) sysDark.addEventListener("change",function(){ if(!root.getAttribute("data-theme")) paint(); });
+  paint();
+
+  /* ---------- language (demo) ---------- */
+  var langBtn=document.getElementById("langBtn"),hi=false;
+  var h1=document.querySelector(".hero h1"),lede=document.querySelector(".hero .lede");
+  var EN={h1:h1.innerHTML,lede:lede.textContent};
+  var HI={
+    h1:"आयुर्वेद, यूनानी, सिद्ध और सोवा-रिग्पा के मानक।",
+    lede:"आयोग भारत की चार मान्यता प्राप्त पारंपरिक चिकित्सा पद्धतियों में शिक्षा और अभ्यास का नियमन करता है।"
+  };
+  langBtn.addEventListener("click",function(){
+    hi=!hi;
+    h1.innerHTML=hi?HI.h1:EN.h1;
+    lede.textContent=hi?HI.lede:EN.lede;
+    h1.style.fontFamily=hi?"var(--deva)":"";
+    lede.style.fontFamily=hi?"var(--deva)":"";
+    root.lang=hi?"hi":"en";
+  });
+})();
+</script>
