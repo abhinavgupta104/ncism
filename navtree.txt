@@ -1,0 +1,253 @@
+##########################################################################
+# PRIMARY NAVIGATION  (ul.navbar-nav.custom-nav)
+##########################################################################
+Home
+   [PAGE] index.php
+   └─ Face Page
+      [STUB] coming-soon.php
+      └─ ASU&SR
+         [STUB] coming-soon.php
+About NCISM
+   [DEAD(#)] #
+   └─ Introduction
+      [PAGE] introduction.php
+   └─ Main Objectives
+      [STUB] coming-soon.php
+   └─ Chairperson
+      [PAGE] chairperson.php
+   └─ Autonomous Boards
+      [DEAD(#)] #
+      └─ Board of Ayurveda (BoA)
+         [DEAD(#)] #
+      └─ Board of Unani, Siddha and Sowa-Rigpa (BUSS)
+         [DEAD(#)] #
+      └─ Board of Ethics and Registration for Indian System of Medicine (BERISM)
+         [DEAD(#)] #
+      └─ Medical Assessment and Rating Board for Indian System of Mediciene (MARBISM)
+         [DEAD(#)] #
+   └─ Composition of Commission
+      [PAGE] composition-of-commission.php
+   └─ Advisory Board
+      [PAGE] advisory-board.php
+   └─ Officers of NCISM
+      [PAGE] officers-ncism.php
+   └─ Organizational Chart
+      [STUB] coming-soon.php
+Indian Medicine
+   [DEAD(#)] #
+   └─ Ayurveda
+      [DEAD(#)] #
+      └─ Introduction
+         [PAGE] ayurveda.php
+      └─ List of Ayurveda Colleges
+         [STUB] coming-soon.php
+      └─ Curriculum & Syllabus
+         [DEAD(#)] #
+         └─ UG
+            [DEAD(#)] #
+            └─ Old Syllabus
+               [PAGE] ayurveda-syllabus.php
+            └─ New Syllabus (2021-22 Onwards)
+               [PAGE] indian-medicine-new-syllabus.php
+               └─ Ist Prof. Syllabus
+                  [PAGE] I-year-syllabus.php
+               └─ IInd Prof. Syllabus
+                  [DEAD(#)] #
+                  └─ Syllabus
+                     [PAGE] II year syllabus.php
+                  └─ Activity Book/Record Book/Journal
+                     [PAGE] activity-book-record-book-journal.php
+               └─ IIIrd Prof. Syllabus
+                  [PAGE] IIIrd-prof-BAMS.php
+                  └─ Orientation to OBDC
+                     [PAGE] orientation-to-OBDC.php
+                  └─ Implementation/Guidelines
+                     [EMPTY] 
+                     └─ Videos/Guidelines
+                        [PAGE] videos.php
+                  └─ Journal cum Activity Book
+                     [PAGE] journal-cum-activity-book.php
+               └─ Shishiksha (Internship Orientation Programme)
+                  [PAGE] shishiksha-internship-orientation-programme.php
+         └─ PG
+            [DEAD(#)] #
+            └─ Old Syllabus
+               [PAGE] ayurveda-syllabus-pg.php
+            └─ New Syllabus
+               [PAGE] pg-syllabus.php
+               └─ First Semester
+                  [PAGE] first-semester-ayurveda.php
+               └─ Second Semester
+                  [PAGE] pg-second-semester.php
+               └─ Third to Sixth Semester
+                  [PAGE] ayurveda-pg-third-sixth-semester.php
+               └─ Curriculum Implementation Videos
+                  [PAGE] pg-curriculum-implementation-videos.php
+               └─ Samskara-PG Orientation Programme
+                  [PAGE] Samskara-PG-Orientation-Programme.php
+               └─ Implementation Guidelines of CBDC
+                  [PAGE] Implementation-Guidelines-of-CBDC.php
+      └─ Academic Calendar
+         [DEAD(#)] #
+         └─ UG
+            [PAGE] ug-2021-25.php
+         └─ PG
+            [PAGE] pg-2021-25.php
+   └─ Unani
+      [DEAD(#)] #
+      └─ Introduction
+         [PAGE] unani.php
+      └─ Research
+         [PDF] Attachment 0SPUR scheme_1320.pdf
+      └─ List of Unani Colleges
+         [STUB] coming-soon.php
+      └─ Curriculum & Syllabus
+         [DEAD(#)] #
+         └─ Old Syllabus
+            [PAGE] unani-syllabus.php
+         └─ New Syllabus
+            [DEAD(#)] #
+            └─ UG Syllabus
+               [DEAD(#)] #
+               └─ 1st Professional
+                  [PAGE] Unani-new-syllabus.php
+               └─ 2nd Professional
+                  [PAGE] Unani-new-syllabus-2.php
+               └─ 3rd Professional
+                  [PAGE] IIIrd-prof-BUMS.php
+         └─ PG Syllabus
+            [DEAD(#)] #
+            └─ First Semester
+               [PAGE] first-semester-uni.php
+            └─ Second Semester
+               [PAGE] unani-second-semester.php
+            └─ Third to Sixth Semester
+               [PAGE] unani-pg-third-sixth-semester.php
+            └─ PG Orientation/Induction Programme
+               [PAGE] unani-syllabus1.php
+            └─ Guidelines for Implementation of CBDC, RM & BS
+               [PAGE] guidelines-for-Implementation-of-CBDC.php
+         └─ Pre-Tib Syllabus
+            [PAGE] unani-pre-tib-syllabus.php
+   └─ Academic Calendar
+      [DEAD(#)] #
+      └─ UG
+         [PAGE] academic-calendar-ug.php
+      └─ PG
+         [PAGE] unani-academic-calendar-pg.php
+      └─ Pre-Tib
+         [PAGE] unani-academic-calendar-pre-tib.php
+Siddha
+   [DEAD(#)] #
+   └─ Introduction
+      [PAGE] siddha.php
+   └─ List of Siddha Colleges
+      [STUB] coming-soon.php
+   └─ Curriculum & Syllabus
+      [DEAD(#)] #
+      └─ Old Syllabus
+         [PAGE] siddha-syllabus.php
+      └─ New Syllabus
+         [DEAD(#)] #
+         └─ UG Syllabus
+            [DEAD(#)] #
+            └─ 1st Professional
+               [PAGE] siddha-new-syllabus.php
+            └─ 2nd Professional
+               [PAGE] II year syllabus-siddha.php
+            └─ 3rd Professional
+               [PAGE] IIIrd-prof-BSMS.php
+         └─ PG Syllabus
+            [DEAD(#)] #
+            └─ First Semester
+               [PAGE] first-semester-siddha.php
+            └─ Second Semester
+               [PAGE] siddha-pg-second-semester.php
+            └─ Third to Sixth Semester
+               [PAGE] siddha-pg-third-sixth-semester.php
+            └─ PG Orientation/Induction Programme
+               [PAGE] pg-syllabus1.php
+            └─ Curriculum Implementation Videos
+               [PAGE] curriculum-implementation-videos.php
+            └─ Guidelines for Implementation of CBDC, RM & BS
+               [PAGE] cbdc-guide.php
+   └─ Academic Calendar
+      [DEAD(#)] #
+      └─ UG
+         [PAGE] siddha-academic-calendar-ug.php
+Sowa-Rigpa
+   [DEAD(#)] #
+   └─ Introduction
+      [PAGE] sowarigpa.php
+   └─ List of Sowa-Rigpa Colleges
+      [STUB] coming-soon.php
+   └─ Curriculum & Syllabus
+      [DEAD(#)] #
+      └─ Old Syllabus
+         [STUB] coming-soon.php
+      └─ New Syllabus
+         [PAGE] sowa-rigpa-new-syllabus.php
+      └─ 1st Professional Syllabus
+         [PAGE] sowa-rigpa-new-syllabus.php
+      └─ 2nd Professional Syllabus
+         [PAGE] sowa-rigpa-new-syllabus-professional.php
+      └─ 3rd Professional Syllabus
+         [PAGE] sowa-rigpa-3rd-professional-syllabus.php
+   └─ Academic Calendar
+      [DEAD(#)] #
+      └─ UG
+         [PAGE] sowa-rigpa-academic-calendar-ug.php
+Pre-Ayurveda
+   [PAGE] pre-ayurveda.php
+General
+   [DEAD(#)] #
+   └─ NCISM Schemes for Financial Assistance
+      [PDF] NCISM Schemes for financial assistance Brochure (4).pdf
+   └─ Textbook Quality Assessment Scale
+      [PDF] Textbook Quality Assessment Scale.pdf
+   └─ Ayush Module for MBBS Internship
+      [PDF] Ayush Module Internship Electives for MBBS.pdf
+   └─ Transcript Certificate
+      [PAGE] transcript-certificate.php
+   └─ Publication Grant Beneficiaries
+      [PAGE] publication grant beneficiaries.php
+
+##########################################################################
+# LOGINS DROPDOWN  (ul.login-drop)
+##########################################################################
+Institution Login
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/1832/login.html
+Apply for restoring of withheld teacher's code
+   [EXTERNAL] https://docs.google.com/forms/d/e/1FAIpQLSd6LXW_Rxn6QEIa-Pg5EyG9vzbzU7S_GgbsKO
+Application Under Section 29 URL Login
+   [STUB] https://ncismindia.org/coming-soon.php
+Visitor's Login
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/1973/login.html
+Teacher's Login
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/3237/login.html
+Practitioner Login
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/2394/login.html
+State Board Login
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/2396/login.html
+Institute Login for Ayurveda Day
+   [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/73421/login.html
+Apply for Registration
+   [STUB] coming-soon.php
+State Board Login
+   [STUB] coming-soon.php
+
+##########################################################################
+# UTILITY / SERVICES BAR
+##########################################################################
+  (not found as a single ul — see note)
+
+==========================================================================
+LINK TARGET SUMMARY (primary + logins + utility)
+==========================================================================
+  PAGE         62
+  DEAD(#)      29
+  STUB         12
+  EXTERNAL     7
+  PDF          4
+  EMPTY        1
+  TOTAL        115

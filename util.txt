@@ -1,0 +1,248 @@
+mean-menu containers: 1
+
+######## mean-menu[0] — bare <li> children (no <ul> wrapper): 19
+Registration
+   [DEAD(#)] #
+   └─ State Board Acts
+      [PAGE] stateboardact.php
+   └─ List of State Boards
+      [PAGE] list-of-state-boards.php
+   └─ List of Degrees recognised under 2nd Schedule of IMCC Act 1970
+      [DEAD(#)] #
+   └─ National Register Notifications
+      [PAGE] national-register-notifications.php
+Information Desk
+   [DEAD(#)] #
+   └─ Acts & Amendments
+      [DEAD(#)] #
+      └─ IMCC Act 1970
+         [PAGE] actandammendment.php
+      └─ NCISM Act 2020
+         [PAGE] ncism-act-2020.php
+   └─ Rules & Regulations
+      [DEAD(#)] #
+      └─ Under IMCC Act 1970
+         [PAGE] rulesandregulations.php
+      └─ Under NCISM Act 2020
+         [PAGE] under-ncism-act-2020.php
+   └─ Guidelines
+      [PAGE] guidelines.php
+   └─ Approval Process Handbook
+      [PAGE] approval-process-handbook.php
+Permission Status ASUSR Colleges
+   [DEAD(#)] #
+   └─ Ayurveda Colleges
+      [DEAD(#)] #
+      └─ Permitted in compliance of Court Order
+         [PAGE] Court Order Regularization.php
+      └─ A.Y. 2021-22
+         [PAGE] list-of-ayurveda-colleges.php
+      └─ A.Y. 2022-23
+         [PAGE] list-of-ayurveda-colleges-22-23.php
+      └─ A.Y. 2023-24
+         [PAGE] list-of-ayurveda-colleges-23-24.php
+      └─ A.Y. 2024-25
+         [PAGE] list-of-ayurveda-colleges-24-25.php
+      └─ A.Y. 2025-26
+         [PAGE] list-of-ayurveda-colleges-25-26.php
+   └─ Unani Colleges
+      [DEAD(#)] #
+      └─ Permitted in compliance of Court Order
+         [PAGE] Court Order -Unani Regularization.php
+      └─ A.Y. 2021-22
+         [PAGE] list-of-unani-colleges.php
+      └─ A.Y. 2022-23
+         [PAGE] list-of-unani-colleges22-23.php
+      └─ A.Y. 2023-24
+         [PAGE] list-of-unani-colleges23-24.php
+      └─ A.Y. 2024-25
+         [PAGE] list-of-unani-colleges-24-25.php
+      └─ A.Y. 2025-26
+         [PAGE] list-of-unani-colleges-25-26.php
+   └─ Siddha Colleges
+      [DEAD(#)] #
+      └─ A.Y. 2021-22
+         [PAGE] list-of-siddha.php
+      └─ A.Y. 2022-23
+         [PAGE] list-of-siddha-colleges22-23.php
+      └─ A.Y. 2023-24
+         [PAGE] list-of-siddha-colleges23-24.php
+      └─ A.Y. 2024-25
+         [PAGE] list-of-siddha-colleges-24-25.php
+      └─ A.Y. 2025-26
+         [PAGE] list-of-siddha-colleges-25-26.php
+   └─ Sowa-Rigpa Colleges
+      [DEAD(#)] #
+      └─ A.Y. 2021-22
+         [PAGE] list-of-sowa-rigpa.php
+      └─ A.Y. 2022-23
+         [PAGE] list-of-sowa-rigpa-colleges22-23.php
+      └─ A.Y. 2023-24
+         [PAGE] list-of-sowa-rigpa-colleges-23-24.php
+      └─ A.Y. 2024-25
+         [PAGE] list-of-sowa-rigpa-colleges-24-25.php
+      └─ A.Y. 2025-26
+         [PAGE] list-of-sowa-rigpa-colleges-25-26.php
+Recognised Medical Qualifications
+   [DEAD(#)] #
+   └─ Under NCISM ACT
+      [DEAD(#)] #
+      └─ Section-35
+         [PAGE] reconised-medical-qualifications-of-ayurveda-under-section-35.php
+      └─ Section-36
+         [PAGE] reconised-medical-qualifications-of-ayurveda-under-section-36.php
+   └─ Under IMCC ACT
+      [PAGE] under-imcc-act.php
+Circular and Notification
+   [PAGE] circular-notification.php
+Meetings
+   [PAGE] meetings.php
+   └─ Acts CCIM
+      [STUB] coming-soon.php
+   └─ Acts NCISM
+      [STUB] coming-soon.php
+Annual Report
+   [EMPTY] 
+   └─ Acts CCIM
+      [PAGE] annual_reports.php
+   └─ Acts NCISM
+      [STUB] coming-soon.php
+Information Under RTI Act
+   [STUB] coming-soon.php
+Important Court Decisions
+   [STUB] coming-soon.php
+College Locations
+   [STUB] coming-soon.php
+Counselling
+   [PAGE] counselling.php
+E-learning
+   [DEAD(#)] #
+   └─ Electives
+      [PAGE] electives.php
+   └─ Ebook
+      [PAGE] ebook.php
+Examinations
+   [DEAD(#)] #
+   └─ Year 2024
+      [PAGE] year2024.php
+   └─ Year 2025
+      [PAGE] year2025.php
+   └─ Year 2026
+      [DEAD(#)] #
+      └─ National Exit Test
+         [PAGE] national-exit-test-2026.php
+      └─ National Teachers' Eligibility Test
+         [PAGE] national-techers-eligibiity-test-2026.php
+      └─ NEET PRE-TIB
+         [PAGE] neet-pri-tib-2026.php
+      └─ NEET SOWA RIGPA UG
+         [PAGE] neet-sowa-rigpa-ug-2026.php
+      └─ AIAPGET
+         [PAGE] aiapget.php
+   └─ Latest updates
+      [PAGE] examinations-latest-updates.php
+Rating
+   [DEAD(#)] #
+   └─ Ayurveda Colleges
+      [DEAD(#)] #
+      └─ A.Y 2024-25
+         [PAGE] ayurveda-colleges-ay-2024-25.php
+      └─ A.Y. 2025-26
+         [PAGE] ayurveda-colleges-ay-2025-26.php
+   └─ Unani Colleges
+      [DEAD(#)] #
+      └─ A.Y 2024-25
+         [PAGE] unani-colleges-ay-2024-25.php
+      └─ A.Y. 2025-26
+         [PAGE] unani-colleges-ay-2025-26.php
+   └─ Siddha Colleges
+      [DEAD(#)] #
+      └─ A.Y 2024-25
+         [PAGE] siddha-colleges-ay-2024-25.php
+      └─ A.Y. 2025-26
+         [PAGE] siddha-colleges-ay-2025-26.php
+   └─ Framework for Assessment and Rating of ASU colleges
+      [DEAD(#)] #
+      └─ A.Y. 2024-25
+         [PAGE] rating-of-ASU-colleges-24-25.php
+      └─ A.Y. 2025-26
+         [PAGE] rating-of-ASU-colleges-25-26.php
+Others
+   [DEAD(#)] #
+   └─ Download Forms
+      [PAGE] download-forms.php
+   └─ Advertisements
+      [PAGE] advertisements.php
+   └─ Citizen Charter
+      [STUB] coming-soon.php
+   └─ Grievance
+      [PAGE] amendments.php
+   └─ Awards and Achievements
+      [STUB] coming-soon.php
+   └─ Fees
+      [STUB] coming-soon.php
+   └─ Vacancies
+      [PAGE] vacancies.php
+   └─ Gallery
+      [PAGE] our-gallery.php
+   └─ Archives
+      [PAGE] archives.php
+   └─ Contact Us
+      [STUB] coming-soon.php
+Vigilance Corner
+   [DEAD(#)] #
+   └─ CVO
+      [PAGE] cvo.php
+   └─ Logged Complaints
+      [PAGE] logged-complaints.php
+   └─ GOI (PIDPI) Resolution
+      [PAGE] goi.php
+RTI
+   [DEAD(#)] #
+   └─ Sou Moto Disclosure
+      [PAGE] sou-moto-disclosure.php
+Results
+   [DEAD(#)] #
+   └─ NTET 2024
+      [EMPTY] 
+      └─ Link to Digilocker
+         [EXTERNAL] https://www.digilocker.gov.in/
+   └─ How to access Digilocker with URL
+      [EMPTY] 
+      └─ SoP for access NCISM certificate from DigiLocker
+         [PDF] SoP for access NCISM certificate from DigiLocker.pdf
+   └─ NTET 2026
+      [PAGE] ntet-2026.php
+Logins
+   [DEAD(#)] #
+   └─ Institution Login
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/1832/login.html
+   └─ Apply for restoring of withheld teacher's code
+      [EXTERNAL] https://docs.google.com/forms/d/e/1FAIpQLSd6LXW_Rxn6QEIa-Pg5EyG9vzbzU7S_Ggbs
+   └─ Application Under Section 29 URL Login
+      [STUB] https://ncismindia.org/coming-soon.php
+   └─ Visitor's Login
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/1973/login.html
+   └─ Teacher's Login
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/3237/login.html
+   └─ Practitioner Login
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/2394/login.html
+   └─ State Board Login
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/2396/login.html
+   └─ Institute Login for Ayurveda Day
+      [EXTERNAL] https://www.digialm.com/EForms/configuredHtml/1020/73421/login.html
+   └─ Apply for Registration
+      [STUB] coming-soon.php
+   └─ State Board Login
+      [STUB] coming-soon.php
+
+======================================================================
+UTILITY BAR TARGET SUMMARY
+======================================================================
+  PAGE         67
+  DEAD(#)      25
+  STUB         13
+  EXTERNAL     8
+  EMPTY        3
+  PDF          1
+  TOTAL        117

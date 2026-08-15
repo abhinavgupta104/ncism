@@ -1,0 +1,117 @@
+
+<style>
+.ayur-cta-bar {
+  background: var(--raised);
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+}
+.ayur-cta-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.ayur-cta-btn {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 99px;
+  font-weight: 650;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s var(--ease);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 4%, transparent);
+}
+.ayur-cta-btn:hover {
+  background: var(--ink-solid);
+  color: var(--on-ink);
+  border-color: var(--ink-solid);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.ayur-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 900px) {
+  .ayur-content-grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+.ayur-image-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--ink) 15%, transparent);
+  position: relative;
+}
+.ayur-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.ayur-image-wrapper:hover img {
+  transform: scale(1.05);
+}
+.ayur-content-grid p {
+  max-width: none !important;
+  line-height: 1.6;
+}
+</style>
+
+<div class="ayur-cta-bar">
+  <div class="ayur-cta-grid js rv in" style="animation-delay:.1s">
+    <a href="ayurveda-intro.html" class="ayur-cta-btn">Introduction</a>
+    <a href="ayurveda-colleges.html" class="ayur-cta-btn">List of Ayurveda Colleges</a>
+    <a href="ayurveda-syllabus.html" class="ayur-cta-btn">Curriculum & Syllabus</a>
+    <a href="ayurveda-calendar.html" class="ayur-cta-btn">Academic Calendar</a>
+    <a href="ayurveda-library.html" class="ayur-cta-btn">Library</a>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <div class="rail js rv in" style="animation-delay:.2s">
+      <div class="no">Ayurveda</div>
+      <div class="dv">आयुर्वेद</div>
+      <div class="tag">The Science of Life</div>
+    </div>
+    <div class="body-col">
+      <div class="hd js rv in" style="animation-delay:.3s">
+        <h2>Ayurveda means "the science of life"</h2>
+        <p>Ayur means "life" and veda means "science" in Sanskrit. Ayurveda is a discipline of the upaveda or "auxiliary knowledge" in Vedic tradition. Ayurveda has its prime origin from Atharva-Veda and apart as a supplement of the Rig-Veda. Dhanvantari is worshipped as the God of Ayurveda.</p>
+      </div> <!-- /hd -->
+        
+      <div class="ayur-content-grid js rv in" style="animation-delay:.4s">
+          <div>
+            <h3 style="font-family: var(--display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink);">A Holistic Approach to Well-being</h3>
+            <p>The central aim of Ayurveda is to prevent illness, heal the sick, and preserve life through natural means. Unlike reductionist models, Ayurveda treats the individual as a whole—considering physical, mental, and spiritual well-being as interconnected aspects of health.</p>
+            <br>
+            <p>Originating in India over 5,000 years ago, it has extended its holistic practices across the globe. From ancient Gurukula teaching systems to modern-day undergraduate and postgraduate medical institutions, Ayurveda's wisdom is constantly evolving while staying true to its core tenets.</p>
+          </div>
+          <div class="ayur-image-wrapper">
+            <img src="assets/web/ayurveda_intro.jpg" alt="Ayurvedic herbs and manuscripts">
+          </div>
+        </div>
+
+        <div class="ayur-content-grid" style="margin-top: 4rem;">
+          <div class="ayur-image-wrapper" style="order: 2;">
+            <img src="assets/web/trad_ayurveda.jpg" alt="Mortar and pestle with turmeric">
+          </div>
+          <div style="order: 1;">
+            <h3 style="font-family: var(--display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink);">The Three Doshas</h3>
+            <p>At the heart of Ayurvedic philosophy lies the concept of the three Doshas—Vata, Pitta, and Kapha. These vital energies are believed to govern all physiological and psychological functions in the body.</p>
+            <br>
+            <p>By understanding one's unique constitution (Prakriti) and current state of imbalance (Vikriti), practitioners prescribe customized treatments involving herbal remedies, specialized diets, detoxification therapies (Panchakarma), and lifestyle modifications.</p>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+</div>

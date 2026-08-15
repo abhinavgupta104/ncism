@@ -1,0 +1,607 @@
+<div class="hero-slider" role="region" aria-label="Featured highlights">
+  <button class="slide-btn prev" aria-label="Previous slide">❮</button>
+  <button class="slide-btn next" aria-label="Next slide">❯</button>
+  <div class="slide-track" id="sliderTrack">
+    <div class="slide">
+      <img src="assets/web/g-1004226513.jpg" alt="">
+      <div class="slide-cap">To prescribe minimum standards of education in Indian Systems of Medicine</div>
+    </div>
+    <div class="slide">
+      <img src="assets/web/g-1004226583.jpg" alt="">
+      <div class="slide-cap">Promoting research and development in Indian systems of medicine</div>
+    </div>
+    <div class="slide">
+      <img src="assets/web/g-1004226636.jpg" alt="">
+      <div class="slide-cap">Ensuring high quality and standard of education in the medical profession</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('sliderTrack');
+  const prev = document.querySelector('.slide-btn.prev');
+  const next = document.querySelector('.slide-btn.next');
+  const wrap = document.querySelector('.hero-slider');
+  if(!track) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
+  const slides = track.children.length;
+
+  const update = () => { track.style.transform = `translateX(-${index * 100}%)`; };
+  const nextSlide = () => { index = (index + 1) % slides; update(); };
+  const prevSlide = () => { index = (index - 1 + slides) % slides; update(); };
+  next.addEventListener('click', () => { nextSlide(); resetTimer(); });
+  prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+
+  let timer = null;
+  function startTimer(){ if(!reduce) timer = setInterval(nextSlide, 5000); }
+  function stopTimer(){ clearInterval(timer); timer = null; }
+  function resetTimer(){ stopTimer(); startTimer(); }
+
+  /* pause on hover/focus so the carousel never fights a reading user,
+     and never runs at all when the OS asks for reduced motion */
+  wrap.addEventListener('mouseenter', stopTimer);
+  wrap.addEventListener('mouseleave', startTimer);
+  wrap.addEventListener('focusin', stopTimer);
+  wrap.addEventListener('focusout', (e) => { if(!wrap.contains(e.relatedTarget)) startTimer(); });
+  startTimer();
+});
+</script>
+
+<section class="updates-ticker">
+  <button class="ticker-arr prev" aria-label="Previous update">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <div class="ticker-pill">
+    <div class="ticker-label">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>
+      What's New
+    </div>
+    <div class="ticker-content">
+      <div class="ticker-content-inner" id="updateTickerText">
+        <a href="#">Request for wide publicity of UPSC Advertisement No. 06/2026 for the post of Deputy Director in ...</a>
+        <a href="#">Amendment in Internship Completion for appearing in AIAPGET-2026</a>
+        <a href="#">National Ayurveda Dhanwantari Award 2026 — advertisement published</a>
+        <a href="#">Applications invited to establish new colleges for A.Y. 2027-28</a>
+      </div>
+    </div>
+    <a href="#" class="ticker-cta">Learn More</a>
+  </div>
+  <button class="ticker-arr next" aria-label="Next update">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const ticker = document.getElementById('updateTickerText');
+  if (!ticker || ticker.children.length === 0) return;
+  const items = ticker.children;
+  const wrap = document.querySelector('.updates-ticker');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tIndex = 0;
+  const tCount = items.length;
+
+  /* measure the real row height instead of assuming 24px — the A+/A-/A
+     text-size tool and long item text both change this at runtime */
+  const rowH = () => items[0].getBoundingClientRect().height;
+  const tUpdate = () => {
+    ticker.style.transform = `translateY(-${tIndex * rowH()}px)`;
+  };
+
+  const nextUpdate = () => { tIndex = (tIndex + 1) % tCount; tUpdate(); };
+  const prevUpdate = () => { tIndex = (tIndex - 1 + tCount) % tCount; tUpdate(); };
+
+  let tTimer = null;
+  function startTimer(){ if(!reduce) tTimer = setInterval(nextUpdate, 2000); }
+  function stopTimer(){ clearInterval(tTimer); tTimer = null; }
+  function resetTimer(){ stopTimer(); startTimer(); }
+
+  document.querySelector('.updates-ticker .next').addEventListener('click', () => { nextUpdate(); resetTimer(); });
+  document.querySelector('.updates-ticker .prev').addEventListener('click', () => { prevUpdate(); resetTimer(); });
+
+  wrap.addEventListener('mouseenter', stopTimer);
+  wrap.addEventListener('mouseleave', startTimer);
+  wrap.addEventListener('focusin', stopTimer);
+  wrap.addEventListener('focusout', (e) => { if(!wrap.contains(e.relatedTarget)) startTimer(); });
+  addEventListener('resize', tUpdate);
+  startTimer();
+});
+</script>
+
+<section class="intro-section">
+  <div class="wrap">
+    <div class="intro-content">
+      <h2>INTRODUCTION</h2>
+      <p>In pursuance of the provisions of National Commission for Indian System of Medicine (NCISM) Act 2020 (14 of 2020), the Indian Medicine Central Council (IMCC) Act 1970 (48 of 1970) has been repealed and all the provisions of the National Commission for Indian System of Medicine (NCISM) has been come into force with effect from the 11th day of June 2021. Under the provisions of section 59 (2) of NCISM Act 2020 the Central Government has constituted the Commission and four Autonomous boards on the same day. Medical standards, requirements and other provisions of the IMCC Act 1970 and the rules and regulations made thereunder shall continue to be in force and operate till new standards or requirements as specified under new act or rules and regulations made thereunder come into force. However, the provisions of concerned regulations which are inconsistent with the provisions of NCISM Act 2020 shall not be applicable.</p>
+    </div>
+    <div class="intro-image">
+      <img src="assets/gallery/images.jpg" alt="Chairperson NCISM">
+    </div>
+  </div>
+</section>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="lbl">Constituted 11 June 2021 · NCISM Act, 2020</span>
+      <h1 data-split>The standard for Indian medicine.</h1>
+      <div class="motto" lang="sa">।। आयुषे सर्वलोकानाम् ।।</div>
+      <p class="motto-en">For the life and health of all people</p>
+      <p class="lede">The Commission regulates education and practice across Ayurveda, Unani, Siddha and
+        Sowa-Rigpa — setting curricula, assessing institutions, and maintaining the national register.</p>
+      <div class="cta">
+        <a class="btn btn-fill" href="#finder">Check a college's status
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line" href="#notices">Public notices</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>4</b><span>Systems regulated</span></div>
+        <div><b>4</b><span>Autonomous boards</span></div>
+        <div><b>2020</b><span>Act of Parliament</span></div>
+      </div>
+    </div>
+    <figure class="hero-fig">
+      <img src="assets/web/feature.jpg" alt="The Chairperson of NCISM addressing a curriculum workshop at the National Institute of Siddha">
+      <span class="mark-float">
+        <svg viewBox="0 0 300 300" width="100%" aria-hidden="true">
+          <g transform="translate(150,262)">
+            <path fill="none" stroke-width="15" stroke="#B26412" transform="rotate(-58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#DEAC2F" transform="rotate(-26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#48AC92" transform="rotate(26)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+            <path fill="none" stroke-width="15" stroke="#3FA832" transform="rotate(58)" d="M0 0 C 44 -46 44 -112 0 -168 C -44 -112 -44 -46 0 0 Z"/>
+          </g>
+          <circle cx="150" cy="130" r="12" fill="#F17E01"/>
+          <path d="M150 146 L150 214 M150 159 L126 134 M150 159 L174 134" stroke="#F17E01" stroke-width="11" stroke-linecap="round" fill="none"/>
+        </svg>
+      </span>
+      <figcaption><b>Chennai</b> Workshop on competency-based curriculum, National Institute of Siddha</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section class="commission-section">
+  <div class="wrap">
+    <h2>The Commission</h2>
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/gallery/images.jpg" alt="Chairperson">
+          <div class="member-overlay">
+            <div class="member-name">Shri Vaidya Jayant Deopujari</div>
+            <div class="member-role">Chairperson</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/feature.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Prof. Rabinarayan Acharya</div>
+            <div class="member-role">Secretary</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226513.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Dr. K. Jagannathan</div>
+            <div class="member-role">President (Siddha)</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226583.jpg" alt="President">
+          <div class="member-overlay">
+            <div class="member-name">Dr. M. A. Qasmi</div>
+            <div class="member-role">President (Unani)</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/g-1004226636.jpg" alt="Secretary">
+          <div class="member-overlay">
+            <div class="member-name">Dr. B.S. Prasad</div>
+            <div class="member-role">Secretary</div>
+          </div>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="member-img-wrap">
+          <img src="assets/web/chairperson.jpg" alt="Member">
+          <div class="member-overlay">
+            <div class="member-name">Dr. Sangeeta Duggal</div>
+            <div class="member-role">Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADITIONS OVERVIEW -->
+<section class="trad-section">
+  <div class="wrap">
+    <div class="trad-head">
+      <div>
+        <span class="lbl">Four systems · one commission</span>
+        <h2>Four traditions.<br><em>One nation's</em> heritage of healing.</h2>
+      </div>
+      <p class="sub">NCISM brings India's recognised systems of medicine under a single regulatory
+        umbrella — each preserved in its distinct identity, each held to the same modern standard.</p>
+    </div>
+    <div class="trad-grid">
+      <a class="trad rv" href="ayurveda.html" style="--tc:var(--saffron);--tg:linear-gradient(135deg,#B26412,#E08A10)">
+        <span class="trad-media">
+          <img src="assets/web/trad_ayurveda.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6; mix-blend-mode:multiply; z-index:0;" alt="Ayurvedic herbs and mortar">
+          <span class="trad-ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-11 8-13 4 2 8 8 8 13a7 7 0 0 1-7 7"/><path d="M12 20v-9"/></svg>
+          </span>
+          <span class="trad-script" lang="sa">आयुर्वेद</span>
+        </span>
+        <span class="trad-body">
+          <span class="trad-tag">The science of life</span>
+          <h3>Ayurveda</h3>
+          <p>Rooted in the Vedas, Ayurveda ranks among the world's oldest systems of holistic medicine — a discipline of the upaveda tradition, drawn chiefly from the Atharva-Veda.</p>
+          <span class="trad-cta"><span class="trad-cta-label">Explore Ayurveda</span>
+            <span class="trad-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+        </span>
+      </a>
+      <a class="trad rv" href="#systems" style="--tc:var(--gold);--tg:linear-gradient(135deg,#C79412,#F0CE4A)">
+        <span class="trad-media">
+          <img src="assets/web/g-1004226513.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6; mix-blend-mode:multiply; z-index:0;" alt="Unani medicine texts and vials">
+          <span class="trad-ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+          </span>
+          <span class="trad-script" lang="hi">यूनानी</span>
+        </span>
+        <span class="trad-body">
+          <span class="trad-tag">The Graeco-Arabic tradition</span>
+          <h3>Unani</h3>
+          <p>Refined through centuries of scholarship across Greece, Persia and India, Unani medicine traces its teachings to Hippocrates and Galen, carried forward by physicians such as Avicenna.</p>
+          <span class="trad-cta"><span class="trad-cta-label">Explore Unani</span>
+            <span class="trad-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+        </span>
+      </a>
+      <a class="trad rv" href="#systems" style="--tc:var(--teal);--tg:linear-gradient(135deg,#17796B,#48AC92)">
+        <span class="trad-media">
+          <img src="assets/web/g-1004226636.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6; mix-blend-mode:multiply; z-index:0;" alt="Siddha medicine preparation">
+          <span class="trad-ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          </span>
+          <span class="trad-script" lang="hi">सिद्ध</span>
+        </span>
+        <span class="trad-body">
+          <span class="trad-tag">The perfected science</span>
+          <h3>Siddha</h3>
+          <p>Founded by the Siddhars of southern Tamil Nadu, this tradition unites Kayakarpam and Muppu — the universal salt — in a system built for rejuvenation and long life.</p>
+          <span class="trad-cta"><span class="trad-cta-label">Explore Siddha</span>
+            <span class="trad-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+        </span>
+      </a>
+      <a class="trad rv" href="#systems" style="--tc:var(--leaf);--tg:linear-gradient(135deg,#3FA832,#91B62A)">
+        <span class="trad-media">
+          <img src="assets/web/g-1004226583.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6; mix-blend-mode:multiply; z-index:0;" alt="Sowa-Rigpa medicine elements">
+          <span class="trad-ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </span>
+          <span class="trad-script" lang="hi">सोवा-रिग्पा</span>
+        </span>
+        <span class="trad-body">
+          <span class="trad-tag">The science of healing</span>
+          <h3>Sowa-Rigpa</h3>
+          <p>Practised across the Himalayan belt — Ladakh, Sikkim, Arunachal and Himachal — Sowa-Rigpa diagnoses through pulse analysis and urinalysis, guided by the Four Tantras.</p>
+          <span class="trad-cta"><span class="trad-cta-label">Explore Sowa-Rigpa</span>
+            <span class="trad-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 01 REGISTER -->
+<section class="band" id="tasks">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">01</span>
+      <span class="dv" lang="hi">सेवाएँ</span>
+      <span class="tag">Services</span>
+    </div>
+    <div class="body-col">
+      <div class="hd rv">
+        <h2>What do you need to do?</h2>
+        <p>Four tasks account for most visits. Everything else sits one level deeper.</p>
+      </div>
+      <div class="reg rv">
+        <a href="#finder">
+          <span class="n">01</span>
+          <h4>Check a college</h4>
+          <p>Whether an institution is permitted to admit students this academic year.</p>
+          <span class="go">Open the finder <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#">
+          <span class="n">02</span>
+          <h4>Find a syllabus</h4>
+          <p>Curriculum, academic calendar and record books for every professional year.</p>
+          <span class="go">Browse academics <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#notices">
+          <span class="n">03</span>
+          <h4>Read a notice</h4>
+          <p>Public notices, tenders, vacancies and results — dated and searchable.</p>
+          <span class="go">See all notices <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#">
+          <span class="n">04</span>
+          <h4>Verify a practitioner</h4>
+          <p>Search the national register of AUS&amp;SR medical professionals.</p>
+          <span class="go">Open the register <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SYSTEMS — horizontal spread -->
+<section class="band" id="systems">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">02</span>
+      <span class="dv" lang="hi">पद्धतियाँ</span>
+      <span class="tag">Systems</span>
+    </div>
+    <div class="body-col">
+      <div class="hs-head rv">
+        <div class="hd" style="margin-bottom:0">
+          <h2>Four recognised systems</h2>
+          <p>Each carries its own curriculum, academic calendar and roll of permitted institutions.
+             Scroll sideways, or drag.</p>
+        </div>
+        <div class="hs-nav">
+          <button class="hs-btn" data-scroll="sysScroll" data-dir="-1" aria-label="Previous system">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+          <button class="hs-btn" data-scroll="sysScroll" data-dir="1" aria-label="Next system">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hs" id="sysScroll" tabindex="0" aria-label="The four systems of Indian medicine">
+    <a class="sysp" href="#" style="--sc:#B0570A">
+      <span class="top"><span class="gly" lang="sa">आ</span><span class="idx">01 / 04</span></span>
+      <h3>Ayurveda</h3>
+      <span class="deg">BAMS · MD/MS</span>
+      <p>"The science of life" — <em>ayur</em>, life; <em>veda</em>, science. A discipline of the upaveda in the
+        Vedic tradition, drawn chiefly from the Atharva-Veda. Taught in the gurukula system in ancient days,
+        now structured into undergraduate and postgraduate courses.</p>
+      <dl>
+        <dt>Origin</dt><dd>Atharva-Veda</dd>
+        <dt>Deity</dt><dd>Dhanvantari</dd>
+        <dt>Aim</dt><dd>Prevent illness, heal the sick, preserve life</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#87680F">
+      <span class="top"><span class="gly" lang="hi">यू</span><span class="idx">02 / 04</span></span>
+      <h3>Unani</h3>
+      <span class="deg">BUMS · MD</span>
+      <p>Graeco-Arabic medicine founded on the teachings of Hippocrates and Galen, elaborated into a full system
+        by Rhazes, Avicenna, Al-Zahrawi and Ibn Nafis. It reached India with the Delhi Sultanate and
+        flourished under the Mughal Empire.</p>
+      <dl>
+        <dt>Arrived</dt><dd>12th–13th century, Delhi Sultanate (1206–1527)</dd>
+        <dt>Champion</dt><dd>Hakim Ajmal Khan (1868–1927)</dd>
+        <dt>Statute</dt><dd>Included under IMCC Act, 1970</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#0D5145">
+      <span class="top"><span class="gly" lang="hi">सि</span><span class="idx">03 / 04</span></span>
+      <h3>Siddha</h3>
+      <span class="deg">BSMS · MD</span>
+      <p>Founded by the Siddhars — spiritual adepts of southern India, chiefly Tamil Nadu, who were held to
+        possess the ashta siddhis. Kayakarpam, a combination of medicine and regimen, and Muppu, the universal
+        salt, are its specialities.</p>
+      <dl>
+        <dt>Founder</dt><dd>Agastyar (Agasthya)</dd>
+        <dt>Canon</dt><dd>Eighteen pre-eminent Siddhars</dd>
+        <dt>Speciality</dt><dd>Kayakarpam · Muppu</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="sysp" href="#" style="--sc:#48771A">
+      <span class="top"><span class="gly" lang="hi">सो</span><span class="idx">04 / 04</span></span>
+      <h3>Sowa-Rigpa</h3>
+      <span class="deg">BSRMS · PG emerging</span>
+      <p>The Himalayan science of healing, diagnosing through pulse analysis and urinalysis. Its canon is the
+        Four Tantras (rGyu-bzhi) — Root, Exegetical, Instructional and Subsequent — Tibetan texts incorporating
+        Indian, Chinese and Greco-Arab medicine.</p>
+      <dl>
+        <dt>Canon</dt><dd>Four Tantras (Gyushi)</dd>
+        <dt>Transmission</dt><dd>Written and oral</dd>
+        <dt>Statute</dt><dd>Gazette No. 2345, 16.12.2011 · CCIM 2012</dd>
+      </dl>
+      <span class="more">Curriculum &amp; colleges <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+  <div class="hs-prog"><span id="sysProg"></span></div>
+</section>
+
+<!-- 03 NOTICES -->
+<section class="band" id="notices">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">03</span>
+      <span class="dv" lang="hi">सूचनाएँ</span>
+      <span class="tag">Notices</span>
+    </div>
+    <div class="body-col">
+      <div class="two">
+        <div class="rv">
+          <div class="hd" style="margin-bottom:1.2rem"><h2>Notices &amp; circulars</h2></div>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" aria-selected="true" data-tab="notices">Public notices</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="tenders">Tenders</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="jobs">Vacancies</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="results">Results</button>
+          </div>
+          <ul class="nlist" id="nlist"></ul>
+        </div>
+        <aside class="side rv">
+          <div class="advis">
+            <span class="lbl">Must read</span>
+            <p>Advisory on colleges denied permission by NCISM but permitted to admit by interim orders of the
+              Hon'ble Courts.</p>
+            <a href="#">Read the advisory <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <h5>Autonomous boards</h5>
+          <ul>
+            <li><a href="#">Board of Ayurveda <span class="ab">BoA</span></a></li>
+            <li><a href="#">Unani, Siddha &amp; Sowa-Rigpa <span class="ab">BUSS</span></a></li>
+            <li><a href="#">Ethics &amp; Registration <span class="ab">BERISM</span></a></li>
+            <li><a href="#">Assessment &amp; Rating <span class="ab">MARBISM</span></a></li>
+          </ul>
+          <h5>Transparency</h5>
+          <ul>
+            <li><a href="#">Right to Information</a></li>
+            <li><a href="#">Suo Moto Disclosure</a></li>
+            <li><a href="#">Vigilance Corner</a></li>
+            <li><a href="#">Important court decisions</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FINDER -->
+<section class="band" id="finder">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">04</span>
+      <span class="dv" lang="hi">महाविद्यालय</span>
+      <span class="tag">Colleges</span>
+    </div>
+    <div class="body-col">
+      <div class="hd rv">
+        <h2>College finder</h2>
+        <p>Every permission decision in one searchable place — instead of thirty PDFs titled
+          "List of Permitted Colleges as on 05.02.2026".</p>
+      </div>
+      <div class="rv">
+        <div class="fbar">
+          <input id="fq" type="search" placeholder="Search by college or city…" aria-label="Search colleges">
+          <select id="fsys" aria-label="Filter by system"><option value="">All systems</option><option>Ayurveda</option><option>Unani</option><option>Siddha</option><option>Sowa-Rigpa</option></select>
+          <select id="fstate" aria-label="Filter by state"><option value="">All states</option></select>
+          <select id="fstatus" aria-label="Filter by status"><option value="">Any status</option><option>Permitted</option><option>Conditional</option><option>Denied</option></select>
+          <span class="fcount" id="fcount"></span>
+        </div>
+        <div class="tscroll">
+          <table class="col">
+            <thead><tr><th>Institution</th><th>System</th><th>State</th><th>Seats</th><th>A.Y. 2025–26</th></tr></thead>
+            <tbody id="ftbody"></tbody>
+          </table>
+        </div>
+        <p class="dnote">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          Sample records for demonstration — institution names and statuses are illustrative, not official NCISM data.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ARCHIVE — horizontal photo spread -->
+<section class="band" id="archive">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">05</span>
+      <span class="dv" lang="hi">अभिलेख</span>
+      <span class="tag">Archive</span>
+    </div>
+    <div class="body-col">
+      <div class="hs-head rv">
+        <div class="hd" style="margin-bottom:0">
+          <h2>From the record</h2>
+          <p>Workshops, board meetings and observances documented by the Commission.</p>
+        </div>
+        <div class="hs-nav">
+          <button class="hs-btn" data-scroll="archScroll" data-dir="-1" aria-label="Previous photographs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+          <button class="hs-btn" data-scroll="archScroll" data-dir="1" aria-label="Next photographs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hs" id="archScroll" tabindex="0" aria-label="Photographs from the Commission's record">
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226583.jpg" alt="Officials seated at the dais during a curriculum workshop at the National Institute of Siddha">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Dais at the workshop on competency-based curriculum, National Institute of Siddha</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226513.jpg" alt="Resource faculty being felicitated with a shawl and bouquet">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Felicitation of resource faculty at the curriculum workshop</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-1004226636.jpg" alt="Delegates seated in the auditorium during the curriculum workshop">
+      <figcaption><span class="dt">Chennai</span><span class="cp">Delegates at the competency-based curriculum workshop</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-20250612_173608.jpg" alt="Two officials greeting one another before the NCISM signage at the Commission headquarters">
+      <figcaption><span class="dt">New Delhi</span><span class="cp">At the Commission headquarters, Dhanwantari Bhawan</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-20250701_170029.jpg" alt="The President of the Board of Ethics and Registration at her desk beside the national flag">
+      <figcaption><span class="dt">New Delhi</span><span class="cp">Office of the President, Board of Ethics and Registration</span></figcaption>
+    </figure></div>
+    <div class="arch"><figure>
+      <img src="assets/web/g-vaw2025.jpg" alt="A presentation being delivered during Vigilance Awareness Week 2025">
+      <figcaption><span class="dt">27 Oct – 2 Nov 2025</span><span class="cp">Vigilance Awareness Week — "Vigilance: our shared responsibility"</span></figcaption>
+    </figure></div>
+  </div>
+  <div class="hs-prog"><span id="archProg"></span></div>
+</section>
+
+<!-- 06 LEADERSHIP -->
+<section class="band" id="leadership">
+  <div class="wrap">
+    <div class="rail">
+      <span class="no">06</span>
+      <span class="dv" lang="hi">आयोग</span>
+      <span class="tag">Commission</span>
+    </div>
+    <div class="body-col">
+      <div class="lead rv">
+        <img src="assets/web/chairperson.jpg" alt="Dr. Maneesha Upendra Kothekar, Chairperson of the National Commission for Indian System of Medicine, addressing a gathering">
+        <div>
+          <span class="role">Chairperson</span>
+          <h3>Dr. Maneesha Upendra Kothekar</h3>
+          <blockquote>An Act to provide for a medical education system that improves access to quality and
+            affordable medical education, and enforces high ethical standards in all aspects of medical services.</blockquote>
+          <dl>
+            <dt>Constituted</dt><dd>11 June 2021, on the repeal of the IMCC Act, 1970</dd>
+            <dt>Statute</dt><dd>NCISM Act, 2020 · Gazette extraordinary, part II section 3(ii), 21.09.2020</dd>
+            <dt>Boards</dt><dd>BoA · BUSS · BERISM · MARBISM</dd>
+            <dt>Seat</dt><dd>Dhanwantari Bhawan, Punjabi Bagh (West), New Delhi</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="part rv">
+        <a href="#"><img src="assets/original/partner-4.png" alt="india.gov.in — the National Portal of India"></a>
+        <a href="#"><img src="assets/original/partner-2.png" alt="Digital India"></a>
+        <a href="#"><img src="assets/original/partner-1.gif" alt="National Academic Depository"></a>
+        <a href="#"><img src="assets/original/partner-5.png" alt="Vidya Lakshmi"></a>
+      </div>
+    </div>
+  </div>
+</section>
