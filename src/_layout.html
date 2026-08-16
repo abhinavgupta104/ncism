@@ -1390,6 +1390,32 @@ try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAt
       document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected","false");});
       t.setAttribute("aria-selected","true");
       drawN(t.dataset.tab,nSearch?nSearch.value:"",activeCat);
+    });
+  });
+
+  if(nSearch){
+    var debounceN;
+    nSearch.addEventListener("input",function(){
+      clearTimeout(debounceN);
+      debounceN=setTimeout(function(){drawN(null,nSearch.value,activeCat);},120);
+    });
+  }
+
+  document.querySelectorAll(".cat-pill").forEach(function(p){
+    p.addEventListener("click",function(){
+      document.querySelectorAll(".cat-pill").forEach(function(x){x.classList.remove("active");});
+      p.classList.add("active");
+      activeCat=p.dataset.cat||"";
+      drawN(null,nSearch?nSearch.value:"",activeCat);
+    });
+  });
+
+  /* reveal */
+  var rvs=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
     rvs.forEach(function(el){io.observe(el);});
   } else { rvs.forEach(function(el){el.classList.add("in");}); }
   addEventListener("load",function(){
