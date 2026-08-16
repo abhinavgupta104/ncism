@@ -1,0 +1,1016 @@
+[
+ {
+  "label": "Home",
+  "href": "index.php",
+  "children": [
+   {
+    "label": "Face Page",
+    "href": "coming-soon.php",
+    "children": [
+     {
+      "label": "ASU&SR",
+      "href": "coming-soon.php"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "About NCISM",
+  "href": "#",
+  "children": [
+   {
+    "label": "Introduction",
+    "href": "introduction.php"
+   },
+   {
+    "label": "Main Objectives",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Chairperson",
+    "href": "chairperson.php"
+   },
+   {
+    "label": "Autonomous Boards",
+    "href": "#",
+    "children": [
+     {
+      "label": "Board of Ayurveda (BoA)",
+      "href": "#"
+     },
+     {
+      "label": "Board of Unani, Siddha and Sowa-Rigpa (BUSS)",
+      "href": "#"
+     },
+     {
+      "label": "Board of Ethics and Registration for Indian System of Medicine (BERISM)",
+      "href": "#"
+     },
+     {
+      "label": "Medical Assessment and Rating Board for Indian System of Mediciene (MARBISM)",
+      "href": "#"
+     }
+    ]
+   },
+   {
+    "label": "Composition of Commission",
+    "href": "composition-of-commission.php"
+   },
+   {
+    "label": "Advisory Board",
+    "href": "advisory-board.php"
+   },
+   {
+    "label": "Officers of NCISM",
+    "href": "officers-ncism.php"
+   },
+   {
+    "label": "Organizational Chart",
+    "href": "coming-soon.php"
+   }
+  ]
+ },
+ {
+  "label": "Indian Medicine",
+  "href": "#",
+  "children": [
+   {
+    "label": "Ayurveda",
+    "href": "#",
+    "children": [
+     {
+      "label": "Introduction",
+      "href": "ayurveda.php"
+     },
+     {
+      "label": "List of Ayurveda Colleges",
+      "href": "coming-soon.php"
+     },
+     {
+      "label": "Curriculum & Syllabus",
+      "href": "#",
+      "children": [
+       {
+        "label": "UG",
+        "href": "#",
+        "children": [
+         {
+          "label": "Old Syllabus",
+          "href": "ayurveda-syllabus.php"
+         },
+         {
+          "label": "New Syllabus (2021-22 Onwards)",
+          "href": "indian-medicine-new-syllabus.php",
+          "children": [
+           {
+            "label": "Ist Prof. Syllabus",
+            "href": "I-year-syllabus.php"
+           },
+           {
+            "label": "IInd Prof. Syllabus",
+            "href": "#",
+            "children": [
+             {
+              "label": "Syllabus",
+              "href": "II year syllabus.php"
+             },
+             {
+              "label": "Activity Book/Record Book/Journal",
+              "href": "activity-book-record-book-journal.php"
+             }
+            ]
+           },
+           {
+            "label": "IIIrd Prof. Syllabus",
+            "href": "IIIrd-prof-BAMS.php",
+            "children": [
+             {
+              "label": "Orientation to OBDC",
+              "href": "orientation-to-OBDC.php"
+             },
+             {
+              "label": "Implementation/Guidelines",
+              "href": "",
+              "children": [
+               {
+                "label": "Videos/Guidelines",
+                "href": "videos.php"
+               }
+              ]
+             },
+             {
+              "label": "Journal cum Activity Book",
+              "href": "journal-cum-activity-book.php"
+             }
+            ]
+           },
+           {
+            "label": "Shishiksha (Internship Orientation Programme)",
+            "href": "shishiksha-internship-orientation-programme.php"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "label": "PG",
+        "href": "#",
+        "children": [
+         {
+          "label": "Old Syllabus",
+          "href": "ayurveda-syllabus-pg.php"
+         },
+         {
+          "label": "New Syllabus",
+          "href": "pg-syllabus.php",
+          "children": [
+           {
+            "label": "First Semester",
+            "href": "first-semester-ayurveda.php"
+           },
+           {
+            "label": "Second Semester",
+            "href": "pg-second-semester.php"
+           },
+           {
+            "label": "Third to Sixth Semester",
+            "href": "ayurveda-pg-third-sixth-semester.php"
+           },
+           {
+            "label": "Curriculum Implementation Videos",
+            "href": "pg-curriculum-implementation-videos.php"
+           },
+           {
+            "label": "Samskara-PG Orientation Programme",
+            "href": "Samskara-PG-Orientation-Programme.php"
+           },
+           {
+            "label": "Implementation Guidelines of CBDC",
+            "href": "Implementation-Guidelines-of-CBDC.php"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "label": "Academic Calendar",
+      "href": "#",
+      "children": [
+       {
+        "label": "UG",
+        "href": "ug-2021-25.php"
+       },
+       {
+        "label": "PG",
+        "href": "pg-2021-25.php"
+       }
+      ]
+     },
+     {
+      "label": "Library",
+      "href": "#"
+     }
+    ]
+   },
+   {
+    "label": "Unani",
+    "href": "#",
+    "children": [
+     {
+      "label": "Introduction",
+      "href": "unani.php"
+     },
+     {
+      "label": "Research",
+      "href": "Attachment 0SPUR scheme_1320.pdf"
+     },
+     {
+      "label": "List of Unani Colleges",
+      "href": "coming-soon.php"
+     },
+     {
+      "label": "Curriculum & Syllabus",
+      "href": "#",
+      "children": [
+       {
+        "label": "Old Syllabus",
+        "href": "unani-syllabus.php"
+       },
+       {
+        "label": "New Syllabus",
+        "href": "#",
+        "children": [
+         {
+          "label": "UG Syllabus",
+          "href": "#",
+          "children": [
+           {
+            "label": "1st Professional",
+            "href": "Unani-new-syllabus.php"
+           },
+           {
+            "label": "2nd Professional",
+            "href": "Unani-new-syllabus-2.php"
+           },
+           {
+            "label": "3rd Professional",
+            "href": "IIIrd-prof-BUMS.php"
+           }
+          ]
+         },
+         {
+          "label": "PG Syllabus",
+          "href": "#",
+          "children": [
+           {
+            "label": "First Semester",
+            "href": "first-semester-uni.php"
+           },
+           {
+            "label": "Second Semester",
+            "href": "unani-second-semester.php"
+           },
+           {
+            "label": "Third to Sixth Semester",
+            "href": "unani-pg-third-sixth-semester.php"
+           },
+           {
+            "label": "PG Orientation/Induction Programme",
+            "href": "unani-syllabus1.php"
+           },
+           {
+            "label": "Guidelines for Implementation of CBDC, RM & BS",
+            "href": "guidelines-for-Implementation-of-CBDC.php"
+           }
+          ]
+         },
+         {
+          "label": "Pre-Tib Syllabus",
+          "href": "unani-pre-tib-syllabus.php"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "label": "Academic Calendar",
+      "href": "#",
+      "children": [
+       {
+        "label": "UG",
+        "href": "academic-calendar-ug.php"
+       },
+       {
+        "label": "PG",
+        "href": "unani-academic-calendar-pg.php"
+       },
+       {
+        "label": "Pre-Tib",
+        "href": "unani-academic-calendar-pre-tib.php"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "label": "Siddha",
+    "href": "#",
+    "children": [
+     {
+      "label": "Introduction",
+      "href": "siddha.php"
+     },
+     {
+      "label": "List of Siddha Colleges",
+      "href": "coming-soon.php"
+     },
+     {
+      "label": "Curriculum & Syllabus",
+      "href": "#",
+      "children": [
+       {
+        "label": "Old Syllabus",
+        "href": "siddha-syllabus.php"
+       },
+       {
+        "label": "New Syllabus",
+        "href": "#",
+        "children": [
+         {
+          "label": "UG Syllabus",
+          "href": "#",
+          "children": [
+           {
+            "label": "1st Professional",
+            "href": "siddha-new-syllabus.php"
+           },
+           {
+            "label": "2nd Professional",
+            "href": "II year syllabus-siddha.php"
+           },
+           {
+            "label": "3rd Professional",
+            "href": "IIIrd-prof-BSMS.php"
+           }
+          ]
+         },
+         {
+          "label": "PG Syllabus",
+          "href": "#",
+          "children": [
+           {
+            "label": "First Semester",
+            "href": "first-semester-siddha.php"
+           },
+           {
+            "label": "Second Semester",
+            "href": "siddha-pg-second-semester.php"
+           },
+           {
+            "label": "Third to Sixth Semester",
+            "href": "siddha-pg-third-sixth-semester.php"
+           },
+           {
+            "label": "PG Orientation/Induction Programme",
+            "href": "pg-syllabus1.php"
+           },
+           {
+            "label": "Curriculum Implementation Videos",
+            "href": "curriculum-implementation-videos.php"
+           },
+           {
+            "label": "Guidelines for Implementation of CBDC, RM & BS",
+            "href": "cbdc-guide.php"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "label": "Academic Calendar",
+      "href": "#",
+      "children": [
+       {
+        "label": "UG",
+        "href": "siddha-academic-calendar-ug.php"
+       },
+       {
+        "label": "PG",
+        "href": "siddha-academic-calendar-pg.php"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "label": "Sowa-Rigpa",
+    "href": "#",
+    "children": [
+     {
+      "label": "Introduction",
+      "href": "sowarigpa.php"
+     },
+     {
+      "label": "List of Sowa-Rigpa Colleges",
+      "href": "coming-soon.php"
+     },
+     {
+      "label": "Curriculum & Syllabus",
+      "href": "#",
+      "children": [
+       {
+        "label": "Old Syllabus",
+        "href": "coming-soon.php"
+       },
+       {
+        "label": "New Syllabus",
+        "href": "sowa-rigpa-new-syllabus.php"
+       },
+       {
+        "label": "1st Professional Syllabus",
+        "href": "sowa-rigpa-new-syllabus.php"
+       },
+       {
+        "label": "2nd Professional Syllabus",
+        "href": "sowa-rigpa-new-syllabus-professional.php"
+       },
+       {
+        "label": "3rd Professional Syllabus",
+        "href": "sowa-rigpa-3rd-professional-syllabus.php"
+       }
+      ]
+     },
+     {
+      "label": "Academic Calendar",
+      "href": "#",
+      "children": [
+       {
+        "label": "UG",
+        "href": "sowa-rigpa-academic-calendar-ug.php"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "label": "Pre-Ayurveda",
+    "href": "pre-ayurveda.php"
+   },
+   {
+    "label": "General",
+    "href": "#",
+    "children": [
+     {
+      "label": "NCISM Schemes for Financial Assistance",
+      "href": "NCISM Schemes for financial assistance Brochure (4).pdf"
+     },
+     {
+      "label": "Textbook Quality Assessment Scale",
+      "href": "Textbook Quality Assessment Scale.pdf"
+     },
+     {
+      "label": "Ayush Module for MBBS Internship",
+      "href": "Ayush Module Internship Electives for MBBS.pdf"
+     },
+     {
+      "label": "Transcript Certificate",
+      "href": "transcript-certificate.php"
+     },
+     {
+      "label": "Publication Grant Beneficiaries",
+      "href": "publication grant beneficiaries.php"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "Registration",
+  "href": "#",
+  "children": [
+   {
+    "label": "State Board Acts",
+    "href": "stateboardact.php"
+   },
+   {
+    "label": "List of State Boards",
+    "href": "list-of-state-boards.php"
+   },
+   {
+    "label": "List of Degrees recognised under 2nd Schedule of IMCC Act 1970",
+    "href": "#"
+   },
+   {
+    "label": "National Register Notifications",
+    "href": "national-register-notifications.php"
+   }
+  ]
+ },
+ {
+  "label": "Information Desk",
+  "href": "#",
+  "children": [
+   {
+    "label": "Acts & Amendments",
+    "href": "#",
+    "children": [
+     {
+      "label": "IMCC Act 1970",
+      "href": "actandammendment.php"
+     },
+     {
+      "label": "NCISM Act 2020",
+      "href": "ncism-act-2020.php"
+     }
+    ]
+   },
+   {
+    "label": "Rules & Regulations",
+    "href": "#",
+    "children": [
+     {
+      "label": "Under IMCC Act 1970",
+      "href": "rulesandregulations.php"
+     },
+     {
+      "label": "Under NCISM Act 2020",
+      "href": "under-ncism-act-2020.php"
+     }
+    ]
+   },
+   {
+    "label": "Guidelines",
+    "href": "guidelines.php"
+   },
+   {
+    "label": "Approval Process Handbook",
+    "href": "approval-process-handbook.php"
+   },
+   {
+    "label": "Permission Status ASUSR Colleges",
+    "href": "#",
+    "children": [
+     {
+      "label": "Ayurveda Colleges",
+      "href": "#",
+      "children": [
+       {
+        "label": "Permitted in compliance of Court Order",
+        "href": "Court Order Regularization.php"
+       },
+       {
+        "label": "A.Y. 2021-22",
+        "href": "list-of-ayurveda-colleges.php"
+       },
+       {
+        "label": "A.Y. 2022-23",
+        "href": "list-of-ayurveda-colleges-22-23.php"
+       },
+       {
+        "label": "A.Y. 2023-24",
+        "href": "list-of-ayurveda-colleges-23-24.php"
+       },
+       {
+        "label": "A.Y. 2024-25",
+        "href": "list-of-ayurveda-colleges-24-25.php"
+       },
+       {
+        "label": "A.Y. 2025-26",
+        "href": "list-of-ayurveda-colleges-25-26.php"
+       }
+      ]
+     },
+     {
+      "label": "Unani Colleges",
+      "href": "#",
+      "children": [
+       {
+        "label": "Permitted in compliance of Court Order",
+        "href": "Court Order -Unani Regularization.php"
+       },
+       {
+        "label": "A.Y. 2021-22",
+        "href": "list-of-unani-colleges.php"
+       },
+       {
+        "label": "A.Y. 2022-23",
+        "href": "list-of-unani-colleges22-23.php"
+       },
+       {
+        "label": "A.Y. 2023-24",
+        "href": "list-of-unani-colleges23-24.php"
+       },
+       {
+        "label": "A.Y. 2024-25",
+        "href": "list-of-unani-colleges-24-25.php"
+       },
+       {
+        "label": "A.Y. 2025-26",
+        "href": "list-of-unani-colleges-25-26.php"
+       }
+      ]
+     },
+     {
+      "label": "Siddha Colleges",
+      "href": "#",
+      "children": [
+       {
+        "label": "A.Y. 2021-22",
+        "href": "list-of-siddha.php"
+       },
+       {
+        "label": "A.Y. 2022-23",
+        "href": "list-of-siddha-colleges22-23.php"
+       },
+       {
+        "label": "A.Y. 2023-24",
+        "href": "list-of-siddha-colleges23-24.php"
+       },
+       {
+        "label": "A.Y. 2024-25",
+        "href": "list-of-siddha-colleges-24-25.php"
+       },
+       {
+        "label": "A.Y. 2025-26",
+        "href": "list-of-siddha-colleges-25-26.php"
+       }
+      ]
+     },
+     {
+      "label": "Sowa-Rigpa Colleges",
+      "href": "#",
+      "children": [
+       {
+        "label": "A.Y. 2021-22",
+        "href": "list-of-sowa-rigpa.php"
+       },
+       {
+        "label": "A.Y. 2022-23",
+        "href": "list-of-sowa-rigpa-colleges22-23.php"
+       },
+       {
+        "label": "A.Y. 2023-24",
+        "href": "list-of-sowa-rigpa-colleges-23-24.php"
+       },
+       {
+        "label": "A.Y. 2024-25",
+        "href": "list-of-sowa-rigpa-colleges-24-25.php"
+       },
+       {
+        "label": "A.Y. 2025-26",
+        "href": "list-of-sowa-rigpa-colleges-25-26.php"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "label": "Recognised Medical Qualifications",
+    "href": "#",
+    "children": [
+     {
+      "label": "Under NCISM ACT",
+      "href": "#",
+      "children": [
+       {
+        "label": "Section-35",
+        "href": "reconised-medical-qualifications-of-ayurveda-under-section-35.php"
+       },
+       {
+        "label": "Section-36",
+        "href": "reconised-medical-qualifications-of-ayurveda-under-section-36.php"
+       }
+      ]
+     },
+     {
+      "label": "Under IMCC ACT",
+      "href": "under-imcc-act.php"
+     }
+    ]
+   },
+   {
+    "label": "Circular and Notification",
+    "href": "circular-notification.php"
+   },
+   {
+    "label": "Meetings",
+    "href": "meetings.php",
+    "children": [
+     {
+      "label": "Acts CCIM",
+      "href": "coming-soon.php"
+     },
+     {
+      "label": "Acts NCISM",
+      "href": "coming-soon.php"
+     }
+    ]
+   },
+   {
+    "label": "Annual Report",
+    "href": "",
+    "children": [
+     {
+      "label": "Acts CCIM",
+      "href": "annual_reports.php"
+     },
+     {
+      "label": "Acts NCISM",
+      "href": "coming-soon.php"
+     }
+    ]
+   },
+   {
+    "label": "Information Under RTI Act",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Important Court Decisions",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "College Locations",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Counselling",
+    "href": "counselling.php"
+   }
+  ]
+ },
+ {
+  "label": "E-learning",
+  "href": "#",
+  "children": [
+   {
+    "label": "Electives",
+    "href": "electives.php"
+   },
+   {
+    "label": "Ebook",
+    "href": "ebook.php"
+   }
+  ]
+ },
+ {
+  "label": "Examinations",
+  "href": "#",
+  "children": [
+   {
+    "label": "Year 2024",
+    "href": "year2024.php"
+   },
+   {
+    "label": "Year 2025",
+    "href": "year2025.php"
+   },
+   {
+    "label": "Year 2026",
+    "href": "#",
+    "children": [
+     {
+      "label": "National Exit Test",
+      "href": "national-exit-test-2026.php"
+     },
+     {
+      "label": "National Teachers' Eligibility Test",
+      "href": "national-techers-eligibiity-test-2026.php"
+     },
+     {
+      "label": "NEET PRE-TIB",
+      "href": "neet-pri-tib-2026.php"
+     },
+     {
+      "label": "NEET SOWA RIGPA UG",
+      "href": "neet-sowa-rigpa-ug-2026.php"
+     },
+     {
+      "label": "AIAPGET",
+      "href": "aiapget.php"
+     }
+    ]
+   },
+   {
+    "label": "Latest updates",
+    "href": "examinations-latest-updates.php"
+   }
+  ]
+ },
+ {
+  "label": "Rating",
+  "href": "#",
+  "children": [
+   {
+    "label": "Ayurveda Colleges",
+    "href": "#",
+    "children": [
+     {
+      "label": "A.Y 2024-25",
+      "href": "ayurveda-colleges-ay-2024-25.php"
+     },
+     {
+      "label": "A.Y. 2025-26",
+      "href": "ayurveda-colleges-ay-2025-26.php"
+     }
+    ]
+   },
+   {
+    "label": "Unani Colleges",
+    "href": "#",
+    "children": [
+     {
+      "label": "A.Y 2024-25",
+      "href": "unani-colleges-ay-2024-25.php"
+     },
+     {
+      "label": "A.Y. 2025-26",
+      "href": "unani-colleges-ay-2025-26.php"
+     }
+    ]
+   },
+   {
+    "label": "Siddha Colleges",
+    "href": "#",
+    "children": [
+     {
+      "label": "A.Y 2024-25",
+      "href": "siddha-colleges-ay-2024-25.php"
+     },
+     {
+      "label": "A.Y. 2025-26",
+      "href": "siddha-colleges-ay-2025-26.php"
+     }
+    ]
+   },
+   {
+    "label": "Framework for Assessment and Rating of ASU colleges",
+    "href": "#",
+    "children": [
+     {
+      "label": "A.Y. 2024-25",
+      "href": "rating-of-ASU-colleges-24-25.php"
+     },
+     {
+      "label": "A.Y. 2025-26",
+      "href": "rating-of-ASU-colleges-25-26.php"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "Others",
+  "href": "#",
+  "children": [
+   {
+    "label": "Download Forms",
+    "href": "download-forms.php"
+   },
+   {
+    "label": "Advertisements",
+    "href": "advertisements.php"
+   },
+   {
+    "label": "Citizen Charter",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Grievance",
+    "href": "amendments.php"
+   },
+   {
+    "label": "Awards and Achievements",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Fees",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "Vacancies",
+    "href": "vacancies.php"
+   },
+   {
+    "label": "Gallery",
+    "href": "our-gallery.php"
+   },
+   {
+    "label": "Archives",
+    "href": "archives.php"
+   },
+   {
+    "label": "Contact Us",
+    "href": "coming-soon.php"
+   }
+  ]
+ },
+ {
+  "label": "Vigilance Corner",
+  "href": "#",
+  "children": [
+   {
+    "label": "CVO",
+    "href": "cvo.php"
+   },
+   {
+    "label": "Logged Complaints",
+    "href": "logged-complaints.php"
+   },
+   {
+    "label": "GOI (PIDPI) Resolution",
+    "href": "goi.php"
+   }
+  ]
+ },
+ {
+  "label": "RTI",
+  "href": "#",
+  "children": [
+   {
+    "label": "Sou Moto Disclosure",
+    "href": "sou-moto-disclosure.php"
+   }
+  ]
+ },
+ {
+  "label": "Results",
+  "href": "#",
+  "children": [
+   {
+    "label": "NTET 2024",
+    "href": "",
+    "children": [
+     {
+      "label": "Link to Digilocker",
+      "href": "https://www.digilocker.gov.in/"
+     }
+    ]
+   },
+   {
+    "label": "How to access Digilocker with URL",
+    "href": "",
+    "children": [
+     {
+      "label": "SoP for access NCISM certificate from DigiLocker",
+      "href": "SoP for access NCISM certificate from DigiLocker.pdf"
+     }
+    ]
+   },
+   {
+    "label": "NTET 2026",
+    "href": "ntet-2026.php"
+   }
+  ]
+ },
+ {
+  "label": "Logins",
+  "href": "#",
+  "children": [
+   {
+    "label": "Institution Login",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/1832/login.html"
+   },
+   {
+    "label": "Apply for restoring of withheld teacher's code",
+    "href": "https://docs.google.com/forms/d/e/1FAIpQLSd6LXW_Rxn6QEIa-Pg5EyG9vzbzU7S_GgbsKOwi9J8SEOXrkg/viewform?vc=0&c=0&w=1&flr=0"
+   },
+   {
+    "label": "Application Under Section 29 URL Login",
+    "href": "https://ncismindia.org/coming-soon.php"
+   },
+   {
+    "label": "Visitor's Login",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/1973/login.html"
+   },
+   {
+    "label": "Teacher's Login",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/3237/login.html"
+   },
+   {
+    "label": "Practitioner Login",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/2394/login.html"
+   },
+   {
+    "label": "State Board Login",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/2396/login.html"
+   },
+   {
+    "label": "Institute Login for Ayurveda Day",
+    "href": "https://www.digialm.com/EForms/configuredHtml/1020/73421/login.html"
+   },
+   {
+    "label": "Apply for Registration",
+    "href": "coming-soon.php"
+   },
+   {
+    "label": "State Board Login",
+    "href": "coming-soon.php"
+   }
+  ]
+ }
+]

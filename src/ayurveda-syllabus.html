@@ -1,24 +1,239 @@
+<title>Old Syllabus &mdash; Ayurveda &middot; UG &middot; Indian Medicine &middot; NCISM</title>
 
-    <div class="band">
-      <div class="wrap">
-        <div class="rail js rv in">
-          <div class="no">NCISM</div>
-          <div class="tag">Academics</div>
-        </div>
-        <div class="body-col">
-          <div class="hd js rv in" style="animation-delay:.15s">
-            <h2>Curriculum & Syllabus</h2>
-            <p>Review the detailed academic curriculum and syllabus designed for undergraduate and postgraduate Ayurveda students, ensuring rigorous and globally competitive education.</p>
-          </div>
-          
-          <div class="hero-fig js rv in" style="animation-delay:.3s; margin-top: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 12%, transparent);">
-            <img src="assets/web/ayurveda_syllabus.jpg" alt="Curriculum & Syllabus" style="width: 100%; height: auto; display: block;">
-          </div>
-          
-          <div style="margin-top: 3rem;">
-             <a href="ayurveda.html" class="btn btn-fill">← Back to Ayurveda</a>
-          </div>
-        </div>
+<style>
+/* ============================================================
+   BAMS OLD SYLLABUS — warm Ayurveda ground, scoped via .syl
+   ============================================================ */
+.syl{
+  --s-ground:#F6F1E6; --s-tint:#EFE6D4; --s-line:#DCCDB2;
+  --s-deep:#6B3A0E; --s-accent:#9E4D07; --s-gold:#70570D;
+  --s-leaf:#4B6B22; --s-body:#4A4034;
+  background:var(--s-ground); color:var(--s-body);
+}
+:root[data-theme="dark"] .syl{
+  --s-ground:#14110C; --s-tint:#1D1811; --s-line:#3A3125;
+  --s-deep:#E7C892; --s-accent:#E0A055; --s-gold:#D2B268;
+  --s-leaf:#9BBF5E; --s-body:#CFC5B4;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .syl{
+    --s-ground:#14110C; --s-tint:#1D1811; --s-line:#3A3125;
+    --s-deep:#E7C892; --s-accent:#E0A055; --s-gold:#D2B268;
+    --s-leaf:#9BBF5E; --s-body:#CFC5B4;
+  }
+}
+.syl-wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(2rem,4.5vw,3.6rem) clamp(1.05rem,3.6vw,3.25rem)}
+.syl .crumb a{color:var(--s-body)}
+.syl .crumb a:hover{color:var(--s-accent)}
+.syl .crumb [aria-current]{color:var(--s-deep)}
+
+/* header */
+.syl-eyebrow{
+  display:flex;align-items:center;gap:.65rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--s-accent);
+}
+.syl-eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--s-accent);opacity:.6}
+.syl h1{
+  font-family:var(--display);font-weight:700;letter-spacing:-.026em;line-height:1.06;
+  font-size:clamp(1.9rem,4.4vw,3rem);color:var(--s-deep);margin:.65rem 0 0;
+}
+.syl-sub{
+  font-family:var(--display);font-style:italic;color:var(--s-body);
+  font-size:clamp(1rem,1.8vw,1.2rem);margin-top:.55rem;max-width:56ch;
+}
+.syl-note{
+  display:flex;gap:.75rem;align-items:flex-start;
+  margin-top:1.5rem;padding:.95rem 1.1rem;
+  border:1px solid var(--s-line);border-left:3px solid var(--s-gold);
+  border-radius:8px;background:var(--s-tint);
+  font-size:.87rem;line-height:1.6;max-width:70ch;
+}
+.syl-note strong{color:var(--s-deep)}
+.syl-note a{color:var(--s-accent);font-weight:650}
+
+/* year cards */
+.syl-grid{
+  display:grid;gap:.9rem;margin-top:2.2rem;
+  grid-template-columns:repeat(auto-fit,minmax(17.5rem,1fr));
+}
+.syl-card{
+  --c:var(--s-accent);
+  position:relative;display:flex;flex-direction:column;
+  background:var(--s-tint);border:1px solid var(--s-line);
+  border-top:3px solid var(--c);border-radius:12px;
+  padding:1.35rem 1.4rem 1.2rem;
+  transition:transform .28s var(--ease),box-shadow .28s ease;
+}
+.syl-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px -16px rgba(60,35,10,.42)}
+.syl-num{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--c);
+}
+.syl-card h2{
+  font-family:var(--display);font-size:1.3rem;font-weight:700;
+  color:var(--s-deep);letter-spacing:-.016em;margin:.3rem 0 0;line-height:1.2;
+}
+.syl-subj{list-style:none;margin:.95rem 0 auto;padding:0;display:grid;gap:.34rem}
+.syl-subj li{display:flex;gap:.5rem;font-size:.84rem;line-height:1.45}
+.syl-subj li::before{
+  content:"";flex:none;width:5px;height:5px;margin-top:.52rem;
+  border-radius:50%;background:var(--c);opacity:.65;
+}
+.syl-meta{
+  display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.05rem;padding-top:.85rem;
+  border-top:1px solid var(--s-line);
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--s-body);opacity:.75;
+}
+.syl-dl{
+  display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;
+  margin-top:.95rem;padding:.6rem 1.1rem;border-radius:999px;
+  background:var(--c);color:var(--s-ground);text-decoration:none;
+  font-family:var(--body);font-size:.85rem;font-weight:650;
+  transition:transform .22s var(--ease),box-shadow .22s ease,filter .22s ease;
+}
+.syl-dl:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 10px 20px -10px rgba(80,45,10,.55)}
+.syl-dl:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.syl-dl svg{flex:none}
+
+/* related */
+.syl-rel{margin-top:3rem;padding-top:1.8rem;border-top:1px solid var(--s-line)}
+.syl-rel h3{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--s-body);opacity:.8;font-weight:400;
+}
+.syl-rel-grid{display:grid;gap:.5rem;margin-top:.9rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+.syl-rel a{
+  display:flex;align-items:center;gap:.5rem;
+  padding:.75rem .95rem;border:1px solid var(--s-line);border-radius:9px;
+  background:var(--s-ground);color:var(--s-body);text-decoration:none;font-size:.87rem;
+  transition:border-color .22s ease,color .18s ease,transform .22s var(--ease);
+}
+.syl-rel a:hover{border-color:var(--s-accent);color:var(--s-deep);transform:translateY(-2px)}
+.syl-foot{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.4rem}
+.syl-foot a{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.65rem 1.15rem;border-radius:8px;text-decoration:none;
+  font-size:.87rem;font-weight:600;border:1px solid var(--s-line);
+  color:var(--s-deep);background:var(--s-tint);
+  transition:border-color .2s ease,transform .2s var(--ease);
+}
+.syl-foot a:hover{border-color:var(--s-accent);transform:translateY(-2px)}
+</style>
+
+<div class="syl">
+  <div class="syl-wrap">
+
+    <nav class="crumb js rv in" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <a href="indian-medicine.html">Indian Medicine</a>
+      <a href="ayurveda.html">Ayurveda</a>
+      <a href="ayurveda-curriculum.html">Curriculum &amp; Syllabus</a>
+      <a href="curriculum-syllabus-ug.html">UG</a>
+      <span aria-current="page">Old Syllabus</span>
+    </nav>
+
+    <header class="js rv in" style="animation-delay:.06s">
+      <span class="syl-eyebrow">Ayurvedacharya &middot; BAMS &middot; Undergraduate</span>
+      <h1>Old Syllabus</h1>
+      <p class="syl-sub">The four-professional BAMS course of study, issued by the Central
+        Council of Indian Medicine &mdash; the syllabus for batches admitted before 2021&ndash;22.</p>
+
+      <div class="syl-note">
+        <span aria-hidden="true">&#9432;</span>
+        <span><strong>Superseded for current batches.</strong> Students admitted from the
+          2021&ndash;22 academic year onward follow the
+          <a href="indian-medicine-new-syllabus.html">New Syllabus (2021&ndash;22 onwards)</a>.
+          This page is retained for earlier batches and for reference.</span>
       </div>
+    </header>
+
+    <div class="syl-grid">
+
+      <article class="syl-card js rv in" style="--c:var(--s-accent);animation-delay:.1s">
+        <span class="syl-num">01 &middot; First Professional</span>
+        <h2>1st Professional</h2>
+        <ul class="syl-subj">
+          <li>Padartha Vigyan and Ayurved Itihas</li>
+          <li>Sanskrit</li>
+          <li>Kriya Sharir</li>
+          <li>Rachana Sharir</li>
+          <li>Maulik Siddhant avum Ashtang Hridaya</li>
+        </ul>
+        <div class="syl-meta"><span>5 subjects</span><span>19 pages</span><span>656 KB</span></div>
+        <a class="syl-dl" href="assets/pdf/1st_year_UG_Syllabus.pdf" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          Download PDF
+        </a>
+      </article>
+
+      <article class="syl-card js rv in" style="--c:var(--s-gold);animation-delay:.16s">
+        <span class="syl-num">02 &middot; Second Professional</span>
+        <h2>2nd Professional</h2>
+        <ul class="syl-subj">
+          <li>Dravyaguna Vighyan</li>
+          <li>Roga Nidan</li>
+          <li>Rasashastra</li>
+          <li>Charak Samhita</li>
+        </ul>
+        <div class="syl-meta"><span>4 subjects</span><span>24 pages</span><span>451 KB</span></div>
+        <a class="syl-dl" href="assets/pdf/2nd_year_UG_Syllabus.pdf" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          Download PDF
+        </a>
+      </article>
+
+      <article class="syl-card js rv in" style="--c:var(--s-leaf);animation-delay:.22s">
+        <span class="syl-num">03 &middot; Third Professional</span>
+        <h2>3rd Professional</h2>
+        <ul class="syl-subj">
+          <li>Agadtantra, Vyavahar-Ayurved evum Vidhivaidyak</li>
+          <li>Swasthavritta</li>
+          <li>Prasuti Tantra evum Stri Roga</li>
+          <li>Kaumarbhritya Parichaya</li>
+          <li>Charak Samhita (Uttarardha)</li>
+        </ul>
+        <div class="syl-meta"><span>5 subjects</span><span>22 pages</span><span>413 KB</span></div>
+        <a class="syl-dl" href="assets/pdf/3rd_year_syllabus.pdf" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          Download PDF
+        </a>
+      </article>
+
+      <article class="syl-card js rv in" style="--c:var(--s-accent);animation-delay:.28s">
+        <span class="syl-num">04 &middot; Fourth Professional</span>
+        <h2>4th Professional</h2>
+        <ul class="syl-subj">
+          <li>Kayachikitsa</li>
+          <li>Panchkarma</li>
+          <li>Shalya Tantra</li>
+          <li>Shalakya Tantra</li>
+          <li>Research Methodology and Medical Statistics</li>
+        </ul>
+        <div class="syl-meta"><span>5 subjects</span><span>29 pages</span><span>585 KB</span></div>
+        <a class="syl-dl" href="assets/pdf/4th_year_syllabus.pdf" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+          Download PDF
+        </a>
+      </article>
+
     </div>
-    
+
+    <section class="syl-rel js rv in" style="animation-delay:.34s">
+      <h3>Related regulations &amp; listings</h3>
+      <div class="syl-rel-grid">
+        <a href="ayurveda-ug-regulation.html">UG Regulation</a>
+        <a href="ayurveda-pg-reg.html">PG Regulation</a>
+        <a href="ayurveda-ug-pg-diploma-course.html">PG Diploma Regulation</a>
+        <a href="ayurveda-colleges.html">Ayurveda Colleges</a>
+      </div>
+    </section>
+
+    <div class="syl-foot js rv in" style="animation-delay:.4s">
+      <a href="curriculum-syllabus-ug.html">&larr; Back to UG</a>
+      <a href="https://ncismindia.org/ayurveda-syllabus.php" target="_blank" rel="noopener">Official page &nearr;</a>
+    </div>
+
+  </div>
+</div>

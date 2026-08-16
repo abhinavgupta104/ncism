@@ -175,11 +175,16 @@ button,input,select{font:inherit;color:inherit}
 /* the actual glass bar */
 .nav-inner{
   /* floating pill by default */
+  position: relative;   /* containing block for the mega panel */
   margin-inline: clamp(0.5rem, 2vw, 3rem);
   border-radius: 36px;
-  background: color-mix(in srgb, var(--paper) 80%, transparent);
-  backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
-  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
+  /* Glass, but held to its own ground. At 80%/saturate(200%) the bar picked up
+     whatever scrolled under it — noticeably warm over the Ayurveda page's
+     sandalwood rail, cool elsewhere. Less bleed + tamer saturation keeps the
+     frosted look while rendering the same on every page. */
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(32px) saturate(135%) brightness(1.03);
+  -webkit-backdrop-filter: blur(32px) saturate(135%) brightness(1.03);
   border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
   box-shadow:
     0 2px 0 color-mix(in srgb, white 40%, transparent) inset,
@@ -197,16 +202,16 @@ button,input,select{font:inherit;color:inherit}
   margin-inline: clamp(1rem, 2vw, 2rem);
   border-radius: 28px;
   border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(36px) saturate(220%);
-  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  background: color-mix(in srgb, var(--paper) 93%, transparent);
+  backdrop-filter: blur(36px) saturate(140%);
+  -webkit-backdrop-filter: blur(36px) saturate(140%);
   box-shadow:
     0 1px 0 color-mix(in srgb, white 50%, transparent) inset,
     0 16px 48px -10px color-mix(in srgb, var(--ink) 24%, transparent),
     0 2px 8px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 .nav-inner:hover{
-  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
 }
 
 /* nav-inner .wrap: no max-width cap, full bleed */
@@ -232,17 +237,27 @@ button,input,select{font:inherit;color:inherit}
   align-items: center;
   gap: 0;
 }
-.nav ul li{ position: relative; flex-shrink: 0; padding-bottom: 0; }
-.nav li:hover .nav-btn{ color: var(--ink); }
-.nav li:hover .nav-btn::after{ transform: scaleX(1); }
-.nav li:hover .nav-btn i{ transform: rotate(180deg); opacity: .85; }
-.nav li:hover .drop, .nav li.open .drop{
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
 /* bridge gap between button and drop so mouse doesn't leave li */
 .nav ul li{ position: relative; flex-shrink: 0; padding-bottom: 0; }
+.nav li:hover .nav-btn, .nav li:focus-within .nav-btn{ color: var(--ink); }
+.nav li:hover .nav-btn::after, .nav li:focus-within .nav-btn::after{ transform: scaleX(1); }
+.nav li:hover .nav-btn i, .nav li:focus-within .nav-btn i{ transform: rotate(180deg); opacity: .85; }
+.nav li:hover .drop, .nav li.open .drop, .nav li:focus-within .drop{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  transition-delay: 0s;   /* opening is immediate; only closing waits */
+}
+/* current section — the nav says where you are, on every page */
+.nav li.current .nav-btn{ color: var(--ink); }
+.nav li.current .nav-btn::after{ transform: scaleX(1); opacity: .5; }
+.drop a[aria-current="page"]{
+  background: color-mix(in srgb, var(--c, var(--saffron)) 14%, transparent);
+  color: var(--ink);
+  font-weight: 650;
+}
+.drop a[aria-current="page"]::before{ opacity: 1; }
 .nav ul li::after{
   content: "";
   position: absolute;
@@ -258,9 +273,11 @@ button,input,select{font:inherit;color:inherit}
   top: 100%;
   left: 0;
   min-width: 15rem;
-  background: color-mix(in srgb, var(--raised) 80%, transparent);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  /* opens over page content, so same treatment as the bar — menu text must
+     read identically whatever it happens to be covering */
+  background: color-mix(in srgb, var(--raised) 94%, transparent);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
   border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
   border-radius: 12px;
   padding: .45rem;
@@ -269,10 +286,17 @@ button,input,select{font:inherit;color:inherit}
     0 1px 0 color-mix(in srgb, white 30%, transparent) inset,
     0 24px 64px -12px color-mix(in srgb, var(--ink) 25%, transparent);
   opacity: 0;
+  /* visibility (not just opacity) — otherwise every link in every closed
+     menu stays in the tab order as an invisible focus stop */
+  visibility: hidden;
   transform: translateY(-10px) scale(.97);
   transform-origin: top left;
   pointer-events: none;
-  transition: opacity .22s ease, transform .28s cubic-bezier(.25,1,.5,1);
+  /* delay applies to CLOSING only (the open rule zeroes it), so clipping a
+     corner on the way to the panel doesn't dismiss it */
+  transition: opacity .2s ease .14s,
+              transform .26s cubic-bezier(.25,1,.5,1) .14s,
+              visibility .2s linear .14s;
 }
 .drop a{
   display: flex;
@@ -301,6 +325,91 @@ button,input,select{font:inherit;color:inherit}
   padding-left: 1.1rem;
 }
 .drop a:hover::before{ opacity: 1; }
+
+/* ---- mega panel ----
+   Anchored to its own button, NOT centred on the bar. Centring put a narrow
+   panel (About NCISM is only 2 columns) hundreds of px away from its trigger,
+   and made the li go position:static, which opened a 0.8rem dead gap under
+   the button. Both together meant the menu closed before you reached it.
+   Anchored here, top:100% is the button's own bottom edge — no gap — and the
+   li's ::after bridge covers the rest. JS clamps it inside the viewport. */
+.drop.mega{
+  left: 0;
+  /* sizes itself off its own column count, so a 2-column menu isn't stretched
+     to the width of a 5-column one */
+  --cols: 4;
+  /* capped at 54rem: a 7-column menu stretched to 92rem could not be nudged
+     back on-screen from a right-hand trigger. Past the cap, auto-fit wraps the
+     extra columns onto a second row instead of widening the panel. */
+  width: min(calc(var(--cols) * 13.2rem), 54rem, calc(100vw - 3rem));
+  padding: 1.3rem 1.15rem 1rem;
+  transform: translateY(-10px) scale(.97);
+  transform-origin: top left;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: .5rem .3rem;
+}
+.nav li:hover .drop.mega, .nav li.open .drop.mega, .nav li:focus-within .drop.mega{
+  transform: translateY(0) scale(1);
+}
+.drop.mega a{
+  padding: .42rem .5rem;
+  font-size: .82rem;
+  border-radius: 6px;
+}
+.drop.mega a::before{ width: 4px; height: 4px; background: var(--c, var(--saffron)); }
+.drop.mega a:hover{
+  padding-left: .62rem;
+  background: color-mix(in srgb, var(--c, var(--saffron)) 11%, transparent);
+}
+/* column header doubles as the system's landing link */
+.drop.mega a.mega-hd{
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .18rem;
+  padding: .3rem .5rem .55rem;
+  margin-bottom: .4rem;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+}
+.drop.mega a.mega-hd::before{ display: none; }
+.drop.mega a.mega-hd:hover{ padding-left: .5rem; background: transparent; }
+.mega-hd .nm{
+  display: flex; align-items: center; gap: .42rem;
+  font-family: var(--display); font-size: 1rem; font-weight: 700;
+  letter-spacing: -.015em; line-height: 1.2; color: var(--ink);
+  transition: color .18s ease;
+}
+.mega-hd .nm::before{
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c, var(--saffron)); flex: none;
+}
+.mega-hd:hover .nm{ color: var(--c, var(--saffron)); }
+.mega-hd .dg{
+  font-family: var(--mono); font-size: .55rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--muted);
+  padding-left: calc(6px + .42rem);
+}
+/* general column, set apart by a rule */
+.mega-rail{
+  border-left: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  padding-left: .85rem; margin-left: .35rem;
+}
+.mega-rail .rl{
+  font-family: var(--mono); font-size: .55rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--muted);
+  padding: .3rem .5rem .55rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  margin-bottom: .4rem;
+}
+/* file-type marker so a download announces itself before the click */
+.drop.mega a .tag{
+  margin-left: auto; flex: none;
+  font-family: var(--mono); font-size: .48rem; letter-spacing: .1em;
+  color: var(--muted);
+  border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  border-radius: 3px; padding: .06rem .24rem;
+}
 
 /* nav button */
 .nav-btn{
@@ -368,9 +477,36 @@ button,input,select{font:inherit;color:inherit}
 }
 .nav-login::after{ display:none !important; }
 
+/* the brand yields space before the menu clips */
+.nav .brand{ flex: 0 1 auto; min-width: 0; }
+@media (max-width:1500px){
+  .nav .brand svg{ width:42px; height:42px; }
+  .nav .brand span{ font-size:.82em; }
+}
+
+/* Measured overflow guard: the topbar's A+ control can enlarge nav text at any
+   width, so a media query alone can't know whether the bar still fits. When JS
+   measures an overflow it sets .cramped, which hands over to the hamburger. */
+.nav.cramped .wrap{ flex-direction:column; padding-inline: var(--pad); }
+.nav.cramped .nav-inner{ border-radius:0 !important; margin-inline:0 !important; }
+.nav.cramped .navtog{ display:flex; }
+.nav.cramped ul{ display:none; flex-direction:column; width:100%; padding-bottom:.7rem; overflow:visible; }
+.nav.cramped.open ul{ display:flex; }
+.nav.cramped .nav-btn{ width:100%; justify-content:space-between; padding:.75rem 0; text-transform:none; font-size:.9rem; }
+.nav.cramped .nav-btn::after{ left:0; right:0; }
+.nav.cramped .drop{ position:static; opacity:1; transform:none; visibility:visible; pointer-events:auto; display:none; border:0; background:transparent; padding:0 0 .4rem .9rem; border-radius:0; box-shadow:none; backdrop-filter:none; }
+.nav.cramped li.open .drop{ display:block; }
+.nav.cramped .drop.mega{ display:none; width:auto; left:auto !important; transform:none; padding:0 0 .4rem .9rem; }
+.nav.cramped li.open .drop.mega{ display:block; }
+.nav.cramped .mega-rail{ border-left:0; padding-left:0; margin-left:0; border-top:1px solid var(--rule); margin-top:.6rem; padding-top:.5rem; }
+.nav.cramped .nav-login{ margin-left:0; margin-top:.4rem; }
+
 /* mobile toggle */
 .navtog{ display:none; }
-@media (max-width:960px){
+/* 10 top-level items + brand need ~1250px; below that the row overflowed and
+   body's overflow-x:clip silently ate the last items. Hand over to the
+   hamburger while everything still fits. */
+@media (max-width:1200px){
   .nav-inner{ border-radius:0 !important; margin-inline:0 !important; }
   .nav .wrap{ flex-direction:column; padding-inline: var(--pad); }
   .navtog{
@@ -384,8 +520,58 @@ button,input,select{font:inherit;color:inherit}
   .nav-btn::after{ left:0; right:0; }
   .drop{ position:static; opacity:1; transform:none; pointer-events:auto; display:none; border:0; background:transparent; padding:0 0 .4rem .9rem; border-radius:0; box-shadow:none; backdrop-filter:none; }
   .nav li.open .drop{ display:block; }
+  /* mega panel unstacks into a plain accordion list */
+  .drop.mega{ display:none; width:auto; left:auto !important; transform:none; padding:0 0 .4rem .9rem; }
+  .nav li:hover .drop.mega{ transform:none; }
+  .nav li.open .drop.mega{ display:block; transform:none; }
+  .mega-rail{ border-left:0; padding-left:0; margin-left:0; border-top:1px solid var(--rule); margin-top:.6rem; padding-top:.5rem; }
+  .drop.mega a.mega-hd{ margin-top:.5rem; }
   .nav-login{ margin-left:0; margin-top:.4rem; }
 }
+
+/* ---------------- section pages (generated from the official menu) ---------------- */
+.crumb{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .5rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.2rem;
+}
+.crumb a{color:var(--muted);text-decoration:none;transition:color .18s ease}
+.crumb a:hover{color:var(--saffron)}
+.crumb a+a::before,.crumb a+span::before{content:"/";margin-right:.5rem;color:var(--rule-2)}
+.crumb [aria-current]{color:var(--ink)}
+
+.doc-list{
+  list-style:none;margin:1.9rem 0 0;padding:0;display:grid;gap:.55rem;
+  grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));
+}
+.doc{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.85rem 1rem;border:1px solid var(--rule);border-radius:9px;
+  background:var(--raised);color:var(--ink-2);text-decoration:none;
+  font-size:.9rem;line-height:1.4;
+  transition:border-color .22s ease,transform .22s var(--ease),color .18s ease;
+}
+.doc:hover{border-color:var(--saffron);color:var(--ink);transform:translateY(-2px)}
+.doc .pill{
+  margin-left:auto;flex:none;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:var(--muted);
+  border:1px solid var(--rule);border-radius:3px;padding:.08rem .3rem;
+}
+.pg-foot{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.8rem}
+
+/* Section-page figures use square 1024x1024 art, which at width:100% renders
+   ~1400px tall and swamps the page. Crop to a banner instead. The inline style
+   on these <img> sets width/height only, so aspect-ratio here still wins. */
+.band .hero-fig img{ aspect-ratio:16/7; object-fit:cover; }
+@media (max-width:700px){ .band .hero-fig img{ aspect-ratio:4/3; } }
+
+.src-note{
+  display:flex;gap:.55rem;margin-top:1.3rem;padding:.9rem 1.05rem;max-width:70ch;
+  border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:8px;
+  background:var(--raised);font-size:.87rem;line-height:1.6;color:var(--ink-2);
+}
+.src-note strong{color:var(--ink)}
+.src-note code{font-family:var(--mono);font-size:.82em;background:var(--sunk);padding:.08rem .3rem;border-radius:3px}
 
 /* ---------------- rail layout ---------------- */
 .band{border-bottom:1px solid var(--rule)}
@@ -895,19 +1081,21 @@ button,input,select{font:inherit;color:inherit}
 .tab[aria-selected="true"]{color:var(--ink)}
 .tab[aria-selected="true"]::after{transform:scaleX(1)}
 .nlist{list-style:none;margin:0;padding:0}
-.nlist li{border-bottom:1px solid var(--rule)}
+.nlist li{border-bottom:1px solid var(--rule); transition:border-color .25s ease}
+.nlist li:hover{border-bottom-color:transparent; z-index:1; position:relative}
 .js .nlist li{opacity:0;transform:translateY(6px);animation:rise .5s var(--ease) forwards}
 .nlist li:nth-child(1){animation-delay:.02s}.nlist li:nth-child(2){animation-delay:.055s}
 .nlist li:nth-child(3){animation-delay:.09s}.nlist li:nth-child(4){animation-delay:.125s}
 .nlist li:nth-child(5){animation-delay:.16s}.nlist li:nth-child(6){animation-delay:.195s}
 .nlist li:nth-child(7){animation-delay:.23s}
 .nlist a{display:grid;grid-template-columns:5.6rem minmax(0,1fr) auto;gap:1.1rem;align-items:baseline;
-  padding:.82rem .4rem;text-decoration:none;transition:background .2s ease,padding-left .26s var(--ease)}
-.nlist a:hover{background:var(--tint);padding-left:.8rem}
+  padding:.9rem .8rem;margin:0 -.8rem;border-radius:8px;text-decoration:none;
+  transition:all .25s cubic-bezier(.25,1,.5,1)}
+.nlist a:hover{background:var(--raised);box-shadow:0 6px 16px color-mix(in srgb,var(--ink) 6%,transparent),0 2px 4px color-mix(in srgb,var(--ink) 3%,transparent);transform:translateY(-2px)}
 .nlist .d{font-family:var(--mono);font-size:.7rem;color:var(--muted);white-space:nowrap}
-.nlist .t{font-size:.9rem;color:var(--ink-2)}
-.nlist a:hover .t{color:var(--ink)}
-.flag{font-family:var(--mono);font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;padding:.16rem .42rem;white-space:nowrap;border:1px solid currentColor}
+.nlist .t{font-size:.9rem;color:var(--ink-2);transition:color .2s ease}
+.nlist a:hover .t{color:var(--ink);font-weight:450}
+.flag{font-family:var(--mono);font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;padding:.2rem .45rem;border-radius:3px;white-space:nowrap;border:1px solid currentColor}
 .flag.new{color:var(--saffron)}.flag.pdf{color:var(--muted)}.flag.ok{color:var(--leaf)}
 @media (max-width:600px){.nlist a{grid-template-columns:1fr auto}.nlist .d{grid-column:1/-1}}
 .side h5{font-family:var(--mono);font-size:.62rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);
@@ -924,17 +1112,38 @@ button,input,select{font:inherit;color:inherit}
 .advis a{display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.8rem;font-weight:650;color:var(--saffron);text-decoration:none}
 .advis a:hover{gap:.65rem}
 
-/* ---------------- finder ---------------- */
-.fbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;padding-bottom:.9rem;border-bottom:1px solid var(--rule-3)}
-.fbar input,.fbar select{font-size:.84rem;padding:.48rem .6rem;border:1px solid var(--rule-2);background:var(--raised);color:var(--ink)}
-.fbar input{flex:1;min-width:11rem}
-.fbar input:focus,.fbar select:focus{outline:none;border-color:var(--ink-solid)}
-.fcount{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:auto}
-.tscroll{overflow:auto;max-height:24rem;border-bottom:1px solid var(--rule-3)}
-table.col{width:100%;border-collapse:collapse;font-size:.855rem;min-width:44rem}
-table.col th{position:sticky;top:0;background:var(--paper);z-index:1;font-family:var(--mono);font-size:.61rem;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;
-  padding:.7rem .9rem .7rem 0;border-bottom:1px solid var(--rule-2)}
+/* notice search bar */
+.notice-search-bar{position:relative;margin-bottom:1rem}
+.notice-search-bar input{width:100%;font-size:.88rem;padding:.62rem .7rem .62rem 2.4rem;border:1px solid var(--rule-2);
+  background:var(--raised);color:var(--ink);font-family:var(--body);transition:border-color .18s ease,box-shadow .18s ease}
+.notice-search-bar input::placeholder{color:var(--muted);font-size:.84rem}
+.notice-search-bar input:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px rgba(176,87,10,.12)}
+.notice-search-icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+
+/* category pills */
+.notice-cats{display:flex;flex-wrap:wrap;gap:.45rem;margin:.85rem 0 .1rem;padding-bottom:.7rem}
+.cat-pill{background:var(--raised);border:1px solid var(--rule);color:var(--muted);font-family:var(--mono);
+  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .7rem;cursor:pointer;
+  transition:all .2s ease;white-space:nowrap}
+.cat-pill:hover{border-color:var(--rule-2);color:var(--ink-2)}
+.cat-pill.active{background:var(--saffron);border-color:var(--saffron);color:var(--on-ink);box-shadow:0 3px 8px rgba(176,87,10,.25)}
+
+/* notice meta / count */
+.notice-meta{display:flex;align-items:center;justify-content:flex-end;padding:.3rem 0}
+.notice-count{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em}
+
+/* notice empty state */
+.notice-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2.5rem 1rem;text-align:center;gap:.8rem}
+.notice-empty p{font-size:.88rem;color:var(--muted);margin:0}
+
+/* view all CTA */
+.notice-view-all{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.55rem 1.1rem;
+  font-size:.82rem;font-weight:650;color:var(--saffron);text-decoration:none;border:1px solid var(--saffron);
+  transition:background .2s ease,color .2s ease,gap .24s var(--ease)}
+.notice-view-all:hover{background:var(--saffron);color:var(--on-ink);gap:.75rem}
+
+
 table.col td{padding:.66rem .9rem .66rem 0;border-bottom:1px solid var(--rule)}
 table.col tbody tr{transition:background .16s ease}
 table.col tbody tr:hover{background:var(--tint)}
@@ -1058,91 +1267,7 @@ try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAt
         <svg width="17" height="17" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
       <ul>
-        <li><a href="index.html" class="nav-btn" style="text-decoration:none;">Home</a></li>
-        <li><button class="nav-btn">About NCISM <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">Introduction</a>
-            <a href="#">Main Objectives</a>
-            <a href="#">Chairperson</a>
-            <a href="#">Autonomous Boards</a>
-            <a href="#">Composition of Commission</a>
-            <a href="#">Advisory Board</a>
-            <a href="#">Officers of NCISM</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Indian Medicine <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="ayurveda.html">Ayurveda</a>
-            <a href="#">Unani</a>
-            <a href="#">Siddha</a>
-            <a href="#">Sowa-Rigpa</a>
-            <a href="#">Pre-Ayurveda &amp; Pre-Tib</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Registration <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">State Board Acts</a>
-            <a href="#">List of State Boards</a>
-            <a href="#">Recognised Qualifications</a>
-            <a href="#">National Register</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Information Desk <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">Acts &amp; Amendments</a>
-            <a href="#">Rules &amp; Regulations</a>
-            <a href="#">Guidelines</a>
-            <a href="#">Approval Process</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">E-learning <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">Electives</a>
-            <a href="#">E-book</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Examinations <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">National Exit Test 2026</a>
-            <a href="#">National Teachers' Eligibility Test 2026</a>
-            <a href="#">AIAPGET</a>
-            <a href="#">NEET Pre-Tib 2026</a>
-            <a href="#">NEET Sowa-Rigpa UG 2026</a>
-            <a href="#">Year 2025</a>
-            <a href="#">Year 2024</a>
-            <a href="#">Latest updates</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Rating <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">Ayurveda Colleges</a>
-            <a href="#">Unani Colleges</a>
-            <a href="#">Siddha Colleges</a>
-            <a href="#">Assessment &amp; Rating Framework</a>
-          </div>
-        </li>
-        <li><button class="nav-btn">Others <i>&#9660;</i></button>
-          <div class="drop">
-            <a href="#">NCISM Portal</a>
-            <a href="#">Grievance Redressal</a>
-            <a href="#">Vigilance Corner</a>
-            <a href="#">RTI</a>
-            <a href="#">Results</a>
-          </div>
-        </li>
-        <li><button class="nav-btn nav-login">Logins <i>&#9660;</i></button>
-          <div class="drop" style="left:auto;right:0">
-            <a href="#">Institution Login</a>
-            <a href="#">Visitor's Login</a>
-            <a href="#">Teacher's Login</a>
-            <a href="#">Practitioner Login</a>
-            <a href="#">State Board Login</a>
-            <a href="#">Institute Login for Ayurveda Day</a>
-            <a href="#">Apply for Registration</a>
-            <a href="#">Apply to restore a withheld teacher's code</a>
-            <a href="#">Application under Section 29</a>
-          </div>
-        </li>
+{{NAV}}
       </ul>
     </div>
   </div>
@@ -1203,95 +1328,68 @@ try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAt
     }).join(" ");
   });
 
-  /* notices */
+  /* notices — with search + category filtering */
   var N={
-    notices:[["12 Aug 2026","Expression of Interest to conduct UG &amp; PG Electives","new"],
-      ["06 Aug 2026","Amendment in Internship Completion for appearing in AIAPGET-2026","new"],
-      ["28 Jul 2026","Submission of schemes to establish new colleges for A.Y. 2027-28","pdf"],
-      ["19 Jul 2026","Constitution of the Internal Committee under the POSH Act, 2013","pdf"],
-      ["04 Jul 2026","Establishment of new Ayurveda UG colleges with 60-seat intake","pdf"],
-      ["21 Jun 2026","Revision of honorarium, TA/DA and accommodation for MARBISM experts","pdf"],
-      ["09 Jun 2026","Implementation of Right to Practice of ISM practitioners","pdf"]],
-    tenders:[["10 Aug 2026","Supply and installation of network infrastructure, Dhanwantari Bhawan","new"],
-      ["30 Jul 2026","Annual maintenance contract for office equipment 2026-27","pdf"],
-      ["14 Jul 2026","Engagement of agency for digitisation of Commission records","pdf"],
-      ["02 Jul 2026","Housekeeping and security services — two-year contract","pdf"],
-      ["15 Jun 2026","Corrigendum: extension of bid submission date for IT hardware","pdf"]],
-    jobs:[["08 Aug 2026","Walk-in interview: Young Professional / Consultant (IT)","new"],
-      ["25 Jul 2026","Vacancies for various posts on deputation basis","pdf"],
-      ["11 Jul 2026","Corrigendum to recruitment notice for Junior Technical Officer","pdf"],
-      ["27 Jun 2026","Contractual vacancies for JTO and MTS in NCISM","pdf"],
-      ["13 Jun 2026","Advertisement for vacancy in CPMU, Ministry of Ayush","pdf"]],
-    results:[["05 Aug 2026","Result for the posts of JTO and MTS in NCISM","ok"],
-      ["22 Jul 2026","AACCC AIQ UG and PG counselling — final allotment","ok"],
-      ["08 Jul 2026","National Ayurveda Dhanwantari Award 2026 — selected awardees","ok"],
-      ["24 Jun 2026","Publication grant beneficiaries 2025-26","pdf"],
-      ["10 Jun 2026","Affiliation of Ayurveda Gurukulams — approved list","pdf"]]
+    notices:[["12 Aug 2026","Expression of Interest to conduct UG &amp; PG Electives","new","curriculum"],
+      ["06 Aug 2026","Amendment in Internship Completion for appearing in AIAPGET-2026","new","examination"],
+      ["28 Jul 2026","Submission of schemes to establish new colleges for A.Y. 2027-28","pdf","college"],
+      ["19 Jul 2026","Constitution of the Internal Committee under the POSH Act, 2013","pdf","admin"],
+      ["04 Jul 2026","Establishment of new Ayurveda UG colleges with 60-seat intake","pdf","college"],
+      ["21 Jun 2026","Revision of honorarium, TA/DA and accommodation for MARBISM experts","pdf","admin"],
+      ["09 Jun 2026","Implementation of Right to Practice of ISM practitioners","pdf","regulation"]],
+    tenders:[["10 Aug 2026","Supply and installation of network infrastructure, Dhanwantari Bhawan","new","admin"],
+      ["30 Jul 2026","Annual maintenance contract for office equipment 2026-27","pdf","admin"],
+      ["14 Jul 2026","Engagement of agency for digitisation of Commission records","pdf","admin"],
+      ["02 Jul 2026","Housekeeping and security services — two-year contract","pdf","admin"],
+      ["15 Jun 2026","Corrigendum: extension of bid submission date for IT hardware","pdf","admin"]],
+    jobs:[["08 Aug 2026","Walk-in interview: Young Professional / Consultant (IT)","new","admin"],
+      ["25 Jul 2026","Vacancies for various posts on deputation basis","pdf","admin"],
+      ["11 Jul 2026","Corrigendum to recruitment notice for Junior Technical Officer","pdf","admin"],
+      ["27 Jun 2026","Contractual vacancies for JTO and MTS in NCISM","pdf","admin"],
+      ["13 Jun 2026","Advertisement for vacancy in CPMU, Ministry of Ayush","pdf","admin"]],
+    results:[["05 Aug 2026","Result for the posts of JTO and MTS in NCISM","ok","admin"],
+      ["22 Jul 2026","AACCC AIQ UG and PG counselling — final allotment","ok","examination"],
+      ["08 Jul 2026","National Ayurveda Dhanwantari Award 2026 — selected awardees","ok","examination"],
+      ["24 Jun 2026","Publication grant beneficiaries 2025-26","pdf","curriculum"],
+      ["10 Jun 2026","Affiliation of Ayurveda Gurukulams — approved list","pdf","college"]]
   };
-  var F={"new":"New","pdf":"PDF","ok":"Result"},nl=document.getElementById("nlist");
-  function drawN(k){
-    nl.innerHTML=(N[k]||[]).map(function(r){
+  var F={"new":"New","pdf":"PDF","ok":"Result"},
+      nl=document.getElementById("nlist"),
+      nSearch=document.getElementById("noticeSearch"),
+      nCount=document.getElementById("noticeCount"),
+      nEmpty=document.getElementById("noticeEmpty"),
+      nViewAll=document.getElementById("noticeViewAll"),
+      activeTab="notices",activeCat="";
+
+  function drawN(k,q,cat){
+    if(k) activeTab=k;
+    q=(q||"").trim().toLowerCase();
+    var src=N[activeTab]||[];
+    var rows=src.filter(function(r){
+      if(q && r[1].toLowerCase().indexOf(q)<0 && r[0].toLowerCase().indexOf(q)<0) return false;
+      if(cat && r[3]!==cat) return false;
+      return true;
+    });
+    if(nCount) nCount.textContent=rows.length+" of "+src.length+" shown";
+    if(nEmpty) nEmpty.style.display=rows.length?"none":"flex";
+    if(nl) nl.style.display=rows.length?"":"none";
+    if(nViewAll) nViewAll.style.display=rows.length?"":"none";
+    if(!nl) return;
+    nl.innerHTML=rows.map(function(r){
       return '<li><a href="#notices"><span class="d">'+r[0]+'</span><span class="t">'+r[1]+
         '</span><span class="flag '+r[2]+'">'+F[r[2]]+"</span></a></li>";
     }).join("");
+    nl.querySelectorAll("li").forEach(function(li,i){
+      li.style.animationDelay=(0.02+i*0.035).toFixed(3)+"s";
+    });
   }
-  drawN("notices");
+  drawN("notices","","");
+
   document.querySelectorAll(".tab").forEach(function(t){
     t.addEventListener("click",function(){
       document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected","false");});
-      t.setAttribute("aria-selected","true");drawN(t.dataset.tab);
-    });
-  });
-
-  /* college finder */
-  var C=[["State Ayurveda Medical College, Pune","Ayurveda","Maharashtra",100,"Permitted"],
-    ["Government Ayurveda College, Thrissur","Ayurveda","Kerala",75,"Permitted"],
-    ["Rajkiya Ayurvedic Mahavidyalaya, Varanasi","Ayurveda","Uttar Pradesh",60,"Conditional"],
-    ["Shri Dhanwantari Ayurveda Sansthan, Jaipur","Ayurveda","Rajasthan",60,"Permitted"],
-    ["Sanjivani Institute of Ayurveda, Nagpur","Ayurveda","Maharashtra",60,"Denied"],
-    ["Vaidyaratnam Ayurveda College, Kozhikode","Ayurveda","Kerala",50,"Permitted"],
-    ["Government Ayurveda College, Bhubaneswar","Ayurveda","Odisha",60,"Permitted"],
-    ["Ayurveda Mahavidyalaya, Ahmedabad","Ayurveda","Gujarat",100,"Permitted"],
-    ["Rural Ayurveda Institute, Patna","Ayurveda","Bihar",50,"Denied"],
-    ["Government Unani Medical College, Hyderabad","Unani","Telangana",60,"Permitted"],
-    ["Tibbia Unani Institute, Lucknow","Unani","Uttar Pradesh",50,"Conditional"],
-    ["State Unani Medical College, Bengaluru","Unani","Karnataka",60,"Permitted"],
-    ["Hakim Ajmal Khan Unani College, Aligarh","Unani","Uttar Pradesh",40,"Denied"],
-    ["Government Unani College, Bhopal","Unani","Madhya Pradesh",50,"Permitted"],
-    ["Government Siddha Medical College, Palayamkottai","Siddha","Tamil Nadu",75,"Permitted"],
-    ["Siddha Medical Institute, Chennai","Siddha","Tamil Nadu",60,"Permitted"],
-    ["Agasthiyar Siddha College, Madurai","Siddha","Tamil Nadu",50,"Conditional"],
-    ["Himalayan Sowa-Rigpa Institute, Leh","Sowa-Rigpa","Ladakh",30,"Permitted"],
-    ["Central Institute of Sowa-Rigpa, Gangtok","Sowa-Rigpa","Sikkim",25,"Permitted"],
-    ["Bodhi Sowa-Rigpa College, Dharamshala","Sowa-Rigpa","Himachal Pradesh",25,"Conditional"]];
-  var tb=document.getElementById("ftbody"),fq=document.getElementById("fq"),fs=document.getElementById("fsys"),
-      fst=document.getElementById("fstate"),fss=document.getElementById("fstatus"),fc=document.getElementById("fcount");
-  C.map(function(c){return c[2];}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort()
-   .forEach(function(s){var o=document.createElement("option");o.textContent=s;fst.appendChild(o);});
-  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
-  function drawC(){
-    var q=fq.value.trim().toLowerCase();
-    var rows=C.filter(function(c){
-      if(q&&c[0].toLowerCase().indexOf(q)<0&&c[2].toLowerCase().indexOf(q)<0)return false;
-      if(fs.value&&c[1]!==fs.value)return false;
-      if(fst.value&&c[2]!==fst.value)return false;
-      if(fss.value&&c[4]!==fss.value)return false;
-      return true;});
-    fc.textContent=rows.length+" of "+C.length+" shown";
-    tb.innerHTML=rows.length?rows.map(function(c){
-      return "<tr><td>"+esc(c[0])+"</td><td>"+esc(c[1])+"</td><td>"+esc(c[2])+
-        "</td><td class='mono'>"+c[3]+"</td><td><span class='st "+c[4].toLowerCase()+"'>"+c[4]+"</span></td></tr>";
-    }).join(""):'<tr><td colspan="5" class="tempty">No institutions match those filters.</td></tr>';
-  }
-  [fq,fs,fst,fss].forEach(function(e){e.addEventListener("input",drawC);});
-  drawC();
-
-  /* reveal */
-  var rvs=document.querySelectorAll(".rv");
-  if("IntersectionObserver" in window){
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
-    },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+      t.setAttribute("aria-selected","true");
+      drawN(t.dataset.tab,nSearch?nSearch.value:"",activeCat);
     rvs.forEach(function(el){io.observe(el);});
   } else { rvs.forEach(function(el){el.classList.add("in");}); }
   addEventListener("load",function(){
@@ -1369,19 +1467,50 @@ try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAt
 
   /* nav — click only (hover handled by pure CSS) */
   var navItems = document.querySelectorAll(".nav-inner ul > li");
+  function setOpen(li,on){
+    li.classList.toggle("open",on);
+    var b = li.querySelector("button.nav-btn");
+    if(b) b.setAttribute("aria-expanded", on ? "true" : "false");
+  }
+  function closeAll(){ navItems.forEach(function(o){ setOpen(o,false); }); }
   navItems.forEach(function(li){
     var btn = li.querySelector(".nav-btn");
-    if(btn){
-      btn.addEventListener("click",function(e){
-        e.stopPropagation();
-        var was = li.classList.contains("open");
-        navItems.forEach(function(o){ o.classList.remove("open"); });
-        if(!was) li.classList.add("open");
-      });
+    if(!btn) return;
+    /* only the dropdown buttons are expandable; Home is a plain link */
+    if(btn.tagName === "BUTTON" && li.querySelector(".drop")){
+      btn.setAttribute("aria-expanded","false");
+      btn.setAttribute("aria-haspopup","true");
     }
+    btn.addEventListener("click",function(e){
+      if(btn.tagName !== "BUTTON") return;   /* let Home navigate */
+      e.stopPropagation();
+      var was = li.classList.contains("open");
+      closeAll();
+      if(!was) setOpen(li,true);
+    });
   });
-  document.addEventListener("click",function(){ navItems.forEach(function(o){ o.classList.remove("open"); }); });
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape") navItems.forEach(function(o){ o.classList.remove("open"); }); });
+  document.addEventListener("click",closeAll);
+  document.addEventListener("keydown",function(e){
+    if(e.key !== "Escape") return;
+    var open = document.querySelector(".nav-inner ul > li.open");
+    closeAll();
+    /* Escape should land focus back on the control that opened the menu */
+    if(open){ var b = open.querySelector(".nav-btn"); if(b) b.focus(); }
+  });
+
+  /* mark the current page so the navbar reads the same everywhere but still
+     says where you are — matched on filename, so it survives any host path */
+  (function(){
+    var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    document.querySelectorAll(".nav-inner a[href]").forEach(function(a){
+      var href = (a.getAttribute("href") || "").split("/").pop().split(/[?#]/)[0].toLowerCase();
+      if(!href || href === "#") return;
+      if(href !== here) return;
+      a.setAttribute("aria-current","page");
+      var li = a.closest("li");
+      if(li) li.classList.add("current");
+    });
+  })();
   var nav=document.getElementById("nav"),ntg=document.getElementById("navtog");
   ntg.addEventListener("click",function(e){
     e.stopPropagation();
@@ -1449,4 +1578,131 @@ try{var t=localStorage.getItem("ncism-theme");if(t==="dark"||t==="light")d.setAt
     root.lang=hi?"hi":"en";
   });
 })();
+</script>
+
+<script>
+  /* ---------------- JS ---------------- */
+  /* mobile menu */
+  var mo=document.getElementById("mMenuBtn"),mc=document.getElementById("mCloseBtn"),mp=document.getElementById("megaPanel");
+  if(mo&&mc&&mp){
+    mo.addEventListener("click",function(){mp.classList.add("open");document.body.style.overflow="hidden";});
+    mc.addEventListener("click",function(){mp.classList.remove("open");document.body.style.overflow="";});
+  }
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      var tgt=document.querySelector(this.getAttribute("href"));
+      if(tgt){e.preventDefault();tgt.scrollIntoView({behavior:"smooth",block:"start"});}
+    });
+  });
+
+  /* horizontal scroll for systems */
+  document.querySelectorAll(".hs-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var w=document.getElementById(this.dataset.scroll),d=parseInt(this.dataset.dir);
+      if(w)w.scrollBy({left:d*(w.clientWidth*.8),behavior:"smooth"});
+    });
+  });
+
+  /* horizontal scroll progress */
+  var hw=document.getElementById("sysScroll"),hp=document.getElementById("sysProg");
+  if(hw&&hp){
+    hw.addEventListener("scroll",function(){
+      hp.style.width=((hw.scrollLeft/(hw.scrollWidth-hw.clientWidth))*100)+"%";
+    },{passive:true});
+    setTimeout(function(){hw.dispatchEvent(new Event("scroll"));},100);
+  }
+
+  /* notices — with search + category filtering */
+  var N={
+    notices:[["12 Aug 2026","Expression of Interest to conduct UG &amp; PG Electives","new","curriculum"],
+      ["06 Aug 2026","Amendment in Internship Completion for appearing in AIAPGET-2026","new","examination"],
+      ["28 Jul 2026","Submission of schemes to establish new colleges for A.Y. 2027-28","pdf","college"],
+      ["19 Jul 2026","Constitution of the Internal Committee under the POSH Act, 2013","pdf","admin"],
+      ["04 Jul 2026","Establishment of new Ayurveda UG colleges with 60-seat intake","pdf","college"],
+      ["21 Jun 2026","Revision of honorarium, TA/DA and accommodation for MARBISM experts","pdf","admin"],
+      ["09 Jun 2026","Implementation of Right to Practice of ISM practitioners","pdf","regulation"]],
+    tenders:[["10 Aug 2026","Supply and installation of network infrastructure, Dhanwantari Bhawan","new","admin"],
+      ["30 Jul 2026","Annual maintenance contract for office equipment 2026-27","pdf","admin"],
+      ["14 Jul 2026","Engagement of agency for digitisation of Commission records","pdf","admin"],
+      ["02 Jul 2026","Housekeeping and security services — two-year contract","pdf","admin"],
+      ["15 Jun 2026","Corrigendum: extension of bid submission date for IT hardware","pdf","admin"]],
+    jobs:[["08 Aug 2026","Walk-in interview: Young Professional / Consultant (IT)","new","admin"],
+      ["25 Jul 2026","Vacancies for various posts on deputation basis","pdf","admin"],
+      ["11 Jul 2026","Corrigendum to recruitment notice for Junior Technical Officer","pdf","admin"],
+      ["27 Jun 2026","Contractual vacancies for JTO and MTS in NCISM","pdf","admin"],
+      ["13 Jun 2026","Advertisement for vacancy in CPMU, Ministry of Ayush","pdf","admin"]],
+    results:[["05 Aug 2026","Result for the posts of JTO and MTS in NCISM","ok","admin"],
+      ["22 Jul 2026","AACCC AIQ UG and PG counselling — final allotment","ok","examination"],
+      ["08 Jul 2026","National Ayurveda Dhanwantari Award 2026 — selected awardees","ok","examination"],
+      ["24 Jun 2026","Publication grant beneficiaries 2025-26","pdf","curriculum"],
+      ["10 Jun 2026","Affiliation of Ayurveda Gurukulams — approved list","pdf","college"]]
+  };
+  var F={"new":"New","pdf":"PDF","ok":"Result"},
+      nl=document.getElementById("nlist"),
+      nSearch=document.getElementById("noticeSearch"),
+      nCount=document.getElementById("noticeCount"),
+      nEmpty=document.getElementById("noticeEmpty"),
+      nViewAll=document.getElementById("noticeViewAll"),
+      activeTab="notices",activeCat="";
+
+  function drawN(k,q,cat){
+    if(k) activeTab=k;
+    q=(q||"").trim().toLowerCase();
+    var src=N[activeTab]||[];
+    var rows=src.filter(function(r){
+      if(q && r[1].toLowerCase().indexOf(q)<0 && r[0].toLowerCase().indexOf(q)<0) return false;
+      if(cat && r[3]!==cat) return false;
+      return true;
+    });
+    if(nCount) nCount.textContent=rows.length+" of "+src.length+" shown";
+    if(nEmpty) nEmpty.style.display=rows.length?"none":"flex";
+    if(nl) nl.style.display=rows.length?"":"none";
+    if(nViewAll) nViewAll.style.display=rows.length?"":"none";
+    if(!nl) return;
+    nl.innerHTML=rows.map(function(r){
+      return '<li><a href="#notices"><span class="d">'+r[0]+'</span><span class="t">'+r[1]+
+        '</span><span class="flag '+r[2]+'">'+F[r[2]]+"</span></a></li>';
+    }).join("");
+    nl.querySelectorAll("li").forEach(function(li,i){
+      li.style.animationDelay=(0.02+i*0.035).toFixed(3)+"s";
+    });
+  }
+  drawN("notices","","");
+
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click",function(){
+      document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected","false");});
+      t.setAttribute("aria-selected","true");
+      drawN(t.dataset.tab,nSearch?nSearch.value:"",activeCat);
+    });
+  });
+
+  if(nSearch){
+    var debounceN;
+    nSearch.addEventListener("input",function(){
+      clearTimeout(debounceN);
+      debounceN=setTimeout(function(){drawN(null,nSearch.value,activeCat);},120);
+    });
+  }
+
+  document.querySelectorAll(".cat-pill").forEach(function(p){
+    p.addEventListener("click",function(){
+      document.querySelectorAll(".cat-pill").forEach(function(x){x.classList.remove("active");});
+      p.classList.add("active");
+      activeCat=p.dataset.cat||"";
+      drawN(null,nSearch?nSearch.value:"",activeCat);
+    });
+  });
+
+  /* reveal */
+  var rvs=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+    rvs.forEach(function(el){io.observe(el);});
+  } else { rvs.forEach(function(el){el.classList.add("in");}); }
+  addEventListener("load",function(){document.body.classList.add("loaded");});
 </script>

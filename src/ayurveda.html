@@ -1,117 +1,549 @@
+<title>Ayurveda &middot; NCISM</title>
 
 <style>
-.ayur-cta-bar {
-  background: var(--raised);
-  border-bottom: 1px solid var(--rule);
-  padding: 1rem clamp(1rem, 4vw, 3rem);
+/* ============================================================
+   AYURVEDA — warm earthen treatment.
+   Overrides the site's cool "gazette" paper with a turmeric/
+   sandalwood ground, scoped to this page only via .ayur-page.
+   ============================================================ */
+.ayur-page{
+  --ay-ground:#F6F1E6;      /* sandalwood paper */
+  --ay-tint:#EFE6D4;        /* raised warm surface */
+  --ay-line:#DCCDB2;        /* warm hairline */
+  --ay-deep:#6B3A0E;        /* deep bark, for headings */
+  --ay-accent:#9E4D07;      /* turmeric/saffron (AA on ground + tint) */
+  --ay-accent-2:#70570D;    /* haldi gold (AA on ground + tint) */
+  --ay-leaf:#4B6B22;        /* tulsi green */
+  --ay-body:#4A4034;        /* warm ink for body copy */
 }
-.ayur-cta-grid {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: var(--maxw);
-  margin: 0 auto;
+:root[data-theme="dark"] .ayur-page,
+.ayur-page:is(.dark){
+  --ay-ground:#14110C;
+  --ay-tint:#1D1811;
+  --ay-line:#3A3125;
+  --ay-deep:#E7C892;
+  --ay-accent:#E0A055;
+  --ay-accent-2:#D2B268;
+  --ay-leaf:#9BBF5E;
+  --ay-body:#CFC5B4;
 }
-.ayur-cta-btn {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  color: var(--ink-2);
-  padding: 0.8rem 1.5rem;
-  border-radius: 99px;
-  font-weight: 650;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s var(--ease);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 4%, transparent);
-}
-.ayur-cta-btn:hover {
-  background: var(--ink-solid);
-  color: var(--on-ink);
-  border-color: var(--ink-solid);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px color-mix(in srgb, var(--ink) 12%, transparent);
-}
-.ayur-content-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-  margin-top: 2.5rem;
-}
-@media (min-width: 900px) {
-  .ayur-content-grid {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .ayur-page{
+    --ay-ground:#14110C;
+    --ay-tint:#1D1811;
+    --ay-line:#3A3125;
+    --ay-deep:#E7C892;
+    --ay-accent:#E0A055;
+    --ay-accent-2:#D2B268;
+    --ay-leaf:#9BBF5E;
+    --ay-body:#CFC5B4;
   }
 }
-.ayur-image-wrapper {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--ink) 15%, transparent);
-  position: relative;
+
+/* ---------------- hero ---------------- */
+.ayur-hero{
+  position:relative;
+  background:var(--ay-ground);
+  border-bottom:1px solid var(--ay-line);
+  overflow:hidden;
 }
-.ayur-image-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease;
+.ayur-hero::after{ /* faint botanical dot-grid, echoes the systems cards */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(circle at 20% 30%,var(--ay-line) 1px,transparent 1px),
+                   radial-gradient(circle at 70% 65%,var(--ay-line) 1px,transparent 1px);
+  background-size:38px 38px,52px 52px;
 }
-.ayur-image-wrapper:hover img {
-  transform: scale(1.05);
+.ayur-hero-inner{
+  position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(2.4rem,5vw,4.2rem) clamp(1.05rem,3.6vw,3.25rem) clamp(2rem,4vw,3.2rem);
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(1.6rem,4vw,3.4rem);align-items:center;
 }
-.ayur-content-grid p {
-  max-width: none !important;
-  line-height: 1.6;
+@media (max-width:900px){ .ayur-hero-inner{grid-template-columns:1fr} }
+.ayur-eyebrow{
+  display:flex;align-items:center;gap:.65rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ay-accent);
+}
+.ayur-eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--ay-accent);opacity:.6}
+.ayur-hero h1{
+  font-family:var(--display);font-weight:700;letter-spacing:-.028em;line-height:1.04;
+  font-size:clamp(2.4rem,6vw,4.2rem);color:var(--ay-deep);margin:.7rem 0 0;
+}
+.ayur-hero .deva{
+  font-family:var(--deva);font-size:clamp(1.35rem,3vw,2rem);color:var(--ay-accent-2);
+  line-height:1.7;margin-top:.5rem;
+}
+.ayur-hero .sub{
+  font-family:var(--display);font-style:italic;font-size:clamp(1.05rem,2vw,1.32rem);
+  color:var(--ay-body);margin-top:.7rem;max-width:34ch;
+}
+.ayur-hero-fig{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 24px 48px -18px rgba(60,35,10,.4)}
+.ayur-hero-fig img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.ayur-hero-fig figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.6rem .95rem .8rem;
+  background:linear-gradient(0deg,rgba(30,18,6,.82),transparent);
+  color:#F3EADA;font-size:.74rem;
+}
+
+/* ---------------- CTA rail ---------------- */
+.ayur-nav{background:var(--ay-tint);border-bottom:1px solid var(--ay-line)}
+.ayur-nav-inner{
+  max-width:var(--maxw);margin:0 auto;
+  padding:1.15rem clamp(1.05rem,3.6vw,3.25rem);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;
+}
+.ayur-btn{
+  --c:var(--ay-accent);
+  position:relative;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.72rem 1.55rem;
+  border-radius:999px;text-decoration:none;white-space:nowrap;
+  font-family:var(--display);font-size:1rem;font-weight:600;letter-spacing:-.008em;
+  color:var(--ay-deep);
+  background:var(--ay-ground);border:1px solid var(--ay-line);
+  box-shadow:0 1px 2px rgba(60,35,10,.05);
+  transition:transform .28s var(--ease),box-shadow .28s ease,border-color .28s ease,color .28s ease;
+}
+.ayur-btn::before{ /* accent tint that fades in behind the label on hover */
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:var(--c);opacity:0;transition:opacity .3s var(--ease);
+}
+.ayur-btn:hover,.ayur-btn:focus-visible{
+  transform:translateY(-2px);border-color:var(--c);color:var(--c);
+  box-shadow:0 10px 22px -12px rgba(80,45,10,.45);
+}
+.ayur-btn:hover::before,.ayur-btn:focus-visible::before{opacity:.09}
+.ayur-btn:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.ayur-btn:active{transform:translateY(0)}
+@media (max-width:560px){
+  .ayur-btn{padding:.62rem 1.15rem;font-size:.92rem}
+  .ayur-nav-inner{gap:.55rem}
+}
+
+/* ---------------- body ---------------- */
+.ayur-body{background:var(--ay-ground);color:var(--ay-body)}
+.ayur-sec{
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(2.6rem,5.5vw,4.4rem) clamp(1.05rem,3.6vw,3.25rem);
+  border-bottom:1px solid var(--ay-line);
+}
+.ayur-sec:last-child{border-bottom:0}
+.ayur-h2{
+  font-family:var(--display);font-weight:700;letter-spacing:-.024em;line-height:1.1;
+  font-size:clamp(1.7rem,3.6vw,2.5rem);color:var(--ay-deep);
+}
+.ayur-lede{font-size:1.06rem;line-height:1.75;max-width:62ch;margin-top:.9rem}
+.ayur-lede + .ayur-lede{margin-top:1rem}
+.ayur-lede strong{color:var(--ay-deep);font-weight:650}
+
+.ayur-split{display:grid;grid-template-columns:1fr;gap:2.2rem;align-items:center;margin-top:2.2rem}
+@media (min-width:900px){ .ayur-split{grid-template-columns:1.15fr .85fr} }
+.ayur-split.flip .ayur-fig{order:-1}
+@media (max-width:899px){ .ayur-split.flip .ayur-fig{order:0} }
+.ayur-fig{border-radius:14px;overflow:hidden;box-shadow:0 20px 40px -16px rgba(60,35,10,.35);position:relative}
+.ayur-fig img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;transition:transform .6s var(--ease)}
+.ayur-fig:hover img{transform:scale(1.045)}
+.ayur-h3{
+  font-family:var(--display);font-size:1.42rem;font-weight:700;color:var(--ay-deep);
+  letter-spacing:-.018em;margin-bottom:.7rem;
+}
+
+/* doshas */
+.dosha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.9rem;margin-top:1.8rem}
+.dosha{
+  background:var(--ay-tint);border:1px solid var(--ay-line);border-radius:12px;padding:1.3rem 1.35rem;
+  border-top:3px solid var(--dc);transition:transform .28s var(--ease),box-shadow .28s ease;
+}
+.dosha:hover{transform:translateY(-4px);box-shadow:0 14px 30px -14px rgba(60,35,10,.4)}
+.dosha .sym{font-family:var(--deva);font-size:2rem;color:var(--dc);line-height:1}
+.dosha h4{font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--ay-deep);margin-top:.35rem}
+.dosha .el{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dc);margin-top:.15rem;
+}
+.dosha p{font-size:.87rem;line-height:1.6;margin-top:.6rem}
+
+/* eight limbs */
+.limbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:0;margin-top:1.8rem;
+  border-top:1px solid var(--ay-line);border-left:1px solid var(--ay-line)}
+.limb{padding:1.05rem 1.15rem;border-right:1px solid var(--ay-line);border-bottom:1px solid var(--ay-line);
+  transition:background .25s ease}
+.limb:hover{background:var(--ay-tint)}
+.limb .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--ay-accent)}
+.limb .sa{font-family:var(--deva);font-size:1.02rem;color:var(--ay-deep);margin-top:.3rem}
+.limb .en{font-size:.83rem;margin-top:.15rem;line-height:1.5}
+
+/* curriculum documents */
+.doc-list{margin-top:1.6rem;border-top:1px solid var(--ay-line)}
+.doc{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:center;
+  padding:.9rem .4rem;border-bottom:1px solid var(--ay-line);text-decoration:none;color:inherit;
+  transition:background .22s ease,padding-left .28s var(--ease);
+}
+.doc:hover{background:var(--ay-tint);padding-left:.9rem}
+.doc .code{
+  font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--ay-accent);
+  border:1px solid var(--ay-line);border-radius:4px;padding:.22rem .45rem;white-space:nowrap;
+}
+.doc .nm{font-size:.93rem;color:var(--ay-deep);font-weight:600}
+.doc .nm small{display:block;font-weight:400;font-size:.79rem;color:var(--ay-body);margin-top:.1rem}
+.doc .pill{
+  font-family:var(--mono);font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ay-accent-2);border:1px solid currentColor;border-radius:999px;padding:.16rem .48rem;white-space:nowrap;
+}
+@media (max-width:640px){
+  .doc{grid-template-columns:auto 1fr}
+  .doc .pill{grid-column:2;justify-self:start;margin-top:.2rem}
+}
+
+/* stat strip */
+.ayur-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:0;
+  border:1px solid var(--ay-line);border-radius:12px;overflow:hidden;margin-top:2rem;background:var(--ay-tint)}
+.ayur-stat{padding:1.4rem 1.1rem;text-align:center;border-right:1px solid var(--ay-line)}
+.ayur-stat:last-child{border-right:0}
+.ayur-stat b{display:block;font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:700;
+  color:var(--ay-accent);line-height:1}
+.ayur-stat span{display:block;font-size:.76rem;margin-top:.4rem}
+
+/* closing CTA */
+.ayur-close{
+  background:linear-gradient(135deg,var(--ay-deep),#40220A);
+  border-radius:14px;padding:clamp(1.8rem,4vw,2.8rem);margin-top:2.4rem;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.6rem;align-items:center;
+}
+@media (max-width:760px){ .ayur-close{grid-template-columns:1fr} }
+.ayur-close h3{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.85rem);font-weight:700;color:#F7EEDD;letter-spacing:-.02em}
+.ayur-close p{color:rgba(247,238,221,.78);font-size:.95rem;margin-top:.5rem;max-width:52ch;line-height:1.6}
+.ayur-close-actions{display:flex;gap:.65rem;flex-wrap:wrap}
+.ayur-primary,.ayur-secondary{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.4rem;border-radius:999px;
+  font-size:.88rem;font-weight:650;text-decoration:none;white-space:nowrap;
+  transition:transform .24s var(--ease),box-shadow .24s ease,background .24s ease,color .24s ease;
+}
+.ayur-primary{background:#E5A64A;color:#3A1E06;box-shadow:0 8px 20px -10px rgba(0,0,0,.6)}
+.ayur-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(0,0,0,.7);background:#F0B45C}
+.ayur-secondary{background:transparent;color:#F7EEDD;border:1px solid rgba(247,238,221,.4)}
+.ayur-secondary:hover{background:rgba(247,238,221,.12);border-color:rgba(247,238,221,.75);transform:translateY(-2px)}
+.ayur-primary svg,.ayur-secondary svg{transition:transform .26s var(--ease)}
+.ayur-primary:hover svg{transform:translateX(3px)}
+
+.src-note{
+  display:flex;gap:.5rem;align-items:flex-start;margin-top:1.4rem;
+  font-size:.75rem;color:var(--ay-body);opacity:.8;line-height:1.5;
 }
 </style>
 
-<div class="ayur-cta-bar">
-  <div class="ayur-cta-grid js rv in" style="animation-delay:.1s">
-    <a href="ayurveda-intro.html" class="ayur-cta-btn">Introduction</a>
-    <a href="ayurveda-colleges.html" class="ayur-cta-btn">List of Ayurveda Colleges</a>
-    <a href="ayurveda-syllabus.html" class="ayur-cta-btn">Curriculum & Syllabus</a>
-    <a href="ayurveda-calendar.html" class="ayur-cta-btn">Academic Calendar</a>
-    <a href="ayurveda-library.html" class="ayur-cta-btn">Library</a>
-  </div>
-</div>
+<div class="ayur-page">
 
-<div class="band">
-  <div class="wrap">
-    <div class="rail js rv in" style="animation-delay:.2s">
-      <div class="no">Ayurveda</div>
-      <div class="dv">आयुर्वेद</div>
-      <div class="tag">The Science of Life</div>
+  <!-- CTA RAIL -->
+  <nav class="ayur-nav" aria-label="Ayurveda sections">
+    <div class="ayur-nav-inner js rv in" style="animation-delay:.05s">
+      <a href="ayurveda-colleges.html" class="ayur-btn" style="--c:var(--ay-leaf)">List of Ayurveda Colleges</a>
+      <a href="ayurveda-curriculum.html" class="ayur-btn" style="--c:var(--ay-accent-2)">Curriculum &amp; Syllabus</a>
+      <a href="ayurveda-calendar.html" class="ayur-btn" style="--c:var(--ay-accent)">Academic Calendar</a>
+      <a href="ayurveda-library.html" class="ayur-btn" style="--c:var(--ay-accent-2)">Library</a>
     </div>
-    <div class="body-col">
-      <div class="hd js rv in" style="animation-delay:.3s">
-        <h2>Ayurveda means "the science of life"</h2>
-        <p>Ayur means "life" and veda means "science" in Sanskrit. Ayurveda is a discipline of the upaveda or "auxiliary knowledge" in Vedic tradition. Ayurveda has its prime origin from Atharva-Veda and apart as a supplement of the Rig-Veda. Dhanvantari is worshipped as the God of Ayurveda.</p>
-      </div> <!-- /hd -->
-        
-      <div class="ayur-content-grid js rv in" style="animation-delay:.4s">
-          <div>
-            <h3 style="font-family: var(--display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink);">A Holistic Approach to Well-being</h3>
-            <p>The central aim of Ayurveda is to prevent illness, heal the sick, and preserve life through natural means. Unlike reductionist models, Ayurveda treats the individual as a whole—considering physical, mental, and spiritual well-being as interconnected aspects of health.</p>
-            <br>
-            <p>Originating in India over 5,000 years ago, it has extended its holistic practices across the globe. From ancient Gurukula teaching systems to modern-day undergraduate and postgraduate medical institutions, Ayurveda's wisdom is constantly evolving while staying true to its core tenets.</p>
-          </div>
-          <div class="ayur-image-wrapper">
-            <img src="assets/web/ayurveda_intro.jpg" alt="Ayurvedic herbs and manuscripts">
-          </div>
-        </div>
+  </nav>
 
-        <div class="ayur-content-grid" style="margin-top: 4rem;">
-          <div class="ayur-image-wrapper" style="order: 2;">
-            <img src="assets/web/trad_ayurveda.jpg" alt="Mortar and pestle with turmeric">
-          </div>
-          <div style="order: 1;">
-            <h3 style="font-family: var(--display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink);">The Three Doshas</h3>
-            <p>At the heart of Ayurvedic philosophy lies the concept of the three Doshas—Vata, Pitta, and Kapha. These vital energies are believed to govern all physiological and psychological functions in the body.</p>
-            <br>
-            <p>By understanding one's unique constitution (Prakriti) and current state of imbalance (Vikriti), practitioners prescribe customized treatments involving herbal remedies, specialized diets, detoxification therapies (Panchakarma), and lifestyle modifications.</p>
-          </div>
-        </div>
-        
+  <!-- HERO -->
+  <div class="ayur-hero">
+    <div class="ayur-hero-inner">
+      <div class="js rv in" style="animation-delay:.1s">
+        <span class="ayur-eyebrow">Indian Systems of Medicine · BAMS</span>
+        <h1>Ayurveda</h1>
+        <div class="deva" lang="sa">आयुर्वेद — जीवन का विज्ञान</div>
+        <p class="sub">"The science of life" — <em>ayur</em>, life; <em>veda</em>, science.</p>
+      </div>
+      <figure class="ayur-hero-fig js rv in" style="animation-delay:.2s">
+        <img src="assets/web/ayurveda_intro.jpg" alt="Ayurvedic herbs, copper vessels and a palm-leaf manuscript on a wooden table">
+        <figcaption>Herbs, minerals and the written tradition — the material basis of Ayurvedic practice</figcaption>
+      </figure>
     </div>
   </div>
-</div>
+
+  <div class="ayur-body">
+
+    <!-- ORIGINS -->
+    <section class="ayur-sec">
+      <div class="js rv in">
+        <h2 class="ayur-h2">The science of life</h2>
+        <p class="ayur-lede">Ayurveda means "the science of life" — <em>ayur</em> means "life" and <em>veda</em>
+          means "science" in Sanskrit. It is a discipline of the <strong>upaveda</strong>, or "auxiliary
+          knowledge", within the Vedic tradition. Ayurveda has its prime origin from the
+          <strong>Atharva-Veda</strong>, and stands apart as a supplement of the Rig-Veda.
+          <strong>Dhanvantari</strong> is worshipped as the god of Ayurveda.</p>
+        <p class="ayur-lede">The aim of this system is to prevent illness, heal the sick and preserve life.
+          Ayurveda has its origins in India and has extended its wings into various parts of the world. It was
+          taught in the <strong>Gurukula</strong> system in ancient days, which has now evolved into
+          undergraduate and postgraduate courses offered by institutions.</p>
+      </div>
+
+      <div class="ayur-stats js rv in">
+        <div class="ayur-stat"><b>5½</b><span>Years — BAMS degree</span></div>
+        <div class="ayur-stat"><b>1</b><span>Year compulsory internship</span></div>
+        <div class="ayur-stat"><b>8</b><span>Limbs — Ashtanga Ayurveda</span></div>
+        <div class="ayur-stat"><b>3</b><span>Doshas — Vata, Pitta, Kapha</span></div>
+      </div>
+    </section>
+
+    <!-- DOSHAS -->
+    <section class="ayur-sec">
+      <div class="ayur-split">
+        <div class="js rv in">
+          <h2 class="ayur-h2">Tridosha — the three humours</h2>
+          <p class="ayur-lede">Ayurvedic physiology rests on the <strong>tridosha</strong>: three functional
+            principles whose balance governs health and whose disturbance produces disease. Each is composed of
+            the <em>panchamahabhuta</em>, the five great elements.</p>
+          <p class="ayur-lede">Diagnosis begins with <strong>prakriti</strong> — the constitution a person is
+            born with — read against <strong>vikriti</strong>, their present state of imbalance. Treatment then
+            follows through diet, regimen, medicine and the purificatory procedures of Panchakarma.</p>
+        </div>
+        <figure class="ayur-fig js rv in">
+          <img src="assets/web/trad_ayurveda.jpg" alt="Stone mortar and pestle filled with turmeric, surrounded by roots, seeds and fresh leaves">
+        </figure>
+      </div>
+
+      <div class="dosha-grid">
+        <div class="dosha js rv in" style="--dc:var(--ay-leaf)">
+          <div class="sym" lang="sa">वात</div>
+          <h4>Vata</h4>
+          <div class="el">Air + Ether · Vayu, Akasha</div>
+          <p>The principle of movement — respiration, circulation, nerve impulse and elimination. Governs all
+            motion in the body and mind.</p>
+        </div>
+        <div class="dosha js rv in" style="--dc:var(--ay-accent)">
+          <div class="sym" lang="sa">पित्त</div>
+          <h4>Pitta</h4>
+          <div class="el">Fire + Water · Agni, Jala</div>
+          <p>The principle of transformation — digestion, metabolism, body temperature, vision and
+            comprehension.</p>
+        </div>
+        <div class="dosha js rv in" style="--dc:var(--ay-accent-2)">
+          <div class="sym" lang="sa">कफ</div>
+          <h4>Kapha</h4>
+          <div class="el">Water + Earth · Jala, Prithvi</div>
+          <p>The principle of cohesion and structure — lubrication, stability, immunity and the substance of
+            the tissues.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASHTANGA -->
+    <section class="ayur-sec">
+      <div class="js rv in">
+        <h2 class="ayur-h2">Ashtanga Ayurveda — the eight limbs</h2>
+        <p class="ayur-lede">The classical corpus divides Ayurveda into eight clinical branches. They remain the
+          organising spine of the modern BAMS curriculum and of postgraduate specialisation.</p>
+      </div>
+      <div class="limbs js rv in">
+        <div class="limb"><div class="n">01</div><div class="sa" lang="sa">कायचिकित्सा</div><div class="en">Kayachikitsa — internal medicine</div></div>
+        <div class="limb"><div class="n">02</div><div class="sa" lang="sa">शल्य तन्त्र</div><div class="en">Shalya Tantra — surgery</div></div>
+        <div class="limb"><div class="n">03</div><div class="sa" lang="sa">शालाक्य तन्त्र</div><div class="en">Shalakya Tantra — eye, ENT and head</div></div>
+        <div class="limb"><div class="n">04</div><div class="sa" lang="sa">कौमारभृत्य</div><div class="en">Kaumarabhritya — paediatrics</div></div>
+        <div class="limb"><div class="n">05</div><div class="sa" lang="sa">अगदतन्त्र</div><div class="en">Agadatantra — toxicology</div></div>
+        <div class="limb"><div class="n">06</div><div class="sa" lang="sa">भूतविद्या</div><div class="en">Bhutavidya — psychiatry</div></div>
+        <div class="limb"><div class="n">07</div><div class="sa" lang="sa">रसायन</div><div class="en">Rasayana — rejuvenation</div></div>
+        <div class="limb"><div class="n">08</div><div class="sa" lang="sa">वाजीकरण</div><div class="en">Vajikarana — reproductive health</div></div>
+      </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="ayur-sec">
+      <div class="ayur-split flip">
+        <figure class="ayur-fig js rv in">
+          <img src="assets/web/ayurveda_syllabus.jpg" alt="Ayurvedic materials and modern medical reference texts and stethoscopes arranged together">
+        </figure>
+        <div class="js rv in">
+          <h2 class="ayur-h2">Curriculum &amp; syllabus</h2>
+          <p class="ayur-lede">The <strong>Ayurvedacharya (BAMS)</strong> programme runs four professional
+            years followed by a compulsory rotating internship. From 2021–22 the Commission introduced a
+            competency-based curriculum, published subject by subject.</p>
+          <p class="ayur-lede">Documents below are published by NCISM under their official subject codes.</p>
+        </div>
+      </div>
+
+      <h3 class="ayur-h3" style="margin-top:2.4rem">Competency-based curriculum · III Professional BAMS</h3>
+      <div class="doc-list js rv in">
+        <a class="doc" href="https://ncismindia.org/1.%20NCISM_IIIBAMS_AyUG-KC.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-KC</span>
+          <span class="nm">Kayachikitsa including Manasa Roga, Rasayana and Vajikarana<small>Internal medicine, psychiatry, rejuvenative and reproductive medicine</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/2.%20NCISM_IIIBAMS_AyUG-PK.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-PK</span>
+          <span class="nm">Panchakarma &amp; Upakarma<small>Therapeutic procedural management</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/3.%20NCISM_IIIBAMS_AyUG-ST.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-ST</span>
+          <span class="nm">Shalya Tantra<small>General surgery</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/4.%20NCISM_IIIBAMS_AyUG-SL.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-SL</span>
+          <span class="nm">Shalakya Tantra<small>Ophthalmology, oto-rhino-laryngology &amp; oro-dentistry</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/5.%20NCISM_IIIBAMS_AyUG-PS.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-PS</span>
+          <span class="nm">Prasuti Tantra evam Stree Roga<small>Gynaecology and obstetrics</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/6.%20NCISM_IIIBAMS_AyUG-KB.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-KB</span>
+          <span class="nm">Kaumarabhritya<small>Paediatrics</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/7.%20NCISM_IIIBAMS_AyUG-SA3.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-SA3</span>
+          <span class="nm">Samhita Adhyayan-3<small>Study of Ayurveda classical text</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/8.%20NCISM_IIIBAMS_AyUG-RM.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-RM</span>
+          <span class="nm">Research Methodology and Medical-statistics<small>Introduced under the competency-based curriculum</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/9.NCISM_IIIBAMS_AyUG-EM.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-EM</span>
+          <span class="nm">Atyaikachikitsa<small>Emergency medicine</small></span>
+          <span class="pill">PDF</span>
+        </a>
+      </div>
+
+      <h3 class="ayur-h3" style="margin-top:2.4rem">I Professional BAMS &amp; transitional curriculum</h3>
+      <div class="doc-list js rv in">
+        <a class="doc" href="https://ncismindia.org/AyUG-PV-1.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-PV</span>
+          <span class="nm">Padartha Vijnanam<small>Fundamental principles of Ayurveda</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/Ay%20UG-SA1-1.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-SA1</span>
+          <span class="nm">Samhita Adhyayan-1<small>Study of Ayurveda classical text</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/AyUG-KS-1.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-KS</span>
+          <span class="nm">Kriya Sharira<small>Human physiology</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/AyUG%20RS-1.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-RS</span>
+          <span class="nm">Rachana Sharira<small>Human anatomy</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/AyUG-SN%20AI-1.pdf" target="_blank" rel="noopener">
+          <span class="code">AyUG-SN AI</span>
+          <span class="nm">Samskritam evam Ayurved Itihas<small>Sanskrit and the history of Ayurveda</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/Transitional_Curriculum.pdf" target="_blank" rel="noopener">
+          <span class="code">Ayurpraveshika</span>
+          <span class="nm">Transitional Curriculum<small>Foundation course preceding I Professional</small></span>
+          <span class="pill">PDF</span>
+        </a>
+      </div>
+
+      <h3 class="ayur-h3" style="margin-top:2.4rem">Earlier (pre-2021) syllabus &amp; postgraduate</h3>
+      <div class="doc-list js rv in">
+        <a class="doc" href="https://ncismindia.org/pdf/1st_year_UG_Syllabus.pdf" target="_blank" rel="noopener">
+          <span class="code">BAMS I</span>
+          <span class="nm">1st Professional — Ayurvedacharya<small>Old syllabus</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/pdf/2nd_year_UG_Syllabus.pdf" target="_blank" rel="noopener">
+          <span class="code">BAMS II</span>
+          <span class="nm">2nd Professional — Ayurvedacharya<small>Old syllabus</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/pdf/3rd_year_syllabus.pdf" target="_blank" rel="noopener">
+          <span class="code">BAMS III</span>
+          <span class="nm">3rd Professional — Ayurvedacharya<small>Old syllabus</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/pdf/4th_year_syllabus.pdf" target="_blank" rel="noopener">
+          <span class="code">BAMS IV</span>
+          <span class="nm">4th Professional — Ayurvedacharya<small>Old syllabus</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/pdf/Distribution-of-Marks-in-MD-and-MS-AYU.pdf" target="_blank" rel="noopener">
+          <span class="code">MD / MS</span>
+          <span class="nm">Distribution of Marks in MD and MS (Ayu)<small>Postgraduate assessment scheme</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/pdf/pg-syllabus-2nd-year.pdf" target="_blank" rel="noopener">
+          <span class="code">PG FINAL</span>
+          <span class="nm">Postgraduate Course — Final Year<small>MD / MS (Ayurveda)</small></span>
+          <span class="pill">PDF</span>
+        </a>
+      </div>
+
+      <p class="src-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:.15rem"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        Codes, titles and links are taken from ncismindia.org; each subject name was read from the title page of
+        the official PDF itself. All links open the document on the NCISM server.
+      </p>
+    </section>
+
+    <!-- ACADEMIC CALENDAR + COLLEGES -->
+    <section class="ayur-sec">
+      <div class="ayur-split">
+        <div class="js rv in">
+          <h2 class="ayur-h2">Sessions &amp; institutions</h2>
+          <p class="ayur-lede">The Commission publishes an academic calendar for every BAMS batch, fixing
+            admission cut-off dates, term dates and examination windows. Permission status for each college is
+            notified separately for every academic year.</p>
+          <p class="ayur-lede">Students should confirm a college's permission status for the relevant academic
+            year <strong>before</strong> accepting admission — permission is granted year by year, not once.</p>
+        </div>
+        <figure class="ayur-fig js rv in">
+          <img src="assets/web/ayurveda_calendar.jpg" alt="An hourglass filled with dried herbs and flowers, set against a landscape at sunset">
+        </figure>
+      </div>
+
+      <div class="doc-list js rv in" style="margin-top:2rem">
+        <a class="doc" href="https://ncismindia.org/assets/pdf/ACADEMIC%20CALENDAR%20UG%20PROGRAM.pdf" target="_blank" rel="noopener">
+          <span class="code">UG</span>
+          <span class="nm">Academic Calendar — UG Programme<small>BAMS</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/Academic%20Calendar%20for%20batch%202024-25%20of%20BAMS%20(3)%20(1).pdf" target="_blank" rel="noopener">
+          <span class="code">2024-25</span>
+          <span class="nm">Academic Calendar — BAMS batch 2024-25<small>Undergraduate</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/Academic%20Calendar%20for%20the%20batch%20of%202023-24%20for%20BAMS.pdf" target="_blank" rel="noopener">
+          <span class="code">2023-24</span>
+          <span class="nm">Academic Calendar — BAMS batch 2023-24<small>Undergraduate</small></span>
+          <span class="pill">PDF</span>
+        </a>
+        <a class="doc" href="https://ncismindia.org/assets/pdf/PG%20ACADEMIC%20CALENDAR%20FOR%202025-26%20BATCH.pdf" target="_blank" rel="noopener">
+          <span class="code">PG 2025-26</span>
+          <span class="nm">PG Academic Calendar — 2025-26 batch<small>MD / MS (Ayurveda)</small></span>
+          <span class="pill">PDF</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="ayur-sec">
+      <div class="ayur-close js rv in">
+        <div>
+          <h3>Checking a college before you accept a seat?</h3>
+          <p>Permission to admit is granted for a single academic year at a time. Search the register by
+            institution, state and status before you pay a fee.</p>
+        </div>
+        <div class="ayur-close-actions">
+          <a class="ayur-primary" href="index.html#finder">
+            Check permission status
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="ayur-secondary" href="ayurveda-colleges.html">
+            Ayurveda colleges
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /ayur-body -->
+</div><!-- /ayur-page -->

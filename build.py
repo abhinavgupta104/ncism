@@ -1,4 +1,6 @@
-import re, base64, os, mimetypes, glob, codecs
+import re, base64, os, mimetypes, glob, codecs, datetime
+
+STAMP = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 def inline_resources(html):
     fonts = codecs.open('assets/fonts/fonts.css', encoding='utf-8').read()
@@ -21,10 +23,15 @@ def inline_resources(html):
 
 def build():
     layout = codecs.open('src/_layout.html', encoding='utf-8').read()
-    
+
+    # primary navbar is generated from the scraped official menu — see gen_nav.py
+    nav = codecs.open('src/_nav.html', encoding='utf-8').read()
+    layout = layout.replace('{{NAV}}', nav)
+
     pages = glob.glob('src/*.html')
     for page in pages:
-        if '_layout' in page:
+        # partials (_layout, _nav, ...) are ingredients, not pages
+        if os.path.basename(page).startswith('_'):
             continue
             
         page_name = os.path.basename(page)
@@ -41,20 +48,31 @@ def build():
         # Inline images and fonts
         full_html = inline_resources(full_html)
         
-        # Wrap as standard document
-        title_match = re.search(r'<title>(.*?)</title>', full_html, re.S)
+        # Wrap as standard document. A page's own <title> wins over the
+        # layout's, otherwise every page ships with the same tab label.
+        own = re.search(r'<title>(.*?)</title>', content, re.S)
+        fallback = re.search(r'<title>(.*?)</title>', full_html, re.S)
+        title_match = own or fallback
         title = title_match.group(1).strip() if title_match else 'NCISM'
-        body = re.sub(r'<title>.*?</title>\s*', '', full_html, count=1, flags=re.S)
+        body = re.sub(r'<title>.*?</title>\s*', '', full_html, flags=re.S)
 
         doc = (
             '<!doctype html>\n<html lang="en">\n<head>\n'
             '<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="color-scheme" content="light dark">\n'
+            # these pages are multi-MB single files, so browsers cache them hard
+            # and a rebuild can silently keep showing the old markup
+            '<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
+            '<meta http-equiv="Pragma" content="no-cache">\n'
+            '<meta http-equiv="Expires" content="0">\n'
+            f'<meta name="build" content="{STAMP}">\n'
             f'<meta name="description" content="{title}">\n'
             f'<title>{title}</title>\n'
             '</head>\n<body>\n'
+            f'<!-- build {STAMP} -->\n'
             f'{body}\n'
+            f'<script>console.info("NCISM build {STAMP}");</script>\n'
             '</body>\n</html>\n'
         )
         
